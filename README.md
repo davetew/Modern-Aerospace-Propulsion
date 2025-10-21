@@ -63,6 +63,16 @@ Study of inlet and nozzle flows and their performance characteristics.
 ### Week 5 - Combustors & Augmentors
 Combustion modeling and augmentor (afterburner) analysis.
 - **Gibbs_Energy_Minimization.ipynb** - Tutorial on Gibbs free energy minimization for equilibrium combustion modeling
+- **Homework_2_Combustors_&_Augementors.ipynb** - Homework assignment on combustor and augmentor analysis
+
+### Week 6 - Turbomachinery
+Turbomachinery components and performance analysis.
+- **Gas_Turbine_T4_Performance_Sensitivity.ipynb** - Analysis of gas turbine performance sensitivity to T4 (turbine inlet temperature)
+- **Polytropic_&_Isentropic_Efficiency.ipynb** - Study of polytropic and isentropic efficiencies in turbomachinery
+
+### Week 7 - Advanced Cycles
+Advanced propulsion cycles including turbofans and other configurations.
+- **SimpleTurboFan.ipynb** - Simplified turbofan engine cycle analysis
 
 ### Aircraft Project Tools
 Tools and resources for the aircraft propulsion system design project.
