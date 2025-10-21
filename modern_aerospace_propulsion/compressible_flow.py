@@ -8,7 +8,7 @@
 δ = lambda Mach, γ=1.4: θ(Mach, γ)**(γ1(γ))
 
 # Nozzle area ratio
-A_Astar = lambda Mach, γ=1.4: 1 / Mach * ((2/(γ+1))*θ(Mach, γ))**((γ+1)/2/(γ-1))
+A_Astar = lambda Mach, γ=1.4: 1 / Mach * (2/(γ+1)*θ(Mach, γ))**((γ+1)/2/(γ-1))
 
 # Handy temperature conversions 
 
