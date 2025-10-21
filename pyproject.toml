@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "modern-aerospace-propulsion"
+version = "0.1.0"
+description = "Analyses and Data for the Modern Aerospace Propulsion course @ Columbia"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "David Tew"}
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Education",
+]
+keywords = ["aerospace", "propulsion", "thermodynamics", "engineering"]
+
+dependencies = [
+    "numpy>=1.20.0",
+    "matplotlib>=3.3.0",
+    "pandas>=1.2.0",
+    "jupyter>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "flake8>=4.0.0",
+    "ipython>=8.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/davetew/Modern-Aerospace-Propulsion"
+Repository = "https://github.com/davetew/Modern-Aerospace-Propulsion"
+
+[tool.setuptools.packages.find]
+include = ["modern_aerospace_propulsion*"]
+
+[tool.setuptools.package-data]
+"modern_aerospace_propulsion" = ["*.py"]
