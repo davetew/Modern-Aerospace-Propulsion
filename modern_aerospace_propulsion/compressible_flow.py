@@ -2,13 +2,25 @@
 γ1 = lambda γ: γ / (γ-1) 
 
 # Ratio of total to static temperature
-θ = lambda Mach, γ=1.4: 1 + (γ-1)/2*Mach**2
+def θ(Mach: float, γ: float = 1.4) -> float:
+  """Calculate and return the total to static temperature ratio given
+    **Mach** (*float*): the Mach number, and
+    **γ** (*float*): the ratio of specific heats (default=1.4)"""
+  return 1 + (γ-1)/2*Mach**2
 
 # Ratio of total to static pressure
-δ = lambda Mach, γ=1.4: θ(Mach, γ)**(γ1(γ))
+def δ(Mach: float, γ: float = 1.4) -> float:
+  """Calculate and return the total to static pressure ratio given
+  **Mach** (*float*): the Mach number, and
+  **γ** (*float*): the ratio of specific heats (default=1.4)"""
+  return θ(Mach, γ)**(γ1(γ))
 
 # Nozzle area ratio
-A_Astar = lambda Mach, γ=1.4: 1 / Mach * (2/(γ+1)*θ(Mach, γ))**((γ+1)/2/(γ-1))
+def A_Astar(Mach: float, γ: float=1.4) -> float:
+  """Calculate and return the nozzle area ratio given
+    **Mach** (*float*): the Mach number, and
+    **γ** (*float*): the ratio of specific heats (default=1.4)"""
+  return 1 / Mach * (2/(γ+1)*θ(Mach, γ))**((γ+1)/2/(γ-1))
 
 # Handy temperature conversions 
 
