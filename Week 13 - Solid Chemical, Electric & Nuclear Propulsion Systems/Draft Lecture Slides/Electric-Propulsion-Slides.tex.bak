@@ -452,36 +452,36 @@
         \item $a$ = temperature dependent coefficient (hotter grains burn faster).
         \item $n$ = pressure exponent
     \end{itemize}
-  \begin{columns}
-    \column{0.5\textwidth}
-    \centering
-    \hspace*{1cm}% shift block right by 1 cm
-    \begin{block}{Stability Criterion ($\dot{m}_{gen} \propto P_c^n$, $\dot{m}_{out} \propto P_c$)}
-      $$\begin{cases}
-        n < 1 & \text{Stable}: \uparrow P_c \Rightarrow |\Delta\dot{m}_{gen}| < |\Delta\dot{m}_{out}| \\
-        n > 1 & \text{Unstable}: \uparrow P_c \Rightarrow |\Delta\dot{m}_{gen}| > |\Delta\dot{m}_{out}|
-      \end{cases}$$
-    \end{block}
-    \column{0.5\textwidth}
-    \centering
-    \begin{tikzpicture}[scale=0.6]
-      \begin{axis}[
-        width=0.95\linewidth,
-        axis lines=left,
-        xlabel={$time$},
-        ylabel={$P_c$},
-        xtick=\empty, ytick=\empty,
-        xmin=0, xmax=10,
-        ymin=0,
-        clip=false
-      ]
-        \addplot[domain=0:10, thick, blue] {2*x^0.5};
-        \node at (axis cs: 6, 4) [right, blue] {Stable ($n<1$)};
-        \addplot[domain=0.1:4, thick, red, dashed] {0.5*x^2};
-        \node at (axis cs: 3, 8) [right, red] {Unstable ($n>1$)};
-      \end{axis}
-    \end{tikzpicture}
-  \end{columns}
+    \begin{columns}
+                \column{0.5\textwidth}
+                    \centering
+                    \hspace*{1cm}% shift block right by 1 cm
+                    \begin{block}{Stability Criterion ($\dot{m}_{gen} \propto P_c^n$, $\dot{m}_{out} \propto P_c$)}
+              $$\begin{cases}
+                  n < 1 & \text{Stable}: \uparrow P_c \Rightarrow |\Delta\dot{m}_{gen}| < |\Delta\dot{m}_{out}| \\
+                  n > 1 & \text{Unstable}: \uparrow P_c \Rightarrow |\Delta\dot{m}_{gen}| > |\Delta\dot{m}_{out}|
+              \end{cases}$$
+          \end{block}
+        \column{0.5\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.6]
+                \begin{axis}[
+                    width=0.95\linewidth,
+                    axis lines=left,
+                    xlabel={$time$},
+                    ylabel={$P_c$},
+                    xtick=\empty, ytick=\empty,
+                    xmin=0, xmax=10,
+                    ymin=0,
+                    clip=false
+                ]
+                    \addplot[domain=0:10, thick, blue] {2*x^0.5};
+                    \node at (axis cs: 6, 4) [right, blue] {Stable ($n<1$)};
+                    \addplot[domain=0.1:4, thick, red, dashed] {0.5*x^2};
+                    \node at (axis cs: 3, 8) [right, red] {Unstable ($n>1$)};
+                \end{axis}
+            \end{tikzpicture}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Steady State Chamber Pressure}
@@ -534,7 +534,7 @@
           \draw[thick, fill=gray!30] (0,0) circle (2);
           % Six-pointed star (centered), alternating outer/inner radii
           \fill[white] (0:1.5) -- (30:0.5) -- (60:1.5) -- (90:0.5) -- (120:1.5) -- (150:0.5)
-                      -- (180:1.5) -- (210:0.5) -- (240:1.5) -- (270:0.5) -- (300:1.5) -- (330:0.5) -- cycle;
+                       -- (180:1.5) -- (210:0.5) -- (240:1.5) -- (270:0.5) -- (300:1.5) -- (330:0.5) -- cycle;
           
           % Web Definition
           %\draw[red, <->] (60:1.5) -- (60:2);

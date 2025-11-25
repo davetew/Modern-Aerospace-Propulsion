@@ -1,15 +1,15 @@
 \beamer@sectionintoc {1}{Solid Chemical Propulsion}{3}{0}{1}
 \beamer@subsectionintoc {1}{1}{Introduction \& Example Propellant Chemistry}{3}{0}{1}
 \beamer@subsectionintoc {1}{2}{Internal Ballistics}{5}{0}{1}
-\beamer@subsectionintoc {1}{3}{Grain Design}{9}{0}{1}
-\beamer@subsectionintoc {1}{4}{Flow Physics \& Erosion}{12}{0}{1}
-\beamer@subsectionintoc {1}{5}{Combustion Instability}{14}{0}{1}
-\beamer@subsectionintoc {1}{6}{Thermal Protection \& Nozzle Erosion}{15}{0}{1}
-\beamer@subsectionintoc {1}{7}{Summary}{16}{0}{1}
-\beamer@sectionintoc {2}{Electric Propulsion}{23}{0}{2}
-\beamer@subsectionintoc {2}{1}{Introduction to Electric Propulsion}{23}{0}{2}
-\beamer@subsectionintoc {2}{2}{Electrothermal Propulsion}{30}{0}{2}
-\beamer@subsectionintoc {2}{3}{Electrostatic I: Gridded Ion Thrusters}{32}{0}{2}
-\beamer@subsectionintoc {2}{4}{Electrostatic II: Hall Effect Thrusters}{36}{0}{2}
-\beamer@subsectionintoc {2}{5}{Electromagnetic Systems \& Propellant Economics}{40}{0}{2}
-\beamer@subsectionintoc {2}{6}{Summary}{45}{0}{2}
+\beamer@subsectionintoc {1}{3}{Grain Design}{19}{0}{1}
+\beamer@subsectionintoc {1}{4}{Flow Physics \& Erosion}{22}{0}{1}
+\beamer@subsectionintoc {1}{5}{Combustion Instability}{24}{0}{1}
+\beamer@subsectionintoc {1}{6}{Thermal Protection \& Nozzle Erosion}{25}{0}{1}
+\beamer@subsectionintoc {1}{7}{Summary}{26}{0}{1}
+\beamer@sectionintoc {2}{Electric Propulsion}{33}{0}{2}
+\beamer@subsectionintoc {2}{1}{Introduction to Electric Propulsion}{33}{0}{2}
+\beamer@subsectionintoc {2}{2}{Electrothermal Propulsion}{40}{0}{2}
+\beamer@subsectionintoc {2}{3}{Electrostatic I: Gridded Ion Thrusters}{42}{0}{2}
+\beamer@subsectionintoc {2}{4}{Electrostatic II: Hall Effect Thrusters}{46}{0}{2}
+\beamer@subsectionintoc {2}{5}{Electromagnetic Systems \& Propellant Economics}{50}{0}{2}
+\beamer@subsectionintoc {2}{6}{Summary}{55}{0}{2}
