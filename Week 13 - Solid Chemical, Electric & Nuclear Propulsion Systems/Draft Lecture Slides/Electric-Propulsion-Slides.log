@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  24 NOV 2025 20:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  24 NOV 2025 21:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -831,15 +831,15 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 77.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 77.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 78.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 77.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
@@ -859,7 +859,7 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 [6
 
 ]
-Overfull \hbox (1.7741pt too wide) detected at line 205
+Overfull \hbox (1.7741pt too wide) detected at line 204
 []
  []
 
@@ -879,7 +879,7 @@ Overfull \hbox (1.7741pt too wide) detected at line 205
 <figs/Shuttle_SRB.jpg, id=222, 640.3925pt x 431.6125pt>
 File: figs/Shuttle_SRB.jpg Graphic file (type jpg)
 <use figs/Shuttle_SRB.jpg>
-Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 285.
+Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 284.
 (pdftex.def)             Requested size: 195.00348pt x 131.42757pt.
 
 
@@ -909,15 +909,32 @@ Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 285.
 
 [16
 
-] (./Electric-Propulsion-Slides.toc)
+]
 
 [17
 
 ]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 446.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 446.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 446.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 446.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+)
 
 [18
 
 ]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <14.4> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 465.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 465.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 465.
+
 
 [19
 
@@ -926,85 +943,6 @@ Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 285.
 [20
 
 ]
-Underfull \hbox (badness 6741) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 Simple; Low cost;
- []
-
-
-Underfull \hbox (badness 3989) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 Robust; Higher $\OT1/mathkerncmss/m/sl/10.95 I[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 Electrode ero-sion;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 Highest Ef-fi-ciency;
- []
-
-
-Underfull \hbox (badness 6708) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 Low thrust den-sity
- []
-
-
-Underfull \hbox (badness 1769) in paragraph at lines 504--504
-\OT1/cmss/m/n/10.95 (Grid lim-its); Com-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 High Thrust-to-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 Beam di-ver-gence;
- []
-
-
-Underfull \hbox (badness 4859) in paragraph at lines 504--504
-\OT1/cmss/m/n/10.95 Chan-nel ero-sion (if
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 Precision con-trol;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 504--504
-\OT1/cmss/m/n/10.95 volt-age; Clog-ging
- []
-
-
-Underfull \hbox (badness 4927) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 Solid fuel (Teflon);
- []
-
-
-Underfull \hbox (badness 3219) in paragraph at lines 504--504
-[]\OT1/cmss/m/n/10.95 Very low ef-fi-ciency;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 504--504
-\OT1/cmss/m/n/10.95 Car-bon con-tam-i-na-
- []
-
-
-Underfull \hbox (badness 1688) in paragraph at lines 504--504
-\OT1/cmss/m/n/10.95 Cath-ode ero-sion se-
- []
-
-
-Overfull \vbox (27.26714pt too high) detected at line 504
- []
-
-
 
 [21
 
@@ -1012,7 +950,7 @@ Overfull \vbox (27.26714pt too high) detected at line 504
 
 [22
 
-]
+] (./Electric-Propulsion-Slides.toc)
 
 [23
 
@@ -1029,7 +967,82 @@ Overfull \vbox (27.26714pt too high) detected at line 504
 [26
 
 ]
-Overfull \vbox (2.2462pt too high) detected at line 671
+Underfull \hbox (badness 6741) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 Simple; Low cost;
+ []
+
+
+Underfull \hbox (badness 3989) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 Robust; Higher $\OT1/mathkerncmss/m/sl/10.95 I[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 Electrode ero-sion;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 Highest Ef-fi-ciency;
+ []
+
+
+Underfull \hbox (badness 6708) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 Low thrust den-sity
+ []
+
+
+Underfull \hbox (badness 1769) in paragraph at lines 655--655
+\OT1/cmss/m/n/10.95 (Grid lim-its); Com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 High Thrust-to-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 Beam di-ver-gence;
+ []
+
+
+Underfull \hbox (badness 4859) in paragraph at lines 655--655
+\OT1/cmss/m/n/10.95 Chan-nel ero-sion (if
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 Precision con-trol;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 655--655
+\OT1/cmss/m/n/10.95 volt-age; Clog-ging
+ []
+
+
+Underfull \hbox (badness 4927) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 Solid fuel (Teflon);
+ []
+
+
+Underfull \hbox (badness 3219) in paragraph at lines 655--655
+[]\OT1/cmss/m/n/10.95 Very low ef-fi-ciency;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 655--655
+\OT1/cmss/m/n/10.95 Car-bon con-tam-i-na-
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 655--655
+\OT1/cmss/m/n/10.95 Cath-ode ero-sion se-
+ []
+
+
+Overfull \vbox (27.26714pt too high) detected at line 655
  []
 
 
@@ -1057,6 +1070,10 @@ Overfull \vbox (2.2462pt too high) detected at line 671
 [32
 
 ]
+Overfull \vbox (2.2462pt too high) detected at line 822
+ []
+
+
 
 [33
 
@@ -1072,17 +1089,44 @@ Overfull \vbox (2.2462pt too high) detected at line 671
 
 [36
 
-{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+]
 
 [37
 
 ]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 947.
+
 
 [38
 
 ]
 
 [39
+
+]
+
+[40
+
+]
+
+[41
+
+]
+
+[42
+
+{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+[43
+
+]
+
+[44
+
+]
+
+[45
 
 ]
 \tf@nav=\write6
@@ -1100,21 +1144,21 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `Electric-Propulsion-Slides.out' has not changed.
-(rerunfilecheck)             Checksum: A2DB2FAB24ED3A53E48AC944AF2B28BF;2870.
+(rerunfilecheck)             Checksum: 4F1807904FFCD15BD1C4A0388DA58D7E;2924.
  ) 
 Here is how much of TeX's memory you used:
- 36273 strings out of 473190
- 873954 string characters out of 5715801
+ 36360 strings out of 473190
+ 875512 string characters out of 5715801
  1356077 words of memory out of 5000000
- 58752 multiletter control sequences out of 15000+600000
- 587420 words of font info for 123 fonts, out of 8000000 for 9000
+ 58821 multiletter control sequences out of 15000+600000
+ 590542 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,17n,123p,983b,2277s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb>
-Output written on Electric-Propulsion-Slides.pdf (39 pages, 362711 bytes).
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb>
+Output written on Electric-Propulsion-Slides.pdf (45 pages, 379607 bytes).
 PDF statistics:
- 647 PDF objects out of 1000 (max. 8388607)
- 446 compressed objects within 5 object streams
- 94 named destinations out of 1000 (max. 500000)
- 628 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 709 PDF objects out of 1000 (max. 8388607)
+ 488 compressed objects within 5 object streams
+ 106 named destinations out of 1000 (max. 500000)
+ 664 words of extra memory for PDF output out of 10000 (max. 10000000)
 
