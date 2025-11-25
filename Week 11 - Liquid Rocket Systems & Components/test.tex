@@ -1,0 +1,431 @@
+\documentclass[aspectratio=169]{beamer} % 16:9 widescreen for lecture hall / HD
+
+% Theme and Color Setup
+\usetheme{Madrid}
+\usecolortheme{beaver} % A professional red/grey color scheme suitable for engineering
+\setbeamertemplate{navigation symbols}{} % Remove navigation symbols for a cleaner look
+
+% Lecture hall readability adjustments
+\setbeamersize{text margin left=8mm,text margin right=8mm} % reclaim horizontal space
+\setbeamerfont{normal text}{size=\large} % bump base font
+\setbeamerfont{frametitle}{size=\Large} % larger frame titles
+\setbeamerfont{title}{size=\Huge}
+\setbeamerfont{subtitle}{size=\Large}
+\usepackage{lmodern} % high-quality scalable Latin Modern fonts
+\linespread{1.08} % slight line spacing for readability
+% Simple footline with slide numbers (no clutter)
+\setbeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber\hspace{4mm}\vskip2mm}
+
+% Packages for Math and Graphics
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm} % For bold math symbols (vectors/tensors)
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+% Meta Information
+\title{Lecture 1: Conservation Laws \& The General Energy Equation}
+\subtitle{From First Principles to Governing PDEs}
+\author{Advanced Heat Transfer}
+\institute{Department of Mechanical Engineering}
+\date{\today}
+
+\begin{document}
+
+%---------------------------------------------------------
+% Slide 1: Title Page
+%---------------------------------------------------------
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 2: Course Introduction
+%---------------------------------------------------------
+\begin{frame}{Course Introduction: The Continuum Approach}
+    \begin{block}{The Distinction}
+        \begin{itemize}
+            \item \textbf{Undergraduate:} "How" to apply correlations (e.g., $Nu = 0.023 Re^{0.8} Pr^{0.4}$).
+            \item \textbf{Graduate:} "Why" the physics behaves this way. Deriving governing equations from first principles (Conservation Laws).
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{The Continuum Hypothesis}
+        \begin{itemize}
+            \item We assume matter is continuous (valid when $Kn \ll 1$).
+            \item Defines point properties: $T(x,y,z,t)$, $\rho$, $\vec{v}$.
+        \end{itemize}
+    \end{block}
+    
+    \textbf{Key Tool: Reynolds Transport Theorem (RTT)}
+    \begin{equation}
+        \left. \frac{dN}{dt} \right|_{sys} = \frac{\partial}{\partial t} \int_{CV} \eta \rho \, dV + \int_{CS} \eta \rho (\vec{v} \cdot \vec{n}) \, dA
+    \end{equation}
+    \small{Where $N$ is an extensive property and $\eta = N/m$ is the intensive property.}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 3: Prerequisite - Conservation of Mass
+%---------------------------------------------------------
+\begin{frame}{Prerequisite: Conservation of Mass}
+    Let $N = m$ (mass), so $\eta = 1$.
+    \begin{itemize}
+        \item \textbf{Law:} Mass is neither created nor destroyed ($\frac{dm}{dt}\big|_{sys} = 0$).
+    \end{itemize}
+
+    \textbf{Integral Form:}
+    \begin{equation}
+        0 = \frac{\partial}{\partial t} \int_{CV} \rho \, dV + \int_{CS} \rho (\vec{v} \cdot \vec{n}) \, dA
+    \end{equation}
+
+    \textbf{Differential Form:}
+    Applying the Divergence Theorem:
+    \begin{equation}
+        \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \vec{v}) = 0
+    \end{equation}
+
+    For \textbf{Incompressible Flow} ($\rho = \text{const}$):
+    \begin{equation}
+        \nabla \cdot \vec{v} = 0
+    \end{equation}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 4: Prerequisite - Conservation of Momentum
+%---------------------------------------------------------
+\begin{frame}{Prerequisite: Conservation of Momentum}
+    Let $N = m\vec{v}$ (momentum), so $\eta = \vec{v}$.
+    \begin{itemize}
+        \item \textbf{Law:} Newton's Second Law ($\vec{F} = \frac{d(m\vec{v})}{dt}$).
+    \end{itemize}
+
+    \textbf{Navier-Stokes Equation (Differential Form):}
+    \begin{equation}
+        \rho \frac{D\vec{v}}{Dt} = -\nabla p + \nabla \cdot \boldsymbol{\tau} + \vec{F}_{body}
+    \end{equation}
+    
+    \begin{itemize}
+        \item $\frac{D}{Dt} = \frac{\partial}{\partial t} + (\vec{v} \cdot \nabla)$: Material Derivative (Local + Advection).
+        \item $\boldsymbol{\tau}$: Viscous stress tensor.
+    \end{itemize}
+    
+    \vspace{1em}
+    \textit{Note: We need this to separate Mechanical Energy from Thermal Energy later.}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 5: First Law of Thermodynamics
+%---------------------------------------------------------
+\begin{frame}{Conservation of Energy: The Starting Point}
+    \textbf{First Law of Thermodynamics (Lagrangian System):}
+    The rate of change of total energy of a system is equal to the rate of heat added minus the rate of work done \textit{by} the system.
+    
+    \begin{equation}
+        \left. \frac{dE}{dt} \right|_{sys} = \dot{Q}_{in} - \dot{W}_{by}
+    \end{equation}
+
+    \textbf{Total Energy ($E$):}
+    \begin{equation}
+        E = \int_{sys} \rho \left( e + \frac{1}{2}v^2 \right) dV
+    \end{equation}
+    \begin{itemize}
+        \item $e$: Internal energy per unit mass (Thermal).
+        \item $\frac{1}{2}v^2$: Kinetic energy per unit mass (Mechanical).
+    \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 6: Applying Reynolds Transport Theorem
+%---------------------------------------------------------
+\begin{frame}{Applying Reynolds Transport Theorem}
+    Apply RTT to Total Energy ($\eta = e + \frac{1}{2}v^2$):
+
+    \begin{block}{The Integral Energy Equation}
+        \begin{equation}
+            \frac{\partial}{\partial t} \int_{CV} \rho \left(e + \frac{v^2}{2}\right) dV + \int_{CS} \rho \left(e + \frac{v^2}{2}\right) (\vec{v} \cdot \vec{n}) \, dA = \dot{Q}_{in} - \dot{W}_{by}
+        \end{equation}
+    \end{block}
+    
+    We must now expand the Heat ($\dot{Q}_{in}$) and Work ($\dot{W}_{by}$) terms to convert them into volume integrals.
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 7: Analyzing the Heat Term
+%---------------------------------------------------------
+\begin{frame}{Analysis of the Heat Term ($\dot{Q}$)}
+    Heat enters the Control Volume via two mechanisms:
+    \begin{enumerate}
+        \item \textbf{Volumetric Generation ($\dot{q}'''$):} Ohmic heating, chemical/nuclear reaction.
+        \item \textbf{Surface Flux ($\vec{q}''$):} Conduction across the boundary.
+    \end{enumerate}
+
+    \textbf{Total Heat Transfer:}
+    \begin{equation}
+        \dot{Q}_{in} = \int_{CV} \dot{q}''' \, dV - \int_{CS} \vec{q}'' \cdot \vec{n} \, dA
+    \end{equation}
+
+    \textbf{Fourier's Law (Constitutive Relation):}
+    \begin{equation}
+        \vec{q}'' = -k \nabla T
+    \end{equation}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 8: Analyzing the Work Term
+%---------------------------------------------------------
+\begin{frame}{Analysis of the Work Term ($\dot{W}$)}
+    Work is done \textit{by} the system against surface forces (Pressure $p$ and Viscous Stress $\boldsymbol{\tau}$).
+    
+    \begin{equation}
+        \dot{W}_{surface} = - \int_{CS} (\vec{F}_{surface} \cdot \vec{v}) \, dA
+    \end{equation}
+    
+    Using $\vec{F}_{surface} = \boldsymbol{\sigma} \cdot \vec{n}$ where $\boldsymbol{\sigma} = -p\mathbf{I} + \boldsymbol{\tau}$:
+    
+    \begin{equation}
+        \dot{W}_{by} = \int_{CS} p (\vec{v} \cdot \vec{n}) \, dA - \int_{CS} (\boldsymbol{\tau} \cdot \vec{v}) \cdot \vec{n} \, dA
+    \end{equation}
+    \begin{itemize}
+        \item Term 1: Flow Work (pushing fluid in/out).
+        \item Term 2: Viscous Work (shear forces moving fluid).
+    \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 9: The Total Energy Differential Equation
+%---------------------------------------------------------
+\begin{frame}{Assembling the Differential Equation}
+    Substituting $\dot{Q}$ and $\dot{W}$ and applying the \textbf{Divergence Theorem} to convert surface integrals to volume integrals:
+
+    \begin{equation}
+        \begin{split}
+            \frac{\partial}{\partial t}\left[ \rho \left(e + \frac{v^2}{2}\right) \right] &+ \nabla \cdot \left[ \rho \vec{v} \left(e + \frac{v^2}{2}\right) \right] \\
+            &= -\nabla \cdot \vec{q}'' + \dot{q}''' - \nabla \cdot (p\vec{v}) + \nabla \cdot (\boldsymbol{\tau} \cdot \vec{v})
+        \end{split}
+    \end{equation}
+
+    \textbf{Problem:} This equation mixes \textbf{Mechanical} and \textbf{Thermal} energy. We need to isolate the Thermal part.
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 10: The Mechanical Energy Equation
+%---------------------------------------------------------
+\begin{frame}{The Mechanical Energy Equation}
+    Take the dot product of the Momentum Equation (Navier-Stokes) with velocity $\vec{v}$:
+    \begin{equation}
+        \vec{v} \cdot \left( \rho \frac{D\vec{v}}{Dt} = -\nabla p + \nabla \cdot \boldsymbol{\tau} \right)
+    \end{equation}
+
+    \textbf{Result (Mechanical Energy):}
+    \begin{equation}
+        \rho \frac{D}{Dt}\left(\frac{v^2}{2}\right) = -\vec{v} \cdot \nabla p + \vec{v} \cdot (\nabla \cdot \boldsymbol{\tau})
+    \end{equation}
+    
+    Physical Meaning: Change in kinetic energy is due to work done by pressure gradients and viscous forces.
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 11: Deriving the Thermal Energy Equation
+%---------------------------------------------------------
+\begin{frame}{Deriving the Thermal Energy Equation}
+    Subtract the Mechanical Energy Equation from the Total Energy Equation.
+    
+    \textbf{Internal Energy Form:}
+    \begin{equation}
+        \rho \frac{De}{Dt} = -\nabla \cdot \vec{q}'' + \dot{q}''' - p(\nabla \cdot \vec{v}) + \Phi
+    \end{equation}
+
+    \textbf{New Terms:}
+    \begin{itemize}
+        \item $p(\nabla \cdot \vec{v})$: Reversible work (expansion/compression).
+        \item $\Phi$ (\textbf{Viscous Dissipation}): Irreversible conversion of mechanical energy to heat.
+        \begin{equation}
+            \Phi = \boldsymbol{\tau} : \nabla \vec{v}
+        \end{equation}
+    \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 12: Introducing Enthalpy
+%---------------------------------------------------------
+\begin{frame}{Enthalpy Form of the Energy Equation}
+    Definition: $h = e + p/\rho$.
+    
+    Using continuity and thermodynamic relations, we transform the Internal Energy equation to the \textbf{Enthalpy Form}:
+    
+    \begin{equation}
+        \rho \frac{Dh}{Dt} = \frac{Dp}{Dt} + \nabla \cdot (k \nabla T) + \dot{q}''' + \Phi
+    \end{equation}
+
+    \begin{itemize}
+        \item We applied Fourier's Law: $-\nabla \cdot \vec{q}'' = \nabla \cdot (k \nabla T)$.
+        \item The $\frac{Dp}{Dt}$ term is critical for compressible high-speed flows but often negligible for liquids.
+    \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 13: The General Heat Equation (Temperature)
+%---------------------------------------------------------
+\begin{frame}{The General Heat Equation (Temperature Form)}
+    Relate enthalpy to temperature: $dh = c_p dT + \frac{1}{\rho}(1 - \beta T)dp$.
+    
+    \begin{block}{The Governing Equation}
+        \begin{equation}
+            \rho c_p \frac{DT}{Dt} = \nabla \cdot (k \nabla T) + \beta T \frac{Dp}{Dt} + \dot{q}''' + \Phi
+        \end{equation}
+    \end{block}
+
+    \textbf{Expanded Material Derivative (LHS):}
+    \begin{equation}
+        \rho c_p \left( \frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} + v \frac{\partial T}{\partial y} + w \frac{\partial T}{\partial z} \right)
+    \end{equation}
+    
+    This equation couples Conduction, Advection, and Generation.
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 14: Simplifications
+%---------------------------------------------------------
+\begin{frame}{Simplifications for Common Cases}
+    \textbf{1. Incompressible Liquid ($\beta \approx 0, \rho = \text{const}$):}
+    \begin{equation}
+        \rho c \frac{DT}{Dt} = \nabla \cdot (k \nabla T) + \dot{q}''' + \Phi
+    \end{equation}
+
+    \textbf{2. Stationary Solid ($\vec{v} = 0$):}
+    Advection vanishes ($\frac{DT}{Dt} \to \frac{\partial T}{\partial t}$) and Dissipation vanishes ($\Phi = 0$).
+    \begin{equation}
+        \rho c \frac{\partial T}{\partial t} = \nabla \cdot (k \nabla T) + \dot{q}'''
+    \end{equation}
+    
+    \textit{This is the standard Heat Diffusion Equation.}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 15: Viscous Dissipation
+%---------------------------------------------------------
+\begin{frame}{Viscous Dissipation ($\Phi$)}
+    When does friction significantly heat the fluid?
+    \begin{equation}
+        \Phi \approx \mu \left(\frac{\partial u}{\partial y}\right)^2
+    \end{equation}
+
+    \textbf{Scaling Parameter: The Brinkman Number ($Br$)}
+    \begin{equation}
+        Br = \frac{\mu U^2}{k \Delta T}
+    \end{equation}
+
+    \begin{itemize}
+        \item \textbf{Low $Br$:} (HVAC, water pipes) $\rightarrow \Phi \approx 0$.
+        \item \textbf{High $Br$:} (Polymer extrusion, high-speed aero, lubrication) $\rightarrow$ Significant internal heating.
+    \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 16: Cartesian Coordinates
+%---------------------------------------------------------
+\begin{frame}{Cartesian Coordinates $(x, y, z)$}
+    \begin{equation}
+        \rho c_p \left( \frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} + v \frac{\partial T}{\partial y} + w \frac{\partial T}{\partial z} \right) = 
+    \end{equation}
+    \begin{equation}
+        \frac{\partial}{\partial x}\left( k \frac{\partial T}{\partial x} \right) + \frac{\partial}{\partial y}\left( k \frac{\partial T}{\partial y} \right) + \frac{\partial}{\partial z}\left( k \frac{\partial T}{\partial z} \right) + \dot{q}'''
+    \end{equation}
+    
+    \vspace{1em}
+    \textbf{Use Case:} Boxes, flat plates, walls, electronic chips.
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 17: Cylindrical Coordinates
+%---------------------------------------------------------
+\begin{frame}{Cylindrical Coordinates $(r, \phi, z)$}
+    \textbf{Laplacian Operator ($\nabla^2 T$):}
+    \begin{equation}
+        \frac{1}{r} \frac{\partial}{\partial r}\left( r \frac{\partial T}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2 T}{\partial \phi^2} + \frac{\partial^2 T}{\partial z^2}
+    \end{equation}
+
+    \textbf{Material Derivative (Advection):}
+    \begin{equation}
+        \frac{DT}{Dt} = \frac{\partial T}{\partial t} + v_r \frac{\partial T}{\partial r} + \frac{v_\phi}{r} \frac{\partial T}{\partial \phi} + v_z \frac{\partial T}{\partial z}
+    \end{equation}
+    
+    \textbf{Use Case:} Pipes, wires, circular tubes, vascular flows.
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 18: Spherical Coordinates
+%---------------------------------------------------------
+\begin{frame}{Spherical Coordinates $(r, \theta, \phi)$}
+    \textbf{Laplacian Operator ($\nabla^2 T$):}
+    \begin{equation}
+        \frac{1}{r^2} \frac{\partial}{\partial r}\left( r^2 \frac{\partial T}{\partial r} \right) + \frac{1}{r^2 \sin\theta} \frac{\partial}{\partial \theta}\left( \sin\theta \frac{\partial T}{\partial \theta} \right) + \frac{1}{r^2 \sin^2\theta} \frac{\partial^2 T}{\partial \phi^2}
+    \end{equation}
+    
+    \vspace{1em}
+    \textbf{Use Case:} Spherical tanks, droplets, geophysical flows, eyeballs.
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 19: PDE Classification
+%---------------------------------------------------------
+\begin{frame}[fragile]{Mathematical Classification of the Energy Equation}
+    Consider the general form: $A u_{xx} + B u_{xy} + C u_{yy} + \dots = 0$
+
+    \begin{enumerate}
+        \item \textbf{Elliptic ($B^2 - 4AC < 0$):}
+        \begin{itemize}
+            \item Steady-state conduction ($\nabla^2 T = 0$).
+            \item Disturbances propagate instantly everywhere.
+        \end{itemize}
+        
+        \item \textbf{Parabolic ($B^2 - 4AC = 0$):}
+        \begin{itemize}
+            \item Transient conduction ($\frac{\partial T}{\partial t} = \alpha \nabla^2 T$).
+            \item Information marches forward in time (or space for boundary layers).
+        \end{itemize}
+        
+        \item \textbf{Hyperbolic ($B^2 - 4AC > 0$):}
+        \begin{itemize}
+            \item Wave equation (rare in heat transfer, except for ``Dual-Phase-Lag'' models in ultra-fast laser heating).
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 20: Boundary Conditions
+%---------------------------------------------------------
+\begin{frame}{Boundary Conditions (BCs)}
+    To solve the PDE, we need conditions on the domain surface $S$.
+
+    \begin{enumerate}
+        \item \textbf{Dirichlet (1st Kind):} Fixed Temperature.
+        \begin{equation} T(x,y,z,t) = T_s \end{equation}
+        
+        \item \textbf{Neumann (2nd Kind):} Fixed Heat Flux.
+        \begin{equation} -k \frac{\partial T}{\partial n} = q''_s \quad (\text{Adiabatic if } q''_s=0) \end{equation}
+        
+        \item \textbf{Robin (3rd Kind):} Convection.
+        \begin{equation} -k \frac{\partial T}{\partial n} = h (T_s - T_\infty) \end{equation}
+        
+        \item \textbf{Interface Condition:} Continuity.
+        \begin{equation} T_A = T_B, \quad k_A \frac{\partial T_A}{\partial n} = k_B \frac{\partial T_B}{\partial n} \end{equation}
+    \end{enumerate}
+\end{frame}
+
+%---------------------------------------------------------
+% Slide 21: Summary
+%---------------------------------------------------------
+\begin{frame}{Lecture 1 Summary}
+    \begin{itemize}
+        \item Derived the \textbf{General Energy Equation} from the First Law and Reynolds Transport Theorem.
+        \item Identified contributions of \textbf{Conduction, Advection, Pressure Work,} and \textbf{Viscous Dissipation}.
+        \item Isolated the \textbf{Thermal Energy} by subtracting Mechanical Energy.
+        \item Explored \textbf{Cartesian, Cylindrical, and Spherical} forms.
+    \end{itemize}
+    
+    \vspace{1em}
+    \textbf{Next Lecture:} We will assume $\vec{v}=0$ and focus on rigorous analytical methods for \textbf{Transient Conduction} (Separation of Variables, Green's Functions).
+\end{frame}
+
+\end{document}
