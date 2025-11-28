@@ -74,6 +74,21 @@ Turbomachinery components and performance analysis.
 Advanced propulsion cycles including turbofans and other configurations.
 - **SimpleTurboFan.ipynb** - Simplified turbofan engine cycle analysis
 
+### Week 9 - Introduction to Rockets
+Rocket propulsion fundamentals and trajectory analysis.
+- **RocketPerformance.ipynb** - Rocket performance calculations and analysis
+- **LaunchTrajectoryAnalysis.ipynb** - Launch trajectory simulation and optimization
+
+### Week 11 - Nozzle Design & Cooling, Braking, Advanced Concepts
+Advanced rocket nozzle design and thermal management.
+- **LiquidRocketDesign.ipynb** - Liquid rocket engine design and analysis
+
+### Week 13 - Solid Chemical, Electric & Nuclear Propulsion Systems
+Solid rocket motors, electric propulsion, and advanced concepts.
+- **Models/SRM_ODE_Model.ipynb** - Solid rocket motor ODE simulation model
+- **Models/SRM_ODE_Model_with_Combustion.ipynb** - Enhanced SRM model with combustion chemistry
+- **Models/run_FFSC_Model.ipynb** - Full-flow staged combustion cycle analysis with regenerative nozzle cooling
+
 ### Aircraft Project Tools
 Tools and resources for the aircraft propulsion system design project.
 - **Aircraft_Propulsion_System_Design_Project.ipynb** - Comprehensive project notebook with design tools and calculations
@@ -85,7 +100,16 @@ Solutions to course homework assignments.
 
 ### Python Package: `modern_aerospace_propulsion`
 Reusable Python utilities for aerospace propulsion calculations.
+
+#### Core Modules
 - **compressible_flow.py** - Compressible flow relations and temperature conversions
+
+#### `ffsc_nozzle` Sub-package
+Full-flow staged combustion (FFSC) cycle and regenerative nozzle cooling analysis tools:
+- **thermo.py** - Thermodynamic property calculations with Cantera integration for equilibrium combustion
+- **regen.py** - 1D regenerative nozzle cooling model with Bartz correlation and conjugate heat transfer
+- **cycle.py** - FFSC cycle modeling including pumps, turbines, and power balance
+- **sweep.py** - Parameter sweep utilities for feasibility mapping and optimization
 
 ## Using the Notebooks
 

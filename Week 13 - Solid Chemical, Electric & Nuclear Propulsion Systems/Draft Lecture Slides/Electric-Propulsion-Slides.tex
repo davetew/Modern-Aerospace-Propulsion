@@ -13,6 +13,7 @@
 \usepackage{bm} % For bold math symbols (vectors/tensors)
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage[table]{xcolor}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
@@ -42,7 +43,7 @@
 %---------------------------------------------------------
 % Title Slide
 %---------------------------------------------------------
-\begin{frame}{Title Page}
+\begin{frame}
   \titlepage
 \end{frame}
 
@@ -132,7 +133,7 @@
 % --- Section 3: Internal Ballistics ---
 \subsection{Internal Ballistics}
 
-\iffalse
+\iftrue
 \begin{frame}{Combustion Chamber Control Volume ($V_c$) Analysis}
   \begin{itemize}
     \item Gaseous Mass Conservation:
@@ -196,7 +197,7 @@
       % Arrows
       \draw[-{Stealth[length=3mm]}] (-1.5,1) -- (-0.8,1);
       \node at (-1.5,1.3) {$\dot m_b$};
-      \draw[-{Stealth[length=3mm]}] (6,1) -- (5,1);
+      \draw[-{Stealth[length=3mm]}] (5,1) -- (6,1);
       \node at (6,1.3) {$\dot m_e$};
       \draw[-{Stealth[length=3mm]}] (2.5,3) -- (2.5,2);
       \node at (2.5,3.3) {$\dot m_{\text{ign}}$};
@@ -208,26 +209,20 @@
 
 %==================================================================
 \begin{frame}{Mass Balance}
-  Total gas mass:
-  $$
-    \frac{dm}{dt} = \dot m_b + \dot m_{\text{ign}} - \dot m_e
-  $$
-  Propellant mass generation:
-  $$
-    \dot m_b = \rho_p\, r_b\, A_b(s)
-  $$
-  Saint–Robert burn law:
-  $$
-    r_b = f_{\text{ign}}(t)\,a\,p^n
-  $$
-  Ignition ramp:
-  $$
-    f_{\text{ign}}(t) = 1 - \exp\!\left(-\frac{t - t_{\text{ign,start}}}{\tau_{\text{ign}}}\right)
-  $$
-  Choked nozzle mass flow:
-  $$
-    \dot m_e = C_d A_t p \sqrt{\frac{\gamma}{RT}}\left(\frac{2}{\gamma+1}\right)^{\frac{\gamma+1}{2(\gamma-1)}}
-  $$
+  \centering
+  \begingroup
+  \renewcommand{\arraystretch}{1.2}
+  \rowcolors{1}{gray!10}{white}
+  \resizebox{\textwidth}{!}{%
+    \begin{tabular}{r l}
+      \textbf{Unsteady mass conservation:} & $\dfrac{dm}{dt} = \dot m_b + \dot m_{\text{ign}} - \dot m_e$ \\
+      Propellant mass generation: & $\dot m_b = \rho_p\, r_b\, A_b(s)$ \\
+      Saint--Robert burn law: & $r_b = f_{\text{ign}}(t)\,a\,p^n$ \\
+      Ignition ramp: & $f_{\text{ign}}(t) = 1 - \exp\!\left(-\dfrac{t - t_{\text{ign,start}}}{\tau_{\text{ign}}}\right)$ \\
+      Choked nozzle mass flow: & $\dot m_e = C_d A_t p\, \sqrt{\dfrac{\gamma}{RT}}\,\left(\dfrac{2}{\gamma+1}\right)^{\frac{\gamma+1}{2(\gamma-1)}}$ \\
+    \end{tabular}%
+  }
+  \endgroup
 \end{frame}
 %==================================================================
 
@@ -432,17 +427,17 @@
         \item Lumped heat loss: $\dot Q_{\text{wall}} = -h_wA_w(T-T_w)$.
         \item Grain geometry encoded through tables $A_b(s)$ and $V(s)$.
     \end{itemize}
-  extbf{Limitations:}
+    \vspace{1em}
+    \textbf{Limitations:}
     \begin{itemize}
         \item Cannot predict combustion instabilities or pressure oscillations.
         \item No axial or transverse wave dynamics (1-D/3-D neglected).
         \item No local flame chemistry or finite-rate kinetics.
         \item No particle dynamics (Al droplets, slag accumulation).
         \item No two-phase flow in nozzle.
-        \item No detailed heat transfer to insulation or case.
     \end{itemize}
     \centering
-  extit{Useful for system-level design and grain optimization, but not for high-fidelity stability or transient ignition modeling.}
+    \small
 \end{frame}
 %==================================================================
 
@@ -454,8 +449,8 @@
     \end{itemize}
   \begin{columns}
     \column{0.5\textwidth}
-    \centering
-    \hspace*{1cm}% shift block right by 1 cm
+    %\centering
+    \hspace{3cm}% shift block right by 1 cm
     \begin{block}{Stability Criterion ($\dot{m}_{gen} \propto P_c^n$, $\dot{m}_{out} \propto P_c$)}
       $$\begin{cases}
         n < 1 & \text{Stable}: \uparrow P_c \Rightarrow |\Delta\dot{m}_{gen}| < |\Delta\dot{m}_{out}| \\
@@ -689,10 +684,13 @@
 
 \begin{frame}{Solid vs. Liquid Chemical Propulsion}
     \centering
+    \begingroup
+    \renewcommand{\arraystretch}{1.2}
+    \rowcolors{2}{gray!10}{white}
     \resizebox{\textwidth}{!}{%
-    \begin{tabular}{l c c}
-    oprule
-    extbf{Aspect} & \textbf{Solid Propulsion} & \textbf{Liquid Propulsion} \\
+      \begin{tabular}{l c c}
+        \toprule
+        \textbf{Aspect} & \textbf{Solid Propulsion} & \textbf{Liquid Propulsion} \\
         \midrule
         Energy Density & High (volumetric) & Moderate (mass-based) \\
         Thrust Control & Limited (grain geometry) & Precise (throttleable) \\
@@ -702,8 +700,9 @@
         Reliability & High (few failure modes) & Moderate (more components) \\
         Applications & Boosters, missiles & Upper stages, deep space \\
         \bottomrule
-    \end{tabular}%
+      \end{tabular}%
     }
+    \endgroup
 \end{frame}
 
 % --- Slide 1: The Governing Equation ---
@@ -728,67 +727,70 @@
 
 % --- Slide 2: Molecular Weight Comparison ---
 \begin{frame}{Exhaust Molecular Weight ($\mathfrak{M}$) Differerences}
-  \draft
-    Liquid hydrogen yields the lightest possible exhaust products, while solids are burdened by heavy metal oxides and chlorine species.
-
+    \begin{block}{$H_2O + CO_2$ versus Metal Oxides + $Cl$}
+        Liquid $H_2$ (and $CH_4$) yield low molecular weight exhaust streams, while solids are burdened by heavy metal oxides and chlorine species.
+    \end{block}
+    \vspace{2em}
+    
     \centering
+    \begingroup
+    \renewcommand{\arraystretch}{1.2}
+    %\rowcolors{2}{gray!10}{white}
     \begin{tabular}{l c c}
-        \toprule
-        \textbf{Property} & \textbf{LOX/LH2} & \textbf{AP/Al/HTPB} \\
-        \midrule
-        Products & $H_2O + H_2$ & $CO_2, HCl, Al_2O_3$ \\
-        & (Fuel Rich) & \\
-        Avg. $\mathfrak{M}$ & 9--12 g/mol & 28--32 g/mol \\
-        $I_{sp}$ & $\approx 450$ s & $\approx 265$ s \\
-        \bottomrule
+      	\toprule
+      	\textbf{Property} & \textbf{LOX/LH2} & \textbf{AP/Al/HTPB} \\
+      \midrule
+      Products & $H_2O + H_2$ & $CO_2, HCl, Al_2O_3$ \\
+      & (Fuel Rich) & \\
+      Avg. $\mathfrak{M}$ & 9--12 g/mol & 28--32 g/mol \\
+      $I_{sp}$ & $\approx 450$ s & $\approx 265$ s \\
+      \bottomrule
     \end{tabular}
+    \endgroup
 
 \end{frame}
 
 % --- Slide 3: Two-Phase Flow Losses ---
-\begin{frame}{Factor 2: Two-Phase Flow Losses}
-  \draft
-    Solid propellants use Aluminum (Al) to increase combustion temperature, producing condensed-phase Aluminum Oxide ($Al_2O_3$).
-    
-    \begin{columns}
-        \column{0.5\textwidth}
-        \textbf{The Physics of Drag:}
+\begin{frame}{Two Phase Flow Loss Differences}
+    \framesubtitle{\textit{Solid propellants use $Al$, yielding condensed-phase $Al_2O_3$ particles}}
+
+    \begin{block}{Two Phase Flow Loss Drivers \& Implication}
         \begin{itemize}
-            \item $Al_2O_3$ particles (liquid/solid) cannot expand to do pressure work.
+            \item $Al_2O_3$ particles (liquid/solid) do not expand to do pressure work.
             \item \textbf{Velocity Lag:} Particles accelerate slower than gas.
             \item \textbf{Thermal Lag:} Particles stay hot, failing to transfer heat to kinetic energy.
             \item \textbf{Result:} 1--3\% $I_{sp}$ penalty.
         \end{itemize}
+    
+    \end{block}
 
-        \column{0.5\textwidth}
-        \centering
-        % TikZ Nozzle Diagram
-        \begin{tikzpicture}[scale=0.9]
-            % Nozzle Shape
-            \draw[thick, black] (-2,1.5) to[out=-20, in=180] (0,0.5) to[out=0, in=160] (3,1.8);
-            \draw[thick, black] (-2,-1.5) to[out=20, in=180] (0,-0.5) to[out=0, in=-160] (3,-1.8);
-            
-            % Gas Streamlines (Fast)
-            \draw[blue, ->, thick] (-1.5, 0.8).. controls (0, 0.2).. (2.8, 1.2) node[right] {Gas ($V_{gas}$)};
-            \draw[blue, ->, thick] (-1.5, -0.8).. controls (0, -0.2).. (2.8, -1.2);
-            
-            % Particle Trajectories (Lagging)
-            \foreach \x in {-1, 0, 1, 2}
-                \fill[gray] (\x, 0) circle (2pt);
-            
-            \draw[gray, dashed, ->, thick] (-1.5, 0) -- (2.5, 0) node[right, black] {Particle ($V_p < V_{gas}$)};
-            
-            % Lag annotation
-            \draw[red, <->] (2.0, 0) -- (2.0, 0.8);
-            \node[red, right] at (2.0, 0.4) {Slip Velocity};
-        \end{tikzpicture}
-    \end{columns}
+    \centering
+    % TikZ Nozzle Diagram
+    \begin{tikzpicture}[scale=0.9]
+        % Nozzle Shape
+        \draw[thick, black] (-2,1.5) to[out=-20, in=180] (0,0.5) to[out=0, in=160] (3,1.8);
+        \draw[thick, black] (-2,-1.5) to[out=20, in=180] (0,-0.5) to[out=0, in=-160] (3,-1.8);
+        
+        % Gas Streamlines (Fast)
+        \draw[blue, ->, thick] (-1.5, 0.8).. controls (0, 0.2).. (2.8, 1.2) node[right] {Gas ($V_{gas}$)};
+        \draw[blue, ->, thick] (-1.5, -0.8).. controls (0, -0.2).. (2.8, -1.2);
+        
+        % Particle Trajectories (Lagging)
+        \foreach \x in {-1, 0, 1, 2}
+            \fill[gray] (\x, 0) circle (2pt);
+        
+        \draw[gray, dashed, ->, thick] (-1.5, 0) -- (2.5, 0) node[right, black] {Particle ($V_p < V_{gas}$)};
+        
+        % Lag annotation
+        \draw[red, <->] (2.0, 0) -- (2.0, 0.8);
+        \node[red, right] at (2.0, 0.4) {Slip Velocity};
+    \end{tikzpicture}
+
 \end{frame}
 
 % --- Slide 4: The Density Trade-off ---
 \begin{frame}{The Trade-off: Density Impulse}
-  \draft
-    Solids lose on Specific Impulse ($I_{sp}$) but win on Density Impulse ($I_{sp} \times \rho$).
+    \framesubtitle{\textit{Solids lose on Specific Impulse ($I_{sp}$) but win on Density Impulse ($I_{sp} \times \rho$).}}
     
     \begin{columns}
         \column{0.6\textwidth}
@@ -820,26 +822,29 @@
 \end{frame}
 
 % --- Slide 5: Summary ---
-\begin{frame}{Summary}
-  \draft
+\begin{frame}{Solid vs Liquid Comparision Summary}
+    \framesubtitle{\textit{Liquids achieve higher $I_{sp}$ due to lightweight fuels, while solids suffer from heavier fuels and two-phase flow losses.}}
+
     \begin{table}
         \centering
+        \begingroup
+        \renewcommand{\arraystretch}{1.2}
+        \rowcolors{2}{gray!10}{white}
         \begin{tabular}{l c c}
-            \toprule
-            \textbf{Parameter} & \textbf{Solids (APCP)} & \textbf{Liquids (Hydrolox)} \\
-            \midrule
-            \textbf{Combustion Temp ($T_c$)} & $\approx 3400$ K & $\approx 3600$ K \\
-            \textbf{Exhaust MW ($\mathfrak{M}$)} & \alert{High (~30)} & \alert{Low (~12)} \\
-            \textbf{Exhaust Phase} & Gas + Solids & Pure Gas \\
-            \textbf{Loss Mechanisms} & Two-Phase Lag & Dissociation \\
-            \textbf{Typical $I_{sp}$ (Vac)} & $\sim 280$ s & $\sim 450$ s \\
-            \bottomrule
+          	\toprule
+          	\textbf{Parameter} & \textbf{Solids (APCP)} & \textbf{Liquids (LOX/LH2)} \\
+          \midrule
+          	\textbf{Combustion Temp ($T_c$)} & $\approx 3400$ K & $\approx 3600$ K \\
+          	\textbf{Exhaust MW ($\mathfrak{M}$)} & \alert{High ($\sim30$)} & \alert{Low ($\sim12$)} \\
+          	\textbf{Exhaust Phase} & Gas + Solids & Pure Gas \\
+          	\textbf{Loss Mechanisms} & Two-Phase Lag & Dissociation \\
+          	\textbf{Typical $I_{sp}$ (Vac)} & $\sim 280$ s & $\sim 450$ s \\
+          \bottomrule
         \end{tabular}
+        \endgroup
     \end{table}
     
-    \vspace{1em}
-    \textbf{Conclusion:} Liquids achieve higher $I_{sp}$ primarily due to the low molecular weight of Hydrogen, while solids suffer from heavy exhaust products and particle drag losses.
-\end{frame}
+    \end{frame}
 
 
 \section{Electric Propulsion}
@@ -912,27 +917,31 @@
 %---------------------------------------------------------
 \begin{frame}{Comparative Analysis of Electric Propulsion Systems}
     \centering
+    \begingroup
+    \renewcommand{\arraystretch}{1.2}
+    \rowcolors{2}{gray!10}{white}
     \resizebox{\textwidth}{!}{%
-    \begin{tabular}{l c c c c c p{3.5cm} p{3.5cm}}
-        \toprule
-        \textbf{Technology} & \textbf{$I_{sp}$ (s)} & \textbf{Thrust} & \textbf{$\eta_T$} & \textbf{Power} & \textbf{TRL} & \textbf{Key Pros} & \textbf{Key Cons} \\
+      \begin{tabular}{l c c c c c p{3.5cm} p{3.5cm}}
+        	oprule
+        	extbf{Technology} & \textbf{$I_{sp}$ (s)} & \textbf{Thrust} & \textbf{$\eta_T$} & \textbf{Power} & \textbf{TRL} & \textbf{Key Pros} & \textbf{Key Cons} \\
         \midrule
-        \textbf{Resistojet} & 280--350 & 10mN--0.5N & 65--80\% & $<1$ kW & 9 & Simple; Low cost; Shared propellant & Material thermal limits; Low $I_{sp}$ \\
+        	extbf{Resistojet} & 280--350 & 10mN--0.5N & 65--80\% & $<1$ kW & 9 & Simple; Low cost; Shared propellant & Material thermal limits; Low $I_{sp}$ \\
         \midrule
-        \textbf{Arcjet} & 450--600 & 0.1N--2N & 30--45\% & 0.5--2 kW & 9 & Robust; Higher $I_{sp}$ than resistojet & Electrode erosion; Frozen flow losses \\
+        	extbf{Arcjet} & 450--600 & 0.1N--2N & 30--45\% & 0.5--2 kW & 9 & Robust; Higher $I_{sp}$ than resistojet & Electrode erosion; Frozen flow losses \\
         \midrule
-        \textbf{Gridded Ion} & 2500--4000+ & 20--250mN & 60--80\% & 0.5--7 kW & 9 & Highest Efficiency; Longest Life & Low thrust density (Grid limits); Complex PPU \\
+        	extbf{Gridded Ion} & 2500--4000+ & 20--250mN & 60--80\% & 0.5--7 kW & 9 & Highest Efficiency; Longest Life & Low thrust density (Grid limits); Complex PPU \\
         \midrule
-        \textbf{Hall Effect} & 1500--3000 & 40mN--1N+ & 50--65\% & 0.2--20 kW & 9 & High Thrust-to-Power; Compact & Beam divergence; Channel erosion (if unshielded) \\
+        	extbf{Hall Effect} & 1500--3000 & 40mN--1N+ & 50--65\% & 0.2--20 kW & 9 & High Thrust-to-Power; Compact & Beam divergence; Channel erosion (if unshielded) \\
         \midrule
-        \textbf{Electrospray} & 1000--6000 & $\mu$N--mN & $>70\%$ & mW--50W & 6--9 & Precision control; Scalable arrays & Very low thrust; High voltage; Clogging risks \\
+        	extbf{Electrospray} & 1000--6000 & $\mu$N--mN & $>70\%$ & mW--50W & 6--9 & Precision control; Scalable arrays & Very low thrust; High voltage; Clogging risks \\
         \midrule
-        \textbf{PPT} & 800--1500 & $\mu$N-s & 5--15\% & $<100$ W & 9 & Solid fuel (Teflon); Simple storage & Very low efficiency; Carbon contamination \\
+        	extbf{PPT} & 800--1500 & $\mu$N-s & 5--15\% & $<100$ W & 9 & Solid fuel (Teflon); Simple storage & Very low efficiency; Carbon contamination \\
         \midrule
-        \textbf{MPD} & 2000--10000 & 1N--100N & 30--60\% & MW Class & 4--5 & High thrust density at high $I_{sp}$ & Requires MW power; Cathode erosion severe \\
+        	extbf{MPD} & 2000--10000 & 1N--100N & 30--60\% & MW Class & 4--5 & High thrust density at high $I_{sp}$ & Requires MW power; Cathode erosion severe \\
         \bottomrule
-    \end{tabular}%
+      \end{tabular}%
     }
+    \endgroup
 \end{frame}
 
 \begin{frame}{Designer's Guide to Thruster Selection (1 of 2)}
@@ -1317,16 +1326,20 @@
 \begin{frame}{Propellant Economics: The Shift from Xenon}
     \begin{table}
     \centering
-    \begin{tabular}{l c c c}
-        \toprule
-        \textbf{Propellant} & \textbf{Mass (amu)} & \textbf{Cost} & \textbf{Use Case} \\
-        \midrule
-        \textbf{Xenon} & 131.3 & High ($\sim$\$3k/kg) & Science / GEO \\
-        \textbf{Krypton} & 83.8 & Moderate & Starlink V1 \\
-        \textbf{Argon} & 39.9 & Low ($\sim$\$10/kg) & Starlink V2 \\
-        \textbf{Iodine} & 126.9 & Moderate & CubeSats (Solid) \\
-        \bottomrule
-    \end{tabular}
+  \begingroup
+  \renewcommand{\arraystretch}{1.2}
+  \rowcolors{2}{gray!10}{white}
+  \begin{tabular}{l c c c}
+    	oprule
+    	extbf{Propellant} & \textbf{Mass (amu)} & \textbf{Cost} & \textbf{Use Case} \\
+    \midrule
+    	extbf{Xenon} & 131.3 & High ($\sim$\$3k/kg) & Science / GEO \\
+    	extbf{Krypton} & 83.8 & Moderate & Starlink V1 \\
+    	extbf{Argon} & 39.9 & Low ($\sim$\$10/kg) & Starlink V2 \\
+    	extbf{Iodine} & 126.9 & Moderate & CubeSats (Solid) \\
+    \bottomrule
+  \end{tabular}
+  \endgroup
     \end{table}
     \vspace{0.2cm}
     \textbf{Starlink V2 (Argon):}
