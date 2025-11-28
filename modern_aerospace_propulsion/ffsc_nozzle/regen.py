@@ -1,9 +1,16 @@
+"""1D regenerative nozzle cooling model.
+
+This module provides a simple axisymmetric, quasi-1D model of a
+regeneratively cooled rocket nozzle.
+"""
+
 import numpy as np
 import math
 
-from .thermo import HAVE_CANTERA
+from .thermo import HAVE_CANTERA  # currently unused, but kept for context
 
 def props_LCH4_stub(T, p=1e7):
+    """Return crude thermophysical properties for liquid methane."""
     rho = 420.0
     cp  = 3500.0
     k   = 0.19
@@ -22,6 +29,7 @@ except ImportError:
 
 
 def make_coolprop_liquid(fluid_name):
+    """Return a CoolProp-based property function for a given fluid."""
     if not HAVE_COOLPROP:
         raise RuntimeError("CoolProp not installed.")
     def props(T, p):
@@ -34,6 +42,7 @@ def make_coolprop_liquid(fluid_name):
 
 
 def k_wall_copper(T):
+    """Approximate thermal conductivity for a Cu-based alloy."""
     if T < 300.0:
         return 350.0
     elif T > 900.0:
@@ -43,6 +52,7 @@ def k_wall_copper(T):
 
 
 def isentropic_M_from_area_ratio(Ar, gamma):
+    """Solve the supersonic Mach number from an area ratio A/A*."""
     M = 2.0
     for _ in range(50):
         term = (2.0/(gamma+1.0))*(1.0 + 0.5*(gamma-1.0)*M**2)
@@ -61,6 +71,7 @@ def isentropic_M_from_area_ratio(Ar, gamma):
 
 
 def gas_state_from_area(At, A, p0, T0, gamma, R_g):
+    """Return static gas properties from chamber conditions and area."""
     Ar = A/At
     if Ar < 1.0:
         Ar = 1.0
@@ -71,6 +82,7 @@ def gas_state_from_area(At, A, p0, T0, gamma, R_g):
 
 
 def bartz_h(p0, T0, r_t, r, At, A, gamma, R_g, mu_g=3e-5, Pr_g=0.9):
+    """Compute a simplified Bartz-like gas-side heat transfer coefficient."""
     cp_g = gamma*R_g/(gamma-1.0)
     p, T, M = gas_state_from_area(At, A, p0, T0, gamma, R_g)
     C = 0.026
@@ -80,6 +92,7 @@ def bartz_h(p0, T0, r_t, r, At, A, gamma, R_g, mu_g=3e-5, Pr_g=0.9):
 
 
 def friction_factor_haaland(Re, eps_over_D):
+    """Return Darcy friction factor using the Haaland correlation."""
     if Re <= 0.0:
         return 0.0
     if Re < 2300.0:
@@ -89,12 +102,14 @@ def friction_factor_haaland(Re, eps_over_D):
 
 
 def Nu_gnielinski(Re, Pr, f):
+    """Return the Gnielinski Nusselt number for internal flow."""
     if Re < 2300.0:
         return 4.36
     return ((f/8.0)*(Re-1000.0)*Pr) / (1.0 + 12.7*math.sqrt(f/8.0)*(Pr**(2.0/3.0)-1.0))
 
 
 def simple_conical_nozzle(r_t, expansion_ratio, L, N=200):
+    """Build a simple conical nozzle geometry (throat to exit)."""
     r_e = r_t*math.sqrt(expansion_ratio)
     x = np.linspace(0.0, L, N)
     r = r_t + (r_e - r_t)*(x/L)
@@ -122,6 +137,7 @@ def regen_nozzle_1D(
         wall_k_func=k_wall_copper,
         max_iter_wall=10,
     ):
+    """Integrate a 1D regenerative cooling solution along a nozzle."""
     N = len(x)
     dx = x[1] - x[0]
     if L_regen is None:

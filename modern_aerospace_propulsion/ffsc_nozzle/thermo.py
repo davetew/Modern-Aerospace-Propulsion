@@ -1,3 +1,18 @@
+"""Thermodynamic and combustion helpers for the ffsc_nozzle package.
+
+This module provides:
+- A simple ideal-gas fallback for main-chamber properties as a function
+  of mixture ratio (O/F) and chamber pressure.
+- Cantera-based routines for computing equilibrium main-chamber states.
+- Cantera-based routines for computing preburner (fuel-rich / ox-rich)
+  adiabatic flame temperatures and approximate cp values.
+
+The functions are written so that the rest of the package can operate
+in two modes:
+- High‑fidelity mode (with Cantera installed)
+- Lightweight / educational mode (without Cantera)
+"""
+
 import math
 
 try:
@@ -8,6 +23,28 @@ except ImportError:
 
 
 def ideal_gas_chamber_state(OF, p0, fuel="CH4", ox="O2"):
+    """Return a crude ideal‑gas estimate of main chamber properties.
+
+    Parameters
+    ----------
+    OF : float
+        Oxidizer-to-fuel mass ratio (O/F).
+    p0 : float
+        Chamber pressure in Pa.
+    fuel : str, optional
+        Fuel name (for documentation only). Defaults to "CH4".
+    ox : str, optional
+        Oxidizer name (for documentation only). Defaults to "O2".
+
+    Returns
+    -------
+    T0 : float
+        Approximate chamber temperature [K].
+    gamma : float
+        Ratio of specific heats cp/cv.
+    R_g : float
+        Effective gas constant [J/kg/K].
+    """
     OF_stoich = 3.3
     T_peak = 3600.0
     T_min = 2900.0
@@ -27,6 +64,41 @@ def cantera_chamber_state(
         ox_species="O2",
         mech="gri30.yaml",
 ):
+    """Compute an equilibrium main-chamber state using Cantera.
+
+    Parameters
+    ----------
+    OF : float
+        Oxidizer-to-fuel mass ratio (O/F) by mass.
+    p0 : float
+        Chamber pressure [Pa].
+    T_fuel : float, optional
+        Inlet temperature of the fuel stream [K].
+    T_ox : float, optional
+        Inlet temperature of the oxidizer stream [K].
+    fuel_species : str, optional
+        Cantera name of the fuel species (e.g., "CH4").
+    ox_species : str, optional
+        Cantera name of the oxidizer species (e.g., "O2").
+    mech : str, optional
+        Path to the Cantera mechanism file, such as "gri30.yaml".
+
+    Returns
+    -------
+    T0 : float
+        Equilibrium chamber temperature [K].
+    gamma : float
+        Ratio of specific heats cp/cv at the equilibrium state.
+    R_g : float
+        Effective gas constant [J/kg/K] for the mixture.
+    gas : cantera.Solution
+        Cantera gas object in the final equilibrium state.
+
+    Raises
+    ------
+    RuntimeError
+        If Cantera is not available.
+    """
     if not HAVE_CANTERA:
         raise RuntimeError("Cantera not available; cannot compute chamber state.")
 
@@ -51,7 +123,7 @@ def cantera_chamber_state(
     cp = gas.cp_mass
     cv = gas.cv_mass
     gamma = cp / cv
-    R_g = gas.gas_constant / gas.mean_molecular_weight
+    R_g = ct.gas_constant / gas.mean_molecular_weight
 
     return T0, gamma, R_g, gas
 
@@ -64,6 +136,37 @@ def cantera_preburner_state(
         T_inlet: float,
         phi: float,
 ):
+    """Compute a preburner adiabatic state using Cantera.
+
+    Parameters
+    ----------
+    fuel_name : str
+        Cantera species name for the fuel (e.g., "CH4").
+    ox_name : str
+        Cantera species name for the oxidizer (e.g., "O2").
+    mech : str
+        Path to the Cantera mechanism file (e.g., "gri30.yaml").
+    p_pb : float
+        Preburner pressure [Pa].
+    T_inlet : float
+        Inlet temperature of both fluid streams [K].
+    phi : float
+        Equivalence ratio (>1 fuel-rich, <1 oxidizer-rich).
+
+    Returns
+    -------
+    T_ad : float
+        Adiabatic flame temperature [K].
+    cp_mid : float
+        Approximate cp at the midpoint temperature [J/kg/K].
+    gas : cantera.Solution
+        Gas object at the final equilibrium state.
+
+    Raises
+    ------
+    RuntimeError
+        If Cantera is not available.
+    """
     if not HAVE_CANTERA:
         raise RuntimeError("Cantera not available. Install cantera to use this function.")
 

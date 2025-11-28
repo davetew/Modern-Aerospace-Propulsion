@@ -1,20 +1,26 @@
+"""Full-flow staged combustion (FFSC) cycle model with regen-cooled nozzle."""
+
 import math
 
 from .regen import simple_conical_nozzle, regen_nozzle_1D, make_coolprop_liquid
 from .thermo import HAVE_CANTERA, ideal_gas_chamber_state, cantera_chamber_state, cantera_preburner_state
 
 def rho_LCH4(T=110.0):
+    """Return a representative density for liquid methane [kg/m^3]."""
     return 420.0
 
 def rho_LOX(T=90.0):
+    """Return a representative density for liquid oxygen [kg/m^3]."""
     return 1140.0
 
 
 def pump_power(m_dot, rho, dp, eta_pump):
+    """Compute pump shaft power [W]."""
     return m_dot*dp/(rho*eta_pump)
 
 
 def turbine_power(m_dot, cp_g, T_in, T_out, eta_turb):
+    """Compute turbine shaft power [W] for an expanding gas."""
     if T_in <= T_out:
         return 0.0
     return m_dot*cp_g*(T_in - T_out)*eta_turb
@@ -24,6 +30,7 @@ def solve_preburner_T_for_power(
         P_req, m_dot, cp_g, T_out,
         T_min, T_max, eta_turb=0.9,
         tol=1e-3, max_iter=60):
+    """Solve for turbine inlet T that delivers a target power."""
     lo, hi = T_min, T_max
     for _ in range(max_iter):
         mid = 0.5*(lo + hi)
@@ -70,6 +77,7 @@ def ffsc_full_flow_cycle(
         use_cantera_chamber=True,
         g0=9.80665,
 ):
+    """Evaluate a single FFSC engine design point."""
     if HAVE_CANTERA and use_cantera_chamber:
         T0, gamma, R_g, gas_ch = cantera_chamber_state(
             OF=OF,

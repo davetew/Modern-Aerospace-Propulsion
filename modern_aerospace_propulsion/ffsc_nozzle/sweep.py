@@ -1,3 +1,5 @@
+"""Parameter sweeps and feasibility mapping for FFSC designs."""
+
 import numpy as np
 import math
 
@@ -5,6 +7,7 @@ from .cycle import ffsc_full_flow_cycle
 
 
 def ideal_vacuum_isp_from_eps(p0, T0, gamma, R_g, eps, g0=9.80665):
+    """Compute an ideal vacuum Isp from expansion ratio and chamber state."""
     At = 1.0
     Ae = eps*At
 
@@ -41,6 +44,7 @@ def sweep_ffsc_feasibility(
         OF_array,
         g0=9.80665,
 ):
+    """Sweep over chamber pressure and mixture ratio for FFSC feasibility."""
     p0_array = np.array(p0_array, dtype=float)
     OF_array = np.array(OF_array, dtype=float)
     P0, OFG = np.meshgrid(p0_array, OF_array, indexing="ij")
