@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  25 NOV 2025 17:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  29 NOV 2025 21:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -746,24 +746,24 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 ) (./Electric-Propulsion-Slides.aux)
 \openout1 = `Electric-Propulsion-Slides.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -818,60 +818,60 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 41.
+Package hyperref Info: Link coloring ON on input line 51.
  (./Electric-Propulsion-Slides.out) (./Electric-Propulsion-Slides.out)
 \@outlinefile=\write5
 \openout5 = `Electric-Propulsion-Slides.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 41.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 51.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 41.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 51.
 \symnumbers=\mathgroup11
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 41.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 51.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/mathkerncmss/m/sl --> OT1/cmss/m/it on input line 41.
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/cmss/m/it on input line 51.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/mathkerncmss/bx/sl --> OT1/cmss/m/it on input line 41.
+(Font)                  OT1/mathkerncmss/bx/sl --> OT1/cmss/m/it on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 41.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 41.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 51.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 41.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 41.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 41.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 51.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 41.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 41.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 41.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 51.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 41.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 41.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 51.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 41.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 51.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 41.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 41.
+(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 41.
+(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 41.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 41.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 51.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 41.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 41.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 51.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 51.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 41.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 51.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 41.
+(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 51.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 41.
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 51.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
@@ -892,19 +892,23 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./Electric-Propulsion-Slides.toc)
+Overfull \vbox (1.2555pt too high) detected at line 65
+ []
+
+
 
 [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 87.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 78.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 87.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
@@ -972,7 +976,7 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 [18
 
 ]
-Overfull \hbox (1.7741pt too wide) detected at line 480
+Overfull \hbox (1.7741pt too wide) detected at line 489
 []
  []
 
@@ -989,10 +993,10 @@ Overfull \hbox (1.7741pt too wide) detected at line 480
 [21
 
 ]
-<figs/Shuttle_SRB.jpg, id=309, 640.3925pt x 431.6125pt>
+<figs/Shuttle_SRB.jpg, id=315, 640.3925pt x 431.6125pt>
 File: figs/Shuttle_SRB.jpg Graphic file (type jpg)
 <use figs/Shuttle_SRB.jpg>
-Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 560.
+Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 569.
 (pdftex.def)             Requested size: 195.00348pt x 131.42757pt.
 
 
@@ -1028,12 +1032,12 @@ Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 560.
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 726.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 735.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 726.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 735.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 726.
-LaTeX Font Info:    Trying to load font information for U+euf on input line 726.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 735.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 735.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
@@ -1042,24 +1046,24 @@ File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <12> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 751.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 760.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <14.4> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 751.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 760.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 751.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 760.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 751.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 760.
 
 
 [31
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <9> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 789.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 798.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 789.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 798.
 
-Overfull \vbox (9.30627pt too high) detected at line 789
+Overfull \vbox (9.30627pt too high) detected at line 798
  []
 
 
@@ -1075,6 +1079,10 @@ Overfull \vbox (9.30627pt too high) detected at line 789
 [34
 
 ] (./Electric-Propulsion-Slides.toc)
+Overfull \vbox (1.2555pt too high) detected at line 864
+ []
+
+
 
 [35
 
@@ -1086,90 +1094,15 @@ Overfull \vbox (9.30627pt too high) detected at line 789
 
 [37
 
-]
+] (./Electric-Propulsion-Slides.toc)
+Overfull \vbox (1.2555pt too high) detected at line 941
+ []
+
+
 
 [38
 
 ]
-Underfull \hbox (badness 6741) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 Simple; Low cost;
- []
-
-
-Underfull \hbox (badness 3989) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 Robust; Higher $\OT1/mathkerncmss/m/sl/10.95 I[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 Electrode ero-sion;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 Highest Ef-fi-ciency;
- []
-
-
-Underfull \hbox (badness 6708) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 Low thrust den-sity
- []
-
-
-Underfull \hbox (badness 1769) in paragraph at lines 945--945
-\OT1/cmss/m/n/10.95 (Grid lim-its); Com-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 High Thrust-to-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 Beam di-ver-gence;
- []
-
-
-Underfull \hbox (badness 4859) in paragraph at lines 945--945
-\OT1/cmss/m/n/10.95 Chan-nel ero-sion (if
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 Precision con-trol;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 945--945
-\OT1/cmss/m/n/10.95 volt-age; Clog-ging
- []
-
-
-Underfull \hbox (badness 4927) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 Solid fuel (Teflon);
- []
-
-
-Underfull \hbox (badness 3219) in paragraph at lines 945--945
-[]|\OT1/cmss/m/n/10.95 Very low ef-fi-ciency;
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 945--945
-\OT1/cmss/m/n/10.95 Car-bon con-tam-i-na-
- []
-
-
-Underfull \hbox (badness 1688) in paragraph at lines 945--945
-\OT1/cmss/m/n/10.95 Cath-ode ero-sion se-
- []
-
-
-Overfull \vbox (22.27756pt too high) detected at line 945
- []
-
-
 
 [39
 
@@ -1182,6 +1115,85 @@ Overfull \vbox (22.27756pt too high) detected at line 945
 [41
 
 ]
+Underfull \hbox (badness 6741) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 Simple; Low cost;
+ []
+
+
+Underfull \hbox (badness 3989) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 Robust; Higher $\OT1/mathkerncmss/m/sl/10.95 I[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 Electrode ero-sion;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 Highest Ef-fi-ciency;
+ []
+
+
+Underfull \hbox (badness 6708) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 Low thrust den-sity
+ []
+
+
+Underfull \hbox (badness 1769) in paragraph at lines 1028--1028
+\OT1/cmss/m/n/10.95 (Grid lim-its); Com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 High Thrust-to-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 Beam di-ver-gence;
+ []
+
+
+Underfull \hbox (badness 4859) in paragraph at lines 1028--1028
+\OT1/cmss/m/n/10.95 Chan-nel ero-sion (if
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 Precision con-trol;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+\OT1/cmss/m/n/10.95 volt-age; Clog-ging
+ []
+
+
+Underfull \hbox (badness 4927) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 Solid fuel (Teflon);
+ []
+
+
+Underfull \hbox (badness 3219) in paragraph at lines 1028--1028
+[]|\OT1/cmss/m/n/10.95 Very low ef-fi-ciency;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+\OT1/cmss/m/n/10.95 Car-bon con-tam-i-na-
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 1028--1028
+\OT1/cmss/m/n/10.95 Cath-ode ero-sion se-
+ []
+
+
+Overfull \vbox (43.61533pt too high) detected at line 1028
+ []
+
+
 
 [42
 
@@ -1194,10 +1206,6 @@ Overfull \vbox (22.27756pt too high) detected at line 945
 [44
 
 ]
-Overfull \vbox (2.2462pt too high) detected at line 1112
- []
-
-
 
 [45
 
@@ -1210,6 +1218,10 @@ Overfull \vbox (2.2462pt too high) detected at line 1112
 [47
 
 ]
+Overfull \vbox (2.2462pt too high) detected at line 1195
+ []
+
+
 
 [48
 
@@ -1237,7 +1249,7 @@ Overfull \vbox (2.2462pt too high) detected at line 1112
 
 [54
 
-{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+]
 
 [55
 
@@ -1248,6 +1260,18 @@ Overfull \vbox (2.2462pt too high) detected at line 1112
 ]
 
 [57
+
+{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+[58
+
+]
+
+[59
+
+]
+
+[60
 
 ]
 \tf@nav=\write6
@@ -1265,21 +1289,21 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `Electric-Propulsion-Slides.out' has not changed.
-(rerunfilecheck)             Checksum: 22B9DA9A9811DCB4445462139C64A57A;2925.
+(rerunfilecheck)             Checksum: 6CE5CF81EA0E1C3F91540150F5651037;3135.
  ) 
 Here is how much of TeX's memory you used:
- 38800 strings out of 473190
- 943346 string characters out of 5715801
- 1442938 words of memory out of 5000000
- 61174 multiletter control sequences out of 15000+600000
+ 38886 strings out of 473190
+ 944831 string characters out of 5715801
+ 1444147 words of memory out of 5000000
+ 61251 multiletter control sequences out of 15000+600000
  595564 words of font info for 151 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,18n,123p,983b,2277s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb>
-Output written on Electric-Propulsion-Slides.pdf (57 pages, 433811 bytes).
+Output written on Electric-Propulsion-Slides.pdf (60 pages, 442147 bytes).
 PDF statistics:
- 843 PDF objects out of 1000 (max. 8388607)
- 578 compressed objects within 6 object streams
- 130 named destinations out of 1000 (max. 500000)
- 736 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 900 PDF objects out of 1000 (max. 8388607)
+ 622 compressed objects within 7 object streams
+ 137 named destinations out of 1000 (max. 500000)
+ 780 words of extra memory for PDF output out of 10000 (max. 10000000)
 

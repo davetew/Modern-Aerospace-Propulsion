@@ -20,6 +20,16 @@
 \usetikzlibrary{decorations.pathmorphing,snakes,patterns,arrows.meta, shapes, positioning}
 \usepackage{hyperref} % For clickable URLs and escaping underscores via \url
 
+% Global upper-right logo (adjust path & height as needed)
+% Place your logo image at figs/logo.png or change path below.
+%\newcommand{\CornerLogo}{%
+%  \begin{tikzpicture}[remember picture,overlay]
+%    \node[anchor=north east] at ([xshift=-2mm,yshift=-2mm]current page.north east){\includegraphics[height=0.9cm]{figs/logo.png}};%
+%  \end{tikzpicture}%
+%}
+% Inject logo onto every slide (including title) via background template.
+%\addtobeamertemplate{background}{}{\CornerLogo}
+
 % Define Draft Watermark
 \newcommand{\draft}{%
   \begin{tikzpicture}[remember picture, overlay]
@@ -57,7 +67,6 @@
 %---------------------------------------------------------
 % Section 1: Solid Chemical Propulsion
 %---------------------------------------------------------
-
 \section{Solid Chemical Propulsion}
 
 % --- Section 1: Introduction ---
@@ -847,7 +856,81 @@
     \end{frame}
 
 
+% ======================================================================================================================    
+\section{Liquid Monopropellant Propulsion}
+
+\begin{frame}{Lecture Outline}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{Liquid Monopropellant Thrusters}
+    \framesubtitle{\textit{Leverages a single propellant that exothermically decomposes over a catalyst}}
+
+    \begin{block}{Monopropellant thrusters:}
+        \begin{itemize}
+        \item Use a \textbf{single fluid} (e.g., $N_2H_4$ [hydrazine] or $H_2O_2$ [peroxide])
+        \item Decompose the fluid \textbf{catalytically} to form a hot gas mixture
+        \item Expands mixture through a \textbf{C--D nozzle} to generate thrust
+        \item Avoids mixture ratio control, igniters, and complex plumbing
+        \item Used for attitude control, station keeping, "small" $\Delta v$ maneuvers
+        \end{itemize}
+    \end{block}
+
+    \vspace{2em}
+
+    % Monopropellant thrust schematics
+    \centering
+    \begin{tikzpicture}[node distance=1.0cm, >=latex]
+
+        \tikzset{
+            block/.style={draw, thick, minimum width=1.8cm, minimum height=1cm, align=center, fill=blue!20},
+            smallblock/.style={draw, thick, minimum width=1.3cm, minimum height=0.8cm, align=center, fill=green!20}
+        }
+
+        \node[block, fill=cyan!30] (tank) {Propellant\\Tank};
+        \node[smallblock, fill=orange!30, right=0.8cm of tank] (valve) {Valve};
+        \node[block, fill=purple!30, right=0.8cm of valve] (cat) {Catalyst\\Bed};
+        \node[block, fill=yellow!40, right=0.8cm of cat] (chamber) {Decomp.\\Chamber};
+        \node[block, fill=red!30, right=0.8cm of chamber] (nozzle) {Nozzle};
+
+        \draw[->, thick] (tank) -- (valve);
+        \draw[->, thick] (valve) -- (cat);
+        \draw[->, thick] (cat) -- (chamber);
+        \draw[->, thick] (chamber) -- (nozzle);
+
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}{Monopropellant Comparison}
+    \framesubtitle{\textit{Hydrazine vs High Test Hydrogen Peroxide}}
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.2}
+    \rowcolors{2}{gray!10}{white}
+    \begin{tabular}{l l l}
+        \toprule
+        Aspect & Hydrazine (N$_2$H$_4$) & High-Test Peroxide (H$_2$O$_2$) \\
+        \midrule
+        Primary Reaction & $3\,\text{N}_2\text{H}_4 \rightarrow 4\,\text{NH}_3 + \text{N}_2$ & $2\,\text{H}_2\text{O}_2 \rightarrow 2\,\text{H}_2\text{O} + \text{O}_2 + \text{heat}$ \\
+        Secondary Step & $4\,\text{NH}_3 \rightarrow 2\,\text{N}_2 + 6\,\text{H}_2$ (cracking) & -- \\
+        Catalyst & Ir/Al$_2$O$_3$ bed & Silver or Pt mesh \\
+        Products & $N_2$, $H_2$, $NH_3$ (some uncracked NH$_3$) & Steam ($H_2O$) + $O_2$ \\
+        Nominal $T_c$ & $\sim 1000\,$K & $850$--$1150\,$K (conc. dependent) \\
+        Typical $\gamma$ & $\approx 1.30$ & $1.25$--$1.30$ \\
+        Gas Constant $R$ & $\sim 400\,$J/kg-K & $300$--$350\,$J/kg-K \\
+        Vacuum $I_{sp}$ & $220$--$235\,$s & $150$--$180\,$s \\
+        \bottomrule
+    \end{tabular}
+
+    \vspace{0.5em}
+
+\end{frame}
+
+
+% ======================================================================================================================    
 \section{Electric Propulsion}
+
 %---------------------------------------------------------
 % Section 1: Introduction & Physics
 %---------------------------------------------------------
@@ -922,22 +1005,22 @@
     \rowcolors{2}{gray!10}{white}
     \resizebox{\textwidth}{!}{%
       \begin{tabular}{l c c c c c p{3.5cm} p{3.5cm}}
-        	oprule
-        	extbf{Technology} & \textbf{$I_{sp}$ (s)} & \textbf{Thrust} & \textbf{$\eta_T$} & \textbf{Power} & \textbf{TRL} & \textbf{Key Pros} & \textbf{Key Cons} \\
+        \toprule
+        \textbf{Technology} & \textbf{$I_{sp}$ (s)} & \textbf{Thrust} & \textbf{$\eta_T$} & \textbf{Power} & \textbf{TRL} & \textbf{Key Pros} & \textbf{Key Cons} \\
         \midrule
-        	extbf{Resistojet} & 280--350 & 10mN--0.5N & 65--80\% & $<1$ kW & 9 & Simple; Low cost; Shared propellant & Material thermal limits; Low $I_{sp}$ \\
+        \textbf{Resistojet} & 280--350 & 10mN--0.5N & 65--80\% & $<1$ kW & 9 & Simple; Low cost; Shared propellant & Material thermal limits; Low $I_{sp}$ \\
         \midrule
-        	extbf{Arcjet} & 450--600 & 0.1N--2N & 30--45\% & 0.5--2 kW & 9 & Robust; Higher $I_{sp}$ than resistojet & Electrode erosion; Frozen flow losses \\
+        \textbf{Arcjet} & 450--600 & 0.1N--2N & 30--45\% & 0.5--2 kW & 9 & Robust; Higher $I_{sp}$ than resistojet & Electrode erosion; Frozen flow losses \\
         \midrule
-        	extbf{Gridded Ion} & 2500--4000+ & 20--250mN & 60--80\% & 0.5--7 kW & 9 & Highest Efficiency; Longest Life & Low thrust density (Grid limits); Complex PPU \\
+        \textbf{Gridded Ion} & 2500--4000+ & 20--250mN & 60--80\% & 0.5--7 kW & 9 & Highest Efficiency; Longest Life & Low thrust density (Grid limits); Complex PPU \\
         \midrule
-        	extbf{Hall Effect} & 1500--3000 & 40mN--1N+ & 50--65\% & 0.2--20 kW & 9 & High Thrust-to-Power; Compact & Beam divergence; Channel erosion (if unshielded) \\
+        \textbf{Hall Effect} & 1500--3000 & 40mN--1N+ & 50--65\% & 0.2--20 kW & 9 & High Thrust-to-Power; Compact & Beam divergence; Channel erosion (if unshielded) \\
         \midrule
-        	extbf{Electrospray} & 1000--6000 & $\mu$N--mN & $>70\%$ & mW--50W & 6--9 & Precision control; Scalable arrays & Very low thrust; High voltage; Clogging risks \\
+        \textbf{Electrospray} & 1000--6000 & $\mu$N--mN & $>70\%$ & mW--50W & 6--9 & Precision control; Scalable arrays & Very low thrust; High voltage; Clogging risks \\
         \midrule
-        	extbf{PPT} & 800--1500 & $\mu$N-s & 5--15\% & $<100$ W & 9 & Solid fuel (Teflon); Simple storage & Very low efficiency; Carbon contamination \\
+        \textbf{PPT} & 800--1500 & $\mu$N-s & 5--15\% & $<100$ W & 9 & Solid fuel (Teflon); Simple storage & Very low efficiency; Carbon contamination \\
         \midrule
-        	extbf{MPD} & 2000--10000 & 1N--100N & 30--60\% & MW Class & 4--5 & High thrust density at high $I_{sp}$ & Requires MW power; Cathode erosion severe \\
+        \textbf{MPD} & 2000--10000 & 1N--100N & 30--60\% & MW Class & 4--5 & High thrust density at high $I_{sp}$ & Requires MW power; Cathode erosion severe \\
         \bottomrule
       \end{tabular}%
     }
@@ -1330,13 +1413,13 @@
   \renewcommand{\arraystretch}{1.2}
   \rowcolors{2}{gray!10}{white}
   \begin{tabular}{l c c c}
-    	oprule
-    	extbf{Propellant} & \textbf{Mass (amu)} & \textbf{Cost} & \textbf{Use Case} \\
+    \toprule
+    \textbf{Propellant} & \textbf{Mass (amu)} & \textbf{Cost} & \textbf{Use Case} \\
     \midrule
-    	extbf{Xenon} & 131.3 & High ($\sim$\$3k/kg) & Science / GEO \\
-    	extbf{Krypton} & 83.8 & Moderate & Starlink V1 \\
-    	extbf{Argon} & 39.9 & Low ($\sim$\$10/kg) & Starlink V2 \\
-    	extbf{Iodine} & 126.9 & Moderate & CubeSats (Solid) \\
+    \textbf{Xenon} & 131.3 & High ($\sim$\$3k/kg) & Science / GEO \\
+    \textbf{Krypton} & 83.8 & Moderate & Starlink V1 \\
+    \textbf{Argon} & 39.9 & Low ($\sim$\$10/kg) & Starlink V2 \\
+    \textbf{Iodine} & 126.9 & Moderate & CubeSats (Solid) \\
     \bottomrule
   \end{tabular}
   \endgroup

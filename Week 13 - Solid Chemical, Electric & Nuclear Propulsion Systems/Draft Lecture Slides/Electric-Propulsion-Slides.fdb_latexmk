@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1764109858.83374 "/Users/davidtew/Library/CloudStorage/GoogleDrive-davetew@step-function.com/My Drive/Teaching/Modern Aerospace Propulsion/Modern-Aerospace-Propulsion/Week 13 - Solid Chemical, Electric & Nuclear Propulsion Systems/Draft Lecture Slides/Electric-Propulsion-Slides.tex" "Electric-Propulsion-Slides.pdf" "Electric-Propulsion-Slides" 1764109861.44921 0
-  "/Users/davidtew/Library/CloudStorage/GoogleDrive-davetew@step-function.com/My Drive/Teaching/Modern Aerospace Propulsion/Modern-Aerospace-Propulsion/Week 13 - Solid Chemical, Electric & Nuclear Propulsion Systems/Draft Lecture Slides/Electric-Propulsion-Slides.tex" 1764109858.61186 55285 520dd2f449c131167764926a0db77cc8 ""
+["pdflatex"] 1764469742.4971 "/Users/davidtew/Library/CloudStorage/GoogleDrive-davetew@step-function.com/My Drive/Teaching/Modern Aerospace Propulsion/Modern-Aerospace-Propulsion/Week 13 - Solid Chemical, Electric & Nuclear Propulsion Systems/Draft Lecture Slides/Electric-Propulsion-Slides.tex" "Electric-Propulsion-Slides.pdf" "Electric-Propulsion-Slides" 1764469745.26189 0
+  "/Users/davidtew/Library/CloudStorage/GoogleDrive-davetew@step-function.com/My Drive/Teaching/Modern Aerospace Propulsion/Modern-Aerospace-Propulsion/Week 13 - Solid Chemical, Electric & Nuclear Propulsion Systems/Draft Lecture Slides/Electric-Propulsion-Slides.tex" 1764469739.34101 58959 647d590dcf3d052e365b5ee201afd0db ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcss1095.tfm" 1136768653 1536 f0fa079cdc83a6ffeda21e42352cf1ea ""
@@ -327,11 +327,11 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1763781159 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "Electric-Propulsion-Slides.aux" 1764109861.34777 13088 5d12c39e44869dde298701c2792eefe3 "pdflatex"
-  "Electric-Propulsion-Slides.nav" 1764109861.34975 8909 b30bc3cc33ed2591cf792b46e861f2a1 "pdflatex"
-  "Electric-Propulsion-Slides.out" 1764109861.34947 2925 22b9da9a9811dcb4445462139c64a57a "pdflatex"
-  "Electric-Propulsion-Slides.tex" 1764109858.61186 55285 520dd2f449c131167764926a0db77cc8 ""
-  "Electric-Propulsion-Slides.toc" 1764109861.34982 1028 23d156df384ae3a0fb9998cf82e81f3c "pdflatex"
+  "Electric-Propulsion-Slides.aux" 1764469745.16008 13814 5de9144cd1fcbe217aa17b7cc07b9935 "pdflatex"
+  "Electric-Propulsion-Slides.nav" 1764469745.16203 9386 e8ff096f42ab82be30b1499638b492c5 "pdflatex"
+  "Electric-Propulsion-Slides.out" 1764469745.16173 3135 6ce5cf81ea0e1c3f91540150f5651037 "pdflatex"
+  "Electric-Propulsion-Slides.tex" 1764469739.34101 58959 647d590dcf3d052e365b5ee201afd0db ""
+  "Electric-Propulsion-Slides.toc" 1764469745.16207 1097 8c5fed46302a5a61e1232c9210c9a8ea "pdflatex"
   "beamercolorthemeColumbia.sty" 1764107190.64293 1791 de175802d99d34aa355d77e4bb97de0c ""
   "figs/Shuttle_SRB.jpg" 1764022313.22362 104596 89b2b69880ca640716268f7f8b03aa37 ""
   (generated)

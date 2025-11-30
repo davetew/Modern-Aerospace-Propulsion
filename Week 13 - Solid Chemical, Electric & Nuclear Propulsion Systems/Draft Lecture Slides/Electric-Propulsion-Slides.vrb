@@ -1,0 +1,31 @@
+\frametitle{Python Code (Cantera): Temperature vs Pressure}
+
+    \footnotesize
+    \begin{verbatim}
+    import cantera as ct
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    gas = ct.Solution("gri30.yaml")
+
+    def run_propellant(propellant, pressures):
+        Ts = []
+        for P in pressures:
+            gas.TPX = 300, P, f"{propellant}:1"
+            gas.equilibrate("HP")
+            Ts.append(gas.T)
+        return Ts
+
+    pressures = np.logspace(4,7,50)
+    Thyd = run_propellant("N2H4", pressures)
+    Thtp = run_propellant("H2O2", pressures)
+
+    plt.plot(pressures, Thyd, label="Hydrazine")
+    plt.plot(pressures, Thtp, label="HTP")
+    plt.xscale("log")
+    plt.xlabel("Chamber Pressure")
+    plt.ylabel("Equilibrium T [K]")
+    plt.legend()
+    plt.show()
+    \end{verbatim}
+

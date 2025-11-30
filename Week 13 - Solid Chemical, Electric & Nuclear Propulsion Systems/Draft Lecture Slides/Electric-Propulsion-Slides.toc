@@ -6,10 +6,11 @@
 \beamer@subsectionintoc {1}{5}{Combustion Instability}{26}{0}{1}
 \beamer@subsectionintoc {1}{6}{Thermal Protection \& Nozzle Erosion}{27}{0}{1}
 \beamer@subsectionintoc {1}{7}{Summary}{28}{0}{1}
-\beamer@sectionintoc {2}{Electric Propulsion}{35}{0}{2}
-\beamer@subsectionintoc {2}{1}{Introduction to Electric Propulsion}{35}{0}{2}
-\beamer@subsectionintoc {2}{2}{Electrothermal Propulsion}{42}{0}{2}
-\beamer@subsectionintoc {2}{3}{Electrostatic I: Gridded Ion Thrusters}{44}{0}{2}
-\beamer@subsectionintoc {2}{4}{Electrostatic II: Hall Effect Thrusters}{48}{0}{2}
-\beamer@subsectionintoc {2}{5}{Electromagnetic Systems \& Propellant Economics}{52}{0}{2}
-\beamer@subsectionintoc {2}{6}{Summary}{57}{0}{2}
+\beamer@sectionintoc {2}{Liquid Monopropellant Propulsion}{35}{0}{2}
+\beamer@sectionintoc {3}{Electric Propulsion}{38}{0}{3}
+\beamer@subsectionintoc {3}{1}{Introduction to Electric Propulsion}{38}{0}{3}
+\beamer@subsectionintoc {3}{2}{Electrothermal Propulsion}{45}{0}{3}
+\beamer@subsectionintoc {3}{3}{Electrostatic I: Gridded Ion Thrusters}{47}{0}{3}
+\beamer@subsectionintoc {3}{4}{Electrostatic II: Hall Effect Thrusters}{51}{0}{3}
+\beamer@subsectionintoc {3}{5}{Electromagnetic Systems \& Propellant Economics}{55}{0}{3}
+\beamer@subsectionintoc {3}{6}{Summary}{60}{0}{3}

@@ -1,44 +1,54 @@
 %%{init: {'theme':'dark','themeVariables': {'lineColor':'#ffffff','primaryTextColor':'#ffffff'}}}%%
 graph TB
     %% Fuel side (left)
-    LCH4[LCH4 Tank<br/>~110 K]
-    FuelPump[Fuel Pump<br/>ΔP ≈ 25.6 MPa]
-    FuelPB[Fuel-Rich<br/>Preburner<br/>φ = 1.3<br/>T ≈ 3669 K]
-    FuelTurb[Fuel Turbine<br/>ΔT ≈ 2669 K]
+    LCH4[LCH4 Tank<br/>T = 110 K<br/>ṁ = 40.1 kg/s]
+    FuelPump[Fuel Pump<br/>ΔP = 25.6 MPa<br/>p_out = 45.6 MPa]
+    FuelPB[Fuel-Rich<br/>Preburner<br/>φ = 1.3<br/>T = 3669 K<br/>p = 20 MPa]
+    FuelTurb[Fuel Turbine<br/>T_in = 3669 K<br/>T_out = 1000 K]
+
     %% Oxidizer side (right)
-    LOX[LOX Tank<br/>~90 K]
-    OxPump[Oxidizer Pump<br/>ΔP ≈ 23.4 MPa]
-    OxPB[Ox-Rich<br/>Preburner<br/>φ = 0.7<br/>T ≈ 3578 K]
-    OxTurb[Oxidizer Turbine<br/>ΔT ≈ 2578 K]
+    LOX[LOX Tank<br/>T = 90 K<br/>ṁ = 128.3 kg/s]
+    OxPump[Oxidizer Pump<br/>ΔP = 23.4 MPa<br/>p_out = 43.4 MPa]
+    OxPB[Ox-Rich<br/>Preburner<br/>φ = 0.7<br/>T = 3578 K<br/>p = 20 MPa]
+    OxTurb[Oxidizer Turbine<br/>T_in = 3578 K<br/>T_out = 1000 K]
+
     %% Cooling system
-    Jacket[Regenerative<br/>Cooling Jacket<br/>ΔP ≈ 2.2 MPa<br/>ΔT ≈ 820 K]
+    Jacket[Regenerative<br/>Cooling Jacket<br/>ΔP = 2.2 MPa<br/>T_out = 1420 K]
+
     %% Combustion chamber
-    Chamber[Main<br/>Combustion<br/>Chamber<br/>O/F = 3.2<br/>T₀ ≈ 3703 K<br/>p₀ = 20 MPa]
+    Chamber[Main Chamber<br/>O/F = 3.2<br/>T₀ = 3703 K<br/>p₀ = 20 MPa]
     Nozzle[Nozzle<br/>ε = 15<br/>Isp = 303 s]
     Thrust[Thrust<br/>500 kN]
-    %% Fuel flow path
-    LCH4 -->|40.1 kg/s| FuelPump
-    FuelPump -->|Split| Jacket
-    FuelPump -->|To PB| FuelPB
-    Jacket -->|Hot CH₄<br/>~930 K| Chamber
-    %% Small amount of LOX to fuel preburner
-    OxPump -.->|Small flow| FuelPB
-    FuelPB -->|Hot gas<br/>3669 K| FuelTurb
-    FuelTurb -->|~1000 K| Chamber
-    %% Oxidizer flow path  
-    LOX -->|128.3 kg/s| OxPump
-    OxPump -->|Split| OxPB
-    OxPump -->|To Chamber| Chamber
-    %% Small amount of CH₄ to ox preburner
-    FuelPump -.->|Small flow| OxPB
-    OxPB -->|Hot gas<br/>3578 K| OxTurb
-    OxTurb -->|~1000 K| Chamber
+
+    %% Fuel flow paths
+    LCH4 -->|40.1 kg/s<br/>110 K| FuelPump
+    FuelPump -->|8.0 kg/s<br/>45.6 MPa| Jacket
+    FuelPump -->|7.9 kg/s<br/>45.6 MPa| FuelPB
+    Jacket -->|8.0 kg/s<br/>1420 K<br/>27.8 MPa| Chamber
+
+    %% Oxidizer to fuel preburner
+    OxPump -.->|24.20 kg/s<br/>43.4 MPa| FuelPB
+    FuelPB -->|32.1 kg/s<br/>3669 K| FuelTurb
+    FuelTurb -->|32.1 kg/s<br/>1000 K| Chamber
+
+    %% Oxidizer flow paths
+    LOX -->|128.3 kg/s<br/>90 K| OxPump
+    OxPump -->|104.1 kg/s<br/>43.4 MPa| OxPB
+    OxPump -->|0.0 kg/s<br/>43.4 MPa| Chamber
+
+    %% Fuel to ox preburner
+    FuelPump -.->|18.21 kg/s<br/>45.6 MPa| OxPB
+    OxPB -->|122.3 kg/s<br/>3578 K| OxTurb
+    OxTurb -->|122.3 kg/s<br/>1000 K| Chamber
+
     %% Power transmission (mechanical coupling)
-    FuelTurb -.->|Shaft<br/>Power| FuelPump
-    OxTurb -.->|Shaft<br/>Power| OxPump
+    FuelTurb -.->|Shaft Power<br/>214.03 MW| FuelPump
+    OxTurb -.->|Shaft Power<br/>543.24 MW| OxPump
+
     %% Exhaust
     Chamber --> Nozzle
     Nozzle --> Thrust
+
     %% Styling
     classDef fuel fill:#ff9999,stroke:#cc0000,stroke-width:3px,color:#000000
     classDef ox fill:#9999ff,stroke:#0000cc,stroke-width:3px,color:#000000
@@ -48,4 +58,4 @@ graph TB
     class LOX,OxPump,OxPB,OxTurb ox
     class Chamber,Nozzle chamber
 
-    linkStyle default stroke:#ffffff,stroke-width:3px
+    linkStyle default stroke:#ffffff,stroke-width:2px
