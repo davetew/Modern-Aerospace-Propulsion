@@ -496,7 +496,7 @@ def optimize_ffsc_design(
         T_fuel_tank: float = 110.0,
         T_ox_tank: float = 90.0,
         p_amb: float = 0.0,
-        T_wall_max_limit: float = 900.0,
+        T_wall_max_limit: float = 2000.0,
         eta_pump_fuel: float = 0.70,
         eta_pump_ox: float = 0.70,
         eta_turb_fuel: float = 0.90,
@@ -507,7 +507,7 @@ def optimize_ffsc_design(
         r_t_bounds: Tuple[float, float] = (0.05, 0.20),
         eps_bounds: Tuple[float, float] = (10.0, 30.0),
         L_noz_bounds: Tuple[float, float] = (0.5, 2.5),
-        coolant_frac_bounds: Tuple[float, float] = (0.10, 0.60),
+        coolant_frac_bounds: Tuple[float, float] = (0.10, 0.99),
         initial_guess: Optional[Dict[str, float]] = None,
         optimizer_method: str = "SLSQP",
         max_iterations: int = 100,
@@ -666,6 +666,7 @@ def optimize_ffsc_design(
         p0, OF, r_t, eps, L_noz, coolant_frac = x
         
         try:
+            
             # Run complete FFSC cycle analysis with specified coolant fraction
             cycle_result = ffsc_full_flow_cycle(
                 F_vac=F_vac,
@@ -686,15 +687,14 @@ def optimize_ffsc_design(
                 eta_turb_ox=eta_turb_ox,
                 eta_mech=eta_mech,
                 coolant_fraction_override=coolant_frac,
-                g0=g0,
-            )
+                g0=g0,)
             
             # Extract Isp (use effective Isp accounting for nozzle efficiency)
             if p_amb > 0:
                 # For atmospheric operation, compute Isp with pressure thrust
                 from .sweep import ideal_atmospheric_isp_from_eps
                 Isp_atm, _, _, _ = ideal_atmospheric_isp_from_eps(
-                    p0=cycle_result['T0'],
+                    p0=cycle_result['p0'],
                     T0=cycle_result['T0'],
                     gamma=cycle_result['gamma'],
                     R_g=cycle_result['R_g'],
@@ -712,7 +712,7 @@ def optimize_ffsc_design(
             if not np.isfinite(Isp) or Isp < 0:
                 if verbose:
                     print(f"  Eval {eval_count['n']:3d}: ⚠ Invalid Isp={Isp} from cycle - "
-                          f"Isp_vac_eff={cycle_result.get('Isp_vac_eff', 'N/A')}")
+                            f"Isp_vac_eff={cycle_result.get('Isp_vac_eff', 'N/A')}")
                 return 1e6
             
             # Track best result for reporting
@@ -724,12 +724,13 @@ def optimize_ffsc_design(
             # Print progress if verbose
             if verbose and eval_count['n'] % 1 == 0:
                 print(f"  Eval {eval_count['n']:3d}: p0={p0/1e6:.1f} MPa, OF={OF:.2f}, "
-                      f"r_t={r_t*1000:.1f} mm, eps={eps:.1f}, L={L_noz:.2f} m, "
-                      f"cool={coolant_frac*100:.1f}% → Isp={Isp:.2f} s")
+                        f"r_t={r_t*1000:.1f} mm, eps={eps:.1f}, L={L_noz:.2f} m, "
+                        f"cool={coolant_frac*100:.1f}% → Isp={Isp:.2f} s")
             
             # Return negative Isp (optimizer minimizes)
             return -Isp
-            
+
+
         except Exception as e:
             # Log detailed exception information (limit to first 10 unique errors)
             error_key = f"{type(e).__name__}: {str(e)[:80]}"
@@ -749,6 +750,7 @@ def optimize_ffsc_design(
             if verbose:
                 print(f"  Eval {eval_count['n']:3d}: ✗ FAILED - {type(e).__name__}: {str(e)[:60]}")
             return 1e6
+
     
     # ==================== Define Constraint Functions ====================
     def constraint_turbopump_balance(x):

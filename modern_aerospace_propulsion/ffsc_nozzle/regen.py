@@ -173,8 +173,9 @@ def gas_state_from_area(At: float, A: float, p0: float, T0: float,
     return p, T, M
 
 
-def bartz_h(p0: float, T0: float, r_t: float, r: float, At: float, A: float,
-           gamma: float, R_g: float, mu_g: float = 3e-5, Pr_g: float = 0.9) -> Tuple[float, float, float, float]:
+def bartz_h(p0: float, T0: float, T_wall: float, r_t: float, At: float, A: float,
+           gamma: float, R_g: float, mu_g: float = 3e-5, Pr_g: float = 0.9,
+           ) -> Tuple[float, float, float, float]:
     """Compute gas-side heat transfer coefficient using Bartz correlation.
     
     Implements a simplified form of the Bartz equation for convective heat
@@ -185,14 +186,14 @@ def bartz_h(p0: float, T0: float, r_t: float, r: float, At: float, A: float,
         p0: Stagnation (chamber) pressure (Pa)
         T0: Stagnation (chamber) temperature (K)
         r_t: Throat radius (m)
-        r: Local nozzle radius (m)
         At: Throat area (m²)
         A: Local cross-sectional area (m²)
         gamma: Ratio of specific heats (dimensionless)
         R_g: Specific gas constant (J/kg/K)
         mu_g: Gas dynamic viscosity (Pa·s), default 3e-5
         Pr_g: Gas Prandtl number (dimensionless), default 0.9
-        
+        T_wall: Wall temperature (K)
+
     Returns:
         Tuple of (h_g, p, T, M):
             - h_g: Gas-side heat transfer coefficient (W/m²/K), minimum 1e3
@@ -206,15 +207,25 @@ def bartz_h(p0: float, T0: float, r_t: float, r: float, At: float, A: float,
     """
     # Compute specific heat at constant pressure from ideal gas relations
     cp_g = gamma*R_g/(gamma-1.0)
-    
+
+    # Total to static temperature ratio
+    Tt_T = lambda M, ga: 1 + 0.5*(ga-1.0)*M**2
+
     # Get local gas state (pressure, temperature, Mach number)
     p, T, M = gas_state_from_area(At, A, p0, T0, gamma, R_g)
     
-    # Bartz correlation: h = C * (mu^0.2) * (cp^0.6) / (Pr^0.6) * 
-    #                         (p0^0.8) * (r_t^0.1) * (At/A)^0.9 * (T0/T)^0.55
+    # Bartz correlation: h = C / d_t^0.2 * mu^0.2 * cp / Pr^0.6 * 
+    #                         (p0/c*)^0.8 * (At/A)^0.9 * sigma
     C = 0.026  # Empirical constant
-    factor = C * (mu_g**0.2) * (cp_g**0.6) / (Pr_g**0.6)
-    h_g = factor * (p0**0.8) * (r_t**0.1) * (At/A)**0.9 * (T0/T)**0.55
+    d_t = 2.0*r_t  # Throat diameter (m)
+    sigma = (0.5*T_wall/T0*Tt_T(M, gamma) + 0.5)**(-0.68)*Tt_T(M, gamma)**(-0.12)  # Correction factor
+
+    # Characteristic velocity
+    c_star = math.sqrt(R_g*T0/gamma) * (2.0/(gamma+1.0))**((gamma+1.0)/(2.0*(gamma-1.0)))
+
+    # Compute heat transfer coefficient
+    h_g = C/d_t**0.2 * mu_g**0.2 * cp_g / Pr_g**0.6 * \
+          (p0/c_star)**0.8 * (At/A)**0.9 * sigma
     
     # Enforce minimum heat transfer coefficient to avoid numerical issues
     return max(h_g, 1e3), p, T, M
@@ -462,9 +473,9 @@ def regen_nozzle_1D(
         # -------------------- Gas-Side Conditions --------------------
         # Compute gas-side heat transfer coefficient and local flow state
         hg_i, pgi, Tgi, Mi = bartz_h(
-            p0=p0, T0=T0, r_t=math.sqrt(At/math.pi),
-            r=r_i, At=At, A=A_i,
-            gamma=gamma, R_g=R_g
+            p0=p0, T0=T0, T_wall=T_wall_inner[i], r_t=math.sqrt(At/math.pi),
+            At=At, A=A_i,
+            gamma=gamma, R_g=R_g, 
         )
         h_gas[i] = hg_i  # Store gas-side heat transfer coefficient
         p_g[i] = pgi  # Store gas static pressure
