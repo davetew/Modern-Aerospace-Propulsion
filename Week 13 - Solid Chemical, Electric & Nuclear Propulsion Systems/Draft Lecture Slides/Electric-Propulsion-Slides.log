@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  30 NOV 2025 12:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  1 DEC 2025 22:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -550,7 +550,28 @@ Package bm Info: No bold for \U/msa/m/n, using \pmb.
 Package bm Info: No bold for \U/msb/m/n, using \pmb.
 \symboldpureletters=\mathgroup10
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/svg/svg.sty
+Package: svg 2020/11/26 v2.02k (include SVG pictures)
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2024/10/24 v3.43 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+Applying: [2021/05/01] Usage of raw or classic option list on input line 254.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line 370.
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 77.
+)
+\c@svg@param@lastpage=\count345
+\svg@box=\box77
+\c@svg@param@currpage=\count346
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/transparent/transparent.sty
+Package: transparent 2022-10-27 v1.5 Transparency with color stacks
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/transparent/transparent-nometadata.sty
+Package: transparent-nometadata 2022-10-27 v1.5 Transparency via pdfTeX's color stack (HO)
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+))) (/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen295
 \lightrulewidth=\dimen296
@@ -562,33 +583,33 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen302
 \cmidrulekern=\dimen303
 \defaultaddspace=\dimen304
-\@cmidla=\count345
-\@cmidlb=\count346
+\@cmidla=\count347
+\@cmidlb=\count348
 \@aboverulesep=\dimen305
 \@belowrulesep=\dimen306
-\@thisruleclass=\count347
-\@lastruleclass=\count348
+\@thisruleclass=\count349
+\@lastruleclass=\count350
 \@thisrulewidth=\dimen307
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty
 Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
 \col@sep=\dimen308
-\ar@mcellbox=\box77
+\ar@mcellbox=\box78
 \extrarowheight=\dimen309
 \NC@list=\toks46
 \extratabsurround=\skip66
 \backup@length=\skip67
-\ar@cellbox=\box78
+\ar@cellbox=\box79
 )
 \everycr=\toks47
 \minrowclearance=\skip68
-\rownum=\count349
+\rownum=\count351
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box79
+\pgfnodeparttextbox=\box80
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
@@ -607,7 +628,7 @@ Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count350
+\pgf@plot@mark@count=\count352
 \pgfplotmarksize=\dimen314
 )
 \tikz@lastx=\dimen315
@@ -618,21 +639,21 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@lastmovetoy=\dimen320
 \tikzleveldistance=\dimen321
 \tikzsiblingdistance=\dimen322
-\tikz@figbox=\box80
-\tikz@figbox@bg=\box81
-\tikz@tempbox=\box82
-\tikz@tempbox@bg=\box83
-\tikztreelevel=\count351
-\tikznumberofchildren=\count352
-\tikznumberofcurrentchild=\count353
-\tikz@fig@count=\count354
+\tikz@figbox=\box81
+\tikz@figbox@bg=\box82
+\tikz@tempbox=\box83
+\tikz@tempbox@bg=\box84
+\tikztreelevel=\count353
+\tikznumberofchildren=\count354
+\tikznumberofcurrentchild=\count355
+\tikz@fig@count=\count356
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count355
-\pgfmatrixcurrentcolumn=\count356
-\pgf@matrix@numberofcolumns=\count357
+\pgfmatrixcurrentrow=\count357
+\pgfmatrixcurrentcolumn=\count358
+\pgf@matrix@numberofcolumns=\count359
 )
-\tikz@expandcount=\count358
+\tikz@expandcount=\count360
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/local/texlive/2025/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
@@ -642,33 +663,33 @@ Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 \t@pgfplots@tokb=\toks51
 \t@pgfplots@tokc=\toks52
 \pgfplots@tmpa=\dimen323
-\c@pgfplots@coordindex=\count359
-\c@pgfplots@scanlineindex=\count360
+\c@pgfplots@coordindex=\count361
+\c@pgfplots@scanlineindex=\count362
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
 Package pgfplots: loading complementary utilities for your pgf version...
 \t@pgf@toka=\toks53
 \t@pgf@tokb=\toks54
 \t@pgf@tokc=\toks55
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfutil-common-lists.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count361
+\c@pgfplotsarray@tmp=\count363
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
-\c@pgfplotstable@counta=\count362
+\c@pgfplotstable@counta=\count364
 \t@pgfplotstable@a=\toks56
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count363
+\c@pgfplotslibrarysurf@no=\count365
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen324
 \pgfdecoratedremainingdistance=\dimen325
 \pgfdecoratedinputsegmentcompleteddistance=\dimen326
 \pgfdecoratedinputsegmentremainingdistance=\dimen327
 \pgf@decorate@distancetomove=\dimen328
-\pgf@decorate@repeatstate=\count364
+\pgf@decorate@repeatstate=\count366
 \pgfdecorationsegmentamplitude=\dimen329
 \pgfdecorationsegmentlength=\dimen330
 )
-\tikz@lib@dec@box=\box84
+\tikz@lib@dec@box=\box85
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count365
+\pgfplots@numplots=\count367
 \pgfplots@xmin@reg=\dimen331
 \pgfplots@xmax@reg=\dimen332
 \pgfplots@ymin@reg=\dimen333
@@ -717,53 +738,55 @@ File: pgflibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodepartlowerbox=\box85
-\pgfnodeparttwobox=\box86
-\pgfnodepartthreebox=\box87
-\pgfnodepartfourbox=\box88
-\pgfnodeparttwentybox=\box89
-\pgfnodepartnineteenbox=\box90
-\pgfnodeparteighteenbox=\box91
-\pgfnodepartseventeenbox=\box92
-\pgfnodepartsixteenbox=\box93
-\pgfnodepartfifteenbox=\box94
-\pgfnodepartfourteenbox=\box95
-\pgfnodepartthirteenbox=\box96
-\pgfnodeparttwelvebox=\box97
-\pgfnodepartelevenbox=\box98
-\pgfnodeparttenbox=\box99
-\pgfnodepartninebox=\box100
-\pgfnodeparteightbox=\box101
-\pgfnodepartsevenbox=\box102
-\pgfnodepartsixbox=\box103
-\pgfnodepartfivebox=\box104
+\pgfnodepartlowerbox=\box86
+\pgfnodeparttwobox=\box87
+\pgfnodepartthreebox=\box88
+\pgfnodepartfourbox=\box89
+\pgfnodeparttwentybox=\box90
+\pgfnodepartnineteenbox=\box91
+\pgfnodeparteighteenbox=\box92
+\pgfnodepartseventeenbox=\box93
+\pgfnodepartsixteenbox=\box94
+\pgfnodepartfifteenbox=\box95
+\pgfnodepartfourteenbox=\box96
+\pgfnodepartthirteenbox=\box97
+\pgfnodeparttwelvebox=\box98
+\pgfnodepartelevenbox=\box99
+\pgfnodeparttenbox=\box100
+\pgfnodepartninebox=\box101
+\pgfnodeparteightbox=\box102
+\pgfnodepartsevenbox=\box103
+\pgfnodepartsixbox=\box104
+\pgfnodepartfivebox=\box105
 ))) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count366
-\l__pdf_internal_box=\box105
+\l__color_backend_stack_int=\count368
+\l__pdf_internal_box=\box106
 ) (./Electric-Propulsion-Slides.aux)
 \openout1 = `Electric-Propulsion-Slides.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -801,16 +824,16 @@ LaTeX Font Info:    ... okay on input line 51.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count367
+\scratchcounter=\count369
 \scratchdimen=\dimen341
-\scratchbox=\box106
-\nofMPsegments=\count368
-\nofMParguments=\count369
+\scratchbox=\box107
+\nofMPsegments=\count370
+\nofMParguments=\count371
 \everyMPshowfont=\toks57
-\MPscratchCnt=\count370
+\MPscratchCnt=\count372
 \MPscratchDim=\dimen342
-\MPnumerator=\count371
-\makeMPintoPDFobject=\count372
+\MPnumerator=\count373
+\makeMPintoPDFobject=\count374
 \everyMPtoPDFconversion=\toks58
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -818,60 +841,60 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 51.
+Package hyperref Info: Link coloring ON on input line 52.
  (./Electric-Propulsion-Slides.out) (./Electric-Propulsion-Slides.out)
 \@outlinefile=\write5
 \openout5 = `Electric-Propulsion-Slides.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 51.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 52.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 51.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 52.
 \symnumbers=\mathgroup11
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 51.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 52.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/mathkerncmss/m/sl --> OT1/cmss/m/it on input line 51.
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/cmss/m/it on input line 52.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/mathkerncmss/bx/sl --> OT1/cmss/m/it on input line 51.
+(Font)                  OT1/mathkerncmss/bx/sl --> OT1/cmss/m/it on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 51.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 51.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 52.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 51.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 51.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 51.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 52.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 51.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 51.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 51.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 52.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 51.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 51.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 52.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 51.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 52.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 51.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 51.
+(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 51.
+(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 51.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 51.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 51.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 51.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 52.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 52.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 51.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 52.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 51.
+(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 52.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 51.
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 52.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
@@ -896,15 +919,15 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 85.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 86.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 85.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 86.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 85.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 86.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
@@ -928,7 +951,7 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 [7
 
 ]
-Overfull \vbox (1.83481pt too high) detected at line 290
+Overfull \vbox (1.83481pt too high) detected at line 284
  []
 
 
@@ -960,6 +983,10 @@ Overfull \vbox (1.83481pt too high) detected at line 290
 [14
 
 ]
+Overfull \vbox (3.95479pt too high) detected at line 435
+ []
+
+
 
 [15
 
@@ -968,37 +995,57 @@ Overfull \vbox (1.83481pt too high) detected at line 290
 [16
 
 ]
-Overfull \hbox (1.7741pt too wide) detected at line 494
-[]
+<figs/SRM-Model-Screenshot.png, id=270, 1219.55624pt x 1048.91875pt>
+File: figs/SRM-Model-Screenshot.png Graphic file (type png)
+<use figs/SRM-Model-Screenshot.png>
+Package pdftex.def Info: figs/SRM-Model-Screenshot.png  used on input line 466.
+(pdftex.def)             Requested size: 346.67653pt x 298.16069pt.
+
+Overfull \vbox (98.16193pt too high) detected at line 466
  []
 
 
 
 [17
 
-]
+ <./figs/SRM-Model-Screenshot.png>]
+<figs/SRM-Model-Predictions.png, id=280, 994.07385pt x 561.89925pt>
+File: figs/SRM-Model-Predictions.png Graphic file (type png)
+<use figs/SRM-Model-Predictions.png>
+Package pdftex.def Info: figs/SRM-Model-Predictions.png  used on input line 472.
+(pdftex.def)             Requested size: 346.67653pt x 195.95604pt.
+
 
 [18
 
-]
+ <./figs/SRM-Model-Predictions.png>]
+Overfull \hbox (1.7741pt too wide) detected at line 510
+[]
+ []
+
+
 
 [19
 
 ]
-<figs/Shuttle_SRB.jpg, id=298, 640.3925pt x 431.6125pt>
-File: figs/Shuttle_SRB.jpg Graphic file (type jpg)
-<use figs/Shuttle_SRB.jpg>
-Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 574.
-(pdftex.def)             Requested size: 195.00348pt x 131.42757pt.
-
 
 [20
 
- <./figs/Shuttle_SRB.jpg>]
+]
+<figs/Shuttle_SRB.jpg, id=316, 640.3925pt x 431.6125pt>
+File: figs/Shuttle_SRB.jpg Graphic file (type jpg)
+<use figs/Shuttle_SRB.jpg>
+Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 593.
+(pdftex.def)             Requested size: 195.00348pt x 131.42757pt.
+
+Overfull \vbox (3.27461pt too high) detected at line 593
+ []
+
+
 
 [21
 
-]
+ <./figs/Shuttle_SRB.jpg>]
 
 [22
 
@@ -1024,12 +1071,12 @@ Package pdftex.def Info: figs/Shuttle_SRB.jpg  used on input line 574.
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 740.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 722.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 740.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 722.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 740.
-LaTeX Font Info:    Trying to load font information for U+euf on input line 740.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 722.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 722.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
@@ -1038,24 +1085,23 @@ File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <12> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 765.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 748.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <14.4> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 765.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 748.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 765.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 748.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 765.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 748.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <9> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 748.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 748.
 
 
 [29
 
 ]
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <9> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 803.
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 803.
-
-Overfull \vbox (9.30627pt too high) detected at line 803
+Overfull \vbox (9.30627pt too high) detected at line 786
  []
 
 
@@ -1099,82 +1145,82 @@ Overfull \vbox (9.30627pt too high) detected at line 803
 [39
 
 ]
-Underfull \hbox (badness 6741) in paragraph at lines 1033--1033
+Underfull \hbox (badness 6741) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 Simple; Low cost;
  []
 
 
-Underfull \hbox (badness 3989) in paragraph at lines 1033--1033
+Underfull \hbox (badness 3989) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 Robust; Higher $\OT1/mathkerncmss/m/sl/10.95 I[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1033--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 Electrode ero-sion;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1033--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 Highest Ef-fi-ciency;
  []
 
 
-Underfull \hbox (badness 6708) in paragraph at lines 1033--1033
+Underfull \hbox (badness 6708) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 Low thrust den-sity
  []
 
 
-Underfull \hbox (badness 1769) in paragraph at lines 1033--1033
+Underfull \hbox (badness 1769) in paragraph at lines 1018--1018
 \OT1/cmss/m/n/10.95 (Grid lim-its); Com-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1033--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 High Thrust-to-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1033--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 Beam di-ver-gence;
  []
 
 
-Underfull \hbox (badness 4859) in paragraph at lines 1033--1033
+Underfull \hbox (badness 4859) in paragraph at lines 1018--1018
 \OT1/cmss/m/n/10.95 Chan-nel ero-sion (if
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1033--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 Precision con-trol;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1033--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1018--1018
 \OT1/cmss/m/n/10.95 volt-age; Clog-ging
  []
 
 
-Underfull \hbox (badness 4927) in paragraph at lines 1033--1033
+Underfull \hbox (badness 4927) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 Solid fuel (Teflon);
  []
 
 
-Underfull \hbox (badness 3219) in paragraph at lines 1033--1033
+Underfull \hbox (badness 3219) in paragraph at lines 1018--1018
 []|\OT1/cmss/m/n/10.95 Very low ef-fi-ciency;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1033--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1018--1018
 \OT1/cmss/m/n/10.95 Car-bon con-tam-i-na-
  []
 
 
-Underfull \hbox (badness 1688) in paragraph at lines 1033--1033
+Underfull \hbox (badness 1688) in paragraph at lines 1018--1018
 \OT1/cmss/m/n/10.95 Cath-ode ero-sion se-
  []
 
 
-Overfull \vbox (43.61533pt too high) detected at line 1033
+Overfull \vbox (43.61533pt too high) detected at line 1018
  []
 
 
@@ -1199,10 +1245,19 @@ Overfull \vbox (43.61533pt too high) detected at line 1033
 
 ]
 
+LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
+(Font)              using `OT1/cmss/b/it' instead on input line 1145.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/it' undefined
+(Font)              using `OT1/cmss/b/n' instead on input line 1145.
+
+
+
 [45
 
 ]
-Overfull \vbox (2.2462pt too high) detected at line 1200
+Overfull \vbox (2.2462pt too high) detected at line 1192
  []
 
 
@@ -1214,6 +1269,10 @@ Overfull \vbox (2.2462pt too high) detected at line 1200
 [47
 
 ]
+Overfull \vbox (5.9424pt too high) detected at line 1246
+ []
+
+
 
 [48
 
@@ -1222,40 +1281,136 @@ Overfull \vbox (2.2462pt too high) detected at line 1200
 [49
 
 ]
+LaTeX Font Info:    Freeze math alphabet allocation in version normal.
+(Font)              Allocated math groups: 14 (local: 2) on input line 1307.
+LaTeX Font Info:    Undo math alphabet allocation in version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    Undo math alphabet allocation in version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1307.
+
 
 [50
 
 ]
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    Undo math alphabet allocation in version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1390.
+
 
 [51
 
 ]
+<figs/Wfm_hall_thruster.pdf, id=749, 1688.3075pt x 901.3675pt>
+File: figs/Wfm_hall_thruster.pdf Graphic file (type pdf)
+<use figs/Wfm_hall_thruster.pdf>
+Package pdftex.def Info: figs/Wfm_hall_thruster.pdf  used on input line 1451.
+(pdftex.def)             Requested size: 346.67653pt x 185.0841pt.
+
+Overfull \vbox (10.62979pt too high) detected at line 1451
+ []
+
+
 
 [52
 
-]
+ <./figs/Wfm_hall_thruster.pdf>]
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1478.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1478.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1478.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1478.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1478.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1478.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1478.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1478.
+
 
 [53
 
-]
+{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1606.
+
 
 [54
 
 ]
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1672.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1672.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1672.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1672.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1672.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1672.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1672.
+
 
 [55
 
-{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+]
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1730.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1730.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1730.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1730.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1730.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1730.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1730.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1730.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1730.
+
 
 [56
 
-]
+] (./Electric-Propulsion-Slides.toc)
 
 [57
-
-]
-
-[58
 
 ]
 \tf@nav=\write6
@@ -1272,22 +1427,26 @@ Overfull \vbox (2.2462pt too high) detected at line 1200
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `Electric-Propulsion-Slides.out' has not changed.
-(rerunfilecheck)             Checksum: 074CDA5F1468E3AE1A870EECAE2BAE61;2942.
+(rerunfilecheck)             Checksum: 755A2F1F28807BD251F5E9C2C9D9960B;2064.
  ) 
 Here is how much of TeX's memory you used:
- 38872 strings out of 473190
- 944653 string characters out of 5715801
- 1442806 words of memory out of 5000000
- 61242 multiletter control sequences out of 15000+600000
- 595564 words of font info for 151 fonts, out of 8000000 for 9000
+ 39727 strings out of 473190
+ 964423 string characters out of 5715801
+ 1486475 words of memory out of 5000000
+ 62068 multiletter control sequences out of 15000+600000
+ 596332 words of font info for 154 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,18n,123p,983b,2277s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb>
-Output written on Electric-Propulsion-Slides.pdf (58 pages, 439550 bytes).
+ 128i,18n,123p,983b,2279s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb>
+Output written on Electric-Propulsion-Slides.pdf (57 pages, 1192867 bytes).
 PDF statistics:
- 878 PDF objects out of 1000 (max. 8388607)
- 604 compressed objects within 7 object streams
- 132 named destinations out of 1000 (max. 500000)
- 772 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 970 PDF objects out of 1000 (max. 8388607)
+ 655 compressed objects within 7 object streams
+ 128 named destinations out of 1000 (max. 500000)
+ 863 words of extra memory for PDF output out of 10000 (max. 10000000)
 
