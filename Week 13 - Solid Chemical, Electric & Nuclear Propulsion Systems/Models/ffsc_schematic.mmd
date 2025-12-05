@@ -1,0 +1,66 @@
+%%{init: {'theme':'default','themeVariables': {'lineColor':'#333333','primaryTextColor':'#000000'}}}%%
+graph LR
+    %% Fuel side (top row)
+    LCH4[LCH4 Tank<br/>T = 110 K<br/>ṁ = 40.1 kg/s]
+    FuelPump[Fuel Pump<br/>ΔP = 43.6 MPa<br/>p_out = 63.6 MPa]
+    FuelPB[Fuel-Rich<br/>Preburner<br/>φ = 1.3<br/>T = 3669 K<br/>p = 20 MPa]
+    FuelTurb[Fuel Turbine<br/>T_in = 3669 K<br/>T_out = 1000 K]
+
+    %% Oxidizer side (bottom row)
+    LOX[LOX Tank<br/>T = 90 K<br/>ṁ = 128.3 kg/s]
+    OxPump[Oxidizer Pump<br/>ΔP = 23.4 MPa<br/>p_out = 43.4 MPa]
+    OxPB[Ox-Rich<br/>Preburner<br/>φ = 0.7<br/>T = 3578 K<br/>p = 20 MPa]
+    OxTurb[Oxidizer Turbine<br/>T_in = 3578 K<br/>T_out = 1000 K]
+
+    %% Cooling system
+    Jacket[Regenerative<br/>Cooling Jacket<br/>ΔP = 20.2 MPa<br/>T_out = 443 K]
+
+    %% Combustion chamber
+    Chamber[Main Chamber<br/>O/F = 3.2<br/>T₀ = 3703 K<br/>p₀ = 20 MPa]
+    Nozzle[Nozzle<br/>ε = 15<br/>Isp = 303 s]
+    Thrust[Thrust<br/>500 kN]
+
+    %% Fuel flow paths (red/orange for fuel)
+    LCH4 -->|40.1 kg/s<br/>110 K| FuelPump
+    FuelPump -->|38.1 kg/s<br/>63.6 MPa| Jacket
+    FuelPump -->|0.5 kg/s<br/>63.6 MPa| FuelPB
+    Jacket -->|38.1 kg/s<br/>443 K<br/>9.8 MPa| Chamber
+
+    %% Oxidizer to fuel preburner (purple for cross-connections)
+    OxPump -.->|1.51 kg/s<br/>43.4 MPa| FuelPB
+    FuelPB -->|2.0 kg/s<br/>3669 K| FuelTurb
+    FuelTurb -->|2.0 kg/s<br/>1000 K| Chamber
+
+    %% Oxidizer flow paths (blue for oxidizer)
+    LOX -->|128.3 kg/s<br/>90 K| OxPump
+    OxPump -->|126.8 kg/s<br/>43.4 MPa| OxPB
+    OxPump -->|0.0 kg/s<br/>43.4 MPa| Chamber
+
+    %% Fuel to ox preburner (purple for cross-connections)
+    FuelPump -.->|22.18 kg/s<br/>63.6 MPa| OxPB
+    OxPB -->|148.9 kg/s<br/>3578 K| OxTurb
+    OxTurb -->|148.9 kg/s<br/>1000 K| Chamber
+
+    %% Power transmission (mechanical coupling - green dashed)
+    FuelTurb -.->|Shaft Power<br/>214.03 MW| FuelPump
+    OxTurb -.->|Shaft Power<br/>543.24 MW| OxPump
+
+    %% Exhaust (hot gas - yellow/orange)
+    Chamber --> Nozzle
+    Nozzle --> Thrust
+
+    %% Styling for white background
+    classDef fuel fill:#ffcccc,stroke:#cc0000,stroke-width:3px,color:#000000
+    classDef ox fill:#cce5ff,stroke:#0066cc,stroke-width:3px,color:#000000
+    classDef hot fill:#ffe6cc,stroke:#ff6600,stroke-width:3px,color:#000000
+    classDef chamber fill:#fff4cc,stroke:#cc9900,stroke-width:4px,color:#000000
+    class LCH4,FuelPump,FuelPB,FuelTurb,Jacket fuel
+    class LOX,OxPump,OxPB,OxTurb ox
+    class Chamber,Nozzle chamber
+
+    %% Link colors for visibility on white background
+    linkStyle 0,1,2,3,5,6 stroke:#cc0000,stroke-width:3px
+    linkStyle 7,8,9,11,12 stroke:#0066cc,stroke-width:3px
+    linkStyle 4,10 stroke:#9900cc,stroke-width:2px
+    linkStyle 13,14 stroke:#009900,stroke-width:2px
+    linkStyle 15,16 stroke:#ff6600,stroke-width:3px

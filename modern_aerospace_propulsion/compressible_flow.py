@@ -2,6 +2,12 @@
 γ1 = lambda γ: γ / (γ-1) 
 
 # Ratio of total to static temperature
+def Tt_T(Mach: float, γ: float = 1.4) -> float:
+  """Calculate and return the total to static temperature ratio given
+    **Mach** (*float*): the Mach number, and
+    **γ** (*float*): the ratio of specific heats (default=1.4)"""
+  return θ(Mach, γ) 
+
 def θ(Mach: float, γ: float = 1.4) -> float:
   """Calculate and return the total to static temperature ratio given
     **Mach** (*float*): the Mach number, and
@@ -9,6 +15,12 @@ def θ(Mach: float, γ: float = 1.4) -> float:
   return 1 + (γ-1)/2*Mach**2
 
 # Ratio of total to static pressure
+def Pt_P(Mach: float, γ: float = 1.4) -> float:
+  """Calculate and return the total to static pressure ratio given
+    **Mach** (*float*): the Mach number, and
+    **γ** (*float*): the ratio of specific heats (default=1.4)"""
+  return δ(Mach, γ)
+
 def δ(Mach: float, γ: float = 1.4) -> float:
   """Calculate and return the total to static pressure ratio given
   **Mach** (*float*): the Mach number, and
