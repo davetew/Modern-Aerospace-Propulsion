@@ -10,6 +10,7 @@ This workflow automatically bumps the version number in `pyproject.toml` on ever
 - **Git Tagging**: Creates a git tag for each version (e.g., `v0.1.1`)
 - **Infinite Loop Prevention**: Commits include `[skip-version-bump]` to avoid triggering itself
 - **Summary Reports**: Generates a workflow summary showing old and new versions
+- **Workflow Updates**: Changes to `version-bump.yml` itself won't trigger the workflow (use manual merge to main for workflow updates)
 
 ### How It Works
 
@@ -71,3 +72,7 @@ To bump major or minor versions instead of patch:
 **Issue**: Version format not recognized
 - Verify `pyproject.toml` uses semantic versioning (`X.Y.Z`)
 - Check for extra spaces or invalid characters in version string
+
+**Issue**: Workflow changes don't take effect
+- The workflow ignores changes to itself (prevents infinite loops)
+- To update the workflow: merge changes to main, then manually trigger or push another change

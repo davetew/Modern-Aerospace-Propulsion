@@ -32,7 +32,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install toml
+          pip install toml==0.10.2
 
       - name: Bump version
         id: bump
@@ -58,7 +58,7 @@ jobs:
 
           major, minor, patch, suffix = match.groups()
 
-          # Bump patch version
+          # Bump patch version (preserves pre-release suffixes)
           new_patch = int(patch) + 1
           new_version = f"{major}.{minor}.{new_patch}{suffix if suffix else ''}"
           print(f"New version: {new_version}")
