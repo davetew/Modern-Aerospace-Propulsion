@@ -42,39 +42,39 @@ theta = compressible_flow.θ(2.0)  # Temperature ratio at Mach 2.0
 
 This repository contains Jupyter notebooks and analysis tools organized by topic, following the course curriculum structure:
 
-### Week 1 - Introduction
+### Week 01 - Introduction
 Introduction to aerospace propulsion concepts and foundational models.
 - **Altitude_vs_Mach_Number.ipynb** - Visualization of altitude vs Mach number for selected aircraft
 - **Cylinder_Blowdown.ipynb** - Model for analyzing cylinder blowdown dynamics
 - **Shock_Tube_Model.ipynb** - One-dimensional shock tube simulation
 
-### Week 2 - Fundamental Principles
+### Week 02 - Fundamental Principles
 Core thermodynamic principles applied to propulsion systems.
 - **Thermodynamics_of_Gases.ipynb** - Fundamental gas dynamics and thermodynamic relationships
 
-### Week 3 - Cycle Analysis
+### Week 03 - Cycle Analysis
 Analysis of thermodynamic cycles for various propulsion systems.
 - **Cycle_Analysis.ipynb** - Thermodynamic cycle analysis for jet engines
 
-### Week 4 - Inlets & Nozzles
+### Week 04 - Inlets & Nozzles
 Study of inlet and nozzle flows and their performance characteristics.
 - **Inlet_Model.ipynb** - Computational model for inlet flow analysis
 
-### Week 5 - Combustors & Augmentors
+### Week 05 - Combustors & Augmentors
 Combustion modeling and augmentor (afterburner) analysis.
 - **Gibbs_Energy_Minimization.ipynb** - Tutorial on Gibbs free energy minimization for equilibrium combustion modeling
 - **Homework_2_Combustors_&_Augementors.ipynb** - Homework assignment on combustor and augmentor analysis
 
-### Week 6 - Turbomachinery
+### Week 06 - Turbomachinery
 Turbomachinery components and performance analysis.
 - **Gas_Turbine_T4_Performance_Sensitivity.ipynb** - Analysis of gas turbine performance sensitivity to T4 (turbine inlet temperature)
 - **Polytropic_&_Isentropic_Efficiency.ipynb** - Study of polytropic and isentropic efficiencies in turbomachinery
 
-### Week 7 - Advanced Cycles
+### Week 07 - Advanced Cycles
 Advanced propulsion cycles including turbofans and other configurations.
 - **SimpleTurboFan.ipynb** - Simplified turbofan engine cycle analysis
 
-### Week 9 - Introduction to Rockets
+### Week 09 - Introduction to Rockets
 Rocket propulsion fundamentals and trajectory analysis.
 - **RocketPerformance.ipynb** - Rocket performance calculations and analysis
 - **LaunchTrajectoryAnalysis.ipynb** - Launch trajectory simulation and optimization
