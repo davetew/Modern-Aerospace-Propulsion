@@ -1,0 +1,113 @@
+name: Auto Version Bump
+
+# Trigger this workflow on every push to the main branch
+on:
+  push:
+    branches:
+      - main
+    # Avoid triggering on version bump commits to prevent infinite loops
+    paths-ignore:
+      - '.github/workflows/version-bump.yml'
+
+permissions:
+  contents: write  # Required to push commits and tags
+
+jobs:
+  bump-version:
+    # Only run if commit message doesn't contain '[skip-version-bump]'
+    if: "!contains(github.event.head_commit.message, '[skip-version-bump]')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install toml
+
+      - name: Bump version
+        id: bump
+        run: |
+          python << 'EOF'
+          import toml
+          import re
+          import sys
+
+          # Read the current pyproject.toml
+          with open('pyproject.toml', 'r') as f:
+              data = toml.load(f)
+
+          # Get current version
+          current_version = data['project']['version']
+          print(f"Current version: {current_version}")
+
+          # Parse version (semantic versioning: MAJOR.MINOR.PATCH)
+          match = re.match(r'^(\d+)\.(\d+)\.(\d+)(.*)$', current_version)
+          if not match:
+              print(f"Error: Version format not recognized: {current_version}")
+              sys.exit(1)
+
+          major, minor, patch, suffix = match.groups()
+
+          # Bump patch version
+          new_patch = int(patch) + 1
+          new_version = f"{major}.{minor}.{new_patch}{suffix if suffix else ''}"
+          print(f"New version: {new_version}")
+
+          # Update version in data structure
+          data['project']['version'] = new_version
+
+          # Write back to pyproject.toml
+          with open('pyproject.toml', 'w') as f:
+              toml.dump(data, f)
+
+          # Output for GitHub Actions
+          with open(sys.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f"old_version={current_version}\n")
+              f.write(f"new_version={new_version}\n")
+
+          print(f"Version bumped from {current_version} to {new_version}")
+          EOF
+
+      - name: Configure Git
+        run: |
+          git config --local user.email \
+            "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Commit version bump
+        run: |
+          git add pyproject.toml
+          git commit -m \
+            "Bump version to ${{ steps.bump.outputs.new_version }} [skip-version-bump]"
+
+      - name: Create git tag
+        run: |
+          git tag -a "v${{ steps.bump.outputs.new_version }}" \
+            -m "Release version ${{ steps.bump.outputs.new_version }}"
+
+      - name: Push changes and tags
+        run: |
+          git push origin main
+          git push origin "v${{ steps.bump.outputs.new_version }}"
+
+      - name: Summary
+        run: |
+          echo "### Version Bump Summary :rocket:" \
+            >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Old Version:** \
+            ${{ steps.bump.outputs.old_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **New Version:** \
+            ${{ steps.bump.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Tag Created:** \
+            v${{ steps.bump.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY
