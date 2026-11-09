@@ -92,6 +92,7 @@ Lunar and interplanetary mission design with the patched-conic `mission_analysis
 - **examples/04_gravity_assists.py** - Europa Clipper (Mars–Earth gravity assist) and Voyager 2 sequences
 - **examples/05_aerobraking_mars.py** - Aerocapture credit and aerobraking campaigns; analytic vs integrated pass
 - **examples/06_hw1_reference_solution.py** - HW 1 reference solution: mission Δv budget, required Isp, staging
+- **docs/tutorial/** - *Orbital Mechanics for Propulsion Engineers*: a from-first-principles tutorial on the astrodynamics behind the tool (LaTeX/PDF, with exercises)
 - **docs/report/** - Technical report (LaTeX/PDF): utility, modeling approach, validation, limitations
 - **docs/slides/** - Beamer summary presentation
 

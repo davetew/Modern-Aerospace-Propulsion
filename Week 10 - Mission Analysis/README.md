@@ -16,8 +16,17 @@ propagation, no low-thrust. Expect Δv estimates good to a few percent of flown
 missions (see *Validation*), not navigation-grade trajectories.
 
 The code lives in the course package as `modern_aerospace_propulsion.mission_analysis`;
-the technical report and lecture slides are in `docs/`, worked examples in `examples/`,
-and their output figures in `figures/`.
+the technical report, the summary slides and the **orbital-mechanics tutorial** are in `docs/`,
+worked examples in `examples/`, and their output figures in `figures/`.
+
+| document | for whom |
+|---|---|
+| `docs/tutorial/orbital_mechanics_tutorial.pdf` | engineers new to astrodynamics: the physics behind every module, worked numbers, exercises (35 pp.) |
+| `docs/report/mission_analysis_report.pdf` | modeling approach, validation record, limitations (11 pp.) |
+| `docs/slides/mission_analysis_slides.pdf` | 16-slide summary of the above |
+
+The tutorial's numbers and figures are regenerated with `calc/make_tutorial_numbers.py` and
+`calc/make_tutorial_figures.py` (run from the repository root with `PYTHONPATH=.`), so text and code cannot drift apart.
 
 ## Install
 
