@@ -27,7 +27,7 @@ pip install -e ".[dev]"
 ```
 
 ### Using the Package
-Once installed, you can import the compressible flow utilities in your Python code:
+Once installed, you can import the course utilities in your Python code:
 ```python
 from modern_aerospace_propulsion import compressible_flow
 
@@ -36,6 +36,11 @@ T_celsius = compressible_flow.K2C(300)  # Convert 300 K to Celsius
 
 # Use compressible flow relations
 theta = compressible_flow.θ(2.0)  # Temperature ratio at Mach 2.0
+
+# Mission analysis (Week 10): Earth -> Mars porkchop and a dated transfer
+from modern_aerospace_propulsion.mission_analysis import porkchop, heliocentric_leg
+pc = porkchop("Earth", "Mars", "2026-09-01", "2027-02-15", 120, 450)
+print(pc.summary())
 ```
 
 ## Repository Structure
@@ -79,6 +84,17 @@ Rocket propulsion fundamentals and trajectory analysis.
 - **RocketPerformance.ipynb** - Rocket performance calculations and analysis
 - **LaunchTrajectoryAnalysis.ipynb** - Launch trajectory simulation and optimization
 
+### Week 10 - Mission Analysis
+Lunar and interplanetary mission design with the patched-conic `mission_analysis` tool (see the folder README and `docs/`).
+- **examples/01_basics_hohmann_launch.py** - Δv to LEO with launch-site credit and loss bands, Hohmann estimates, rocket equation and staging
+- **examples/02_mars_porkchop_2026.py** - Earth→Mars 2026/27 launch window: porkchop plots and transfer geometry
+- **examples/03_lunar_mission.py** - Earth–Moon Hohmann estimate vs patched conic, Apollo 11 check, landing/return budget
+- **examples/04_gravity_assists.py** - Europa Clipper (Mars–Earth gravity assist) and Voyager 2 sequences
+- **examples/05_aerobraking_mars.py** - Aerocapture credit and aerobraking campaigns; analytic vs integrated pass
+- **examples/06_hw1_reference_solution.py** - HW 1 reference solution: mission Δv budget, required Isp, staging
+- **docs/report/** - Technical report (LaTeX/PDF): utility, modeling approach, validation, limitations
+- **docs/slides/** - Beamer summary presentation
+
 ### Week 11 - Nozzle Design & Cooling, Braking, Advanced Concepts
 Advanced rocket nozzle design and thermal management.
 - **LiquidRocketDesign.ipynb** - Liquid rocket engine design and analysis
@@ -103,6 +119,22 @@ Reusable Python utilities for aerospace propulsion calculations.
 
 #### Core Modules
 - **compressible_flow.py** - Compressible flow relations and temperature conversions
+
+#### `mission_analysis` Sub-package (also exposed as the `sfmission` CLI and `sfmission-mcp` MCP server)
+Patched-conic mission analysis for lunar and interplanetary design:
+- **bodies.py** - DE440 gravitational parameters, radii, spheres of influence, exponential atmospheres
+- **kepler.py** - Two-body relations, elements ↔ state, universal-variable propagation
+- **ephemeris.py** - JPL mean-element planetary ephemeris (1800–2050 and 3000 BC–3000 AD), truncated-Meeus Moon
+- **lambert.py** - Universal-variable Lambert solver
+- **transfers.py** - Hohmann, bi-elliptic, plane changes, phasing
+- **patched_conics.py** - Departure/capture burns, gravity-assist flybys, multi-leg missions
+- **lunar.py** - Earth–Moon Hohmann estimate and Bate–Mueller–White patched conic
+- **launch.py** - Δv to orbit with launch-site rotation credit and loss bands
+- **aerobraking.py** - Aerocapture credit, per-pass aerobraking Δv, campaigns, numerical pass check
+- **staging.py** - Rocket equation, required Isp, optimal multistage sizing
+- **budget.py** - Δv budgets and propellant sizing; mission composers
+- **porkchop.py**, **plotting.py** - Launch-window maps and figures
+- **mcp_server.py**, **cli.py** - Agent (MCP) and command-line interfaces
 
 #### `ffsc_nozzle` Sub-package
 Full-flow staged combustion (FFSC) cycle and regenerative nozzle cooling analysis tools:

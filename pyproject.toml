@@ -53,7 +53,15 @@ dev = [
     "black>=22.0.0",
     "flake8>=4.0.0",
     "ipython>=8.0.0",
+    "astropy>=5.3",
 ]
+mcp = [
+    "mcp>=1.2",
+]
+
+[project.scripts]
+sfmission = "modern_aerospace_propulsion.mission_analysis.cli:main"
+sfmission-mcp = "modern_aerospace_propulsion.mission_analysis.mcp_server:main"
 
 [project.urls]
 Homepage = "https://github.com/davetew/Modern-Aerospace-Propulsion"
@@ -64,3 +72,6 @@ include = ["modern_aerospace_propulsion*"]
 
 [tool.setuptools.package-data]
 "modern_aerospace_propulsion" = ["*.py"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
