@@ -110,3 +110,15 @@ dmypy.json
 # OS
 .DS_Store
 Thumbs.db
+
+# LaTeX build artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.nav
+*.snm
+*.vrb
+*.out
+*.toc
+*.synctex.gz
+sfmission_figures/

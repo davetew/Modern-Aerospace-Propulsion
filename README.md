@@ -27,7 +27,7 @@ pip install -e ".[dev]"
 ```
 
 ### Using the Package
-Once installed, you can import the compressible flow utilities in your Python code:
+Once installed, you can import the course utilities in your Python code:
 ```python
 from modern_aerospace_propulsion import compressible_flow
 
@@ -36,6 +36,11 @@ T_celsius = compressible_flow.K2C(300)  # Convert 300 K to Celsius
 
 # Use compressible flow relations
 theta = compressible_flow.θ(2.0)  # Temperature ratio at Mach 2.0
+
+# Mission analysis (Week 10; pip install -e "Week 10 - Mission Analysis/sfmission")
+from sfmission import porkchop, heliocentric_leg
+pc = porkchop("Earth", "Mars", "2026-09-01", "2027-02-15", 120, 450)
+print(pc.summary())
 ```
 
 ## Repository Structure
@@ -78,6 +83,19 @@ Advanced propulsion cycles including turbofans and other configurations.
 Rocket propulsion fundamentals and trajectory analysis.
 - **RocketPerformance.ipynb** - Rocket performance calculations and analysis
 - **LaunchTrajectoryAnalysis.ipynb** - Launch trajectory simulation and optimization
+
+### Week 10 - Mission Analysis
+Lunar and interplanetary mission design with the patched-conic `sfmission` tool — a self-contained package in `sfmission/` (install with `pip install -e "Week 10 - Mission Analysis/sfmission"`; see the folder README and `docs/`).
+- **sfmission/** - The package: `src/sfmission/` (bodies, kepler, ephemeris, lambert, transfers, patched_conics, lunar, launch, aerobraking, staging, budget, porkchop, plotting, mcp_server, cli), `tests/` (85 tests), CLI `sfmission`, MCP server `sfmission-mcp`
+- **examples/01_basics_hohmann_launch.py** - Δv to LEO with launch-site credit and loss bands, Hohmann estimates, rocket equation and staging
+- **examples/02_mars_porkchop_2026.py** - Earth→Mars 2026/27 launch window: porkchop plots and transfer geometry
+- **examples/03_lunar_mission.py** - Earth–Moon Hohmann estimate vs patched conic, Apollo 11 check, landing/return budget
+- **examples/04_gravity_assists.py** - Europa Clipper (Mars–Earth gravity assist) and Voyager 2 sequences
+- **examples/05_aerobraking_mars.py** - Aerocapture credit and aerobraking campaigns; analytic vs integrated pass
+- **examples/06_hw1_reference_solution.py** - HW 1 reference solution: mission Δv budget, required Isp, staging
+- **docs/tutorial/** - *Orbital Mechanics for Propulsion Engineers*: a from-first-principles tutorial on the astrodynamics behind the tool (LaTeX/PDF, with exercises)
+- **docs/report/** - Technical report (LaTeX/PDF): utility, modeling approach, validation, limitations
+- **docs/slides/** - Beamer summary presentation
 
 ### Week 11 - Nozzle Design & Cooling, Braking, Advanced Concepts
 Advanced rocket nozzle design and thermal management.

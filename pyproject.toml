@@ -64,3 +64,6 @@ include = ["modern_aerospace_propulsion*"]
 
 [tool.setuptools.package-data]
 "modern_aerospace_propulsion" = ["*.py"]
+
+[tool.pytest.ini_options]
+testpaths = ["Week 10 - Mission Analysis/sfmission/tests"]
