@@ -1,5 +1,11 @@
 # Week 10 — Mission Analysis: the `sfmission` tool
 
+> **Also in this folder: [`ascentopt/`](ascentopt/)** — the launch-trajectory / propulsion co-design tool
+> (Dymos/OpenMDAO direct collocation; Lecture 9 slide 33 turned into an optimizer). It computes the launch leg
+> — payload to orbit, staging, loss breakdown, and the stage thrust / $I_{sp}$ / $\dot m$ requirements — that the
+> `sfmission` Δv budgets below pick up from a parking orbit. See `ascentopt/README.md`, `ascentopt/docs/report.pdf`
+> and `ascentopt/docs/slides.pdf`.
+
 A small, tested Python package (plus an MCP server and CLI) for preliminary
 mission design within the solar system: launch Δv, Hohmann and Lambert
 transfers, porkchop launch-window maps, planetocentric departure/capture burns,

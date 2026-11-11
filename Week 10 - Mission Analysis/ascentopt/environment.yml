@@ -1,0 +1,24 @@
+# conda environment for ascentopt (Dymos / OpenMDAO ascent optimizer)
+#   conda env create -f environment.yml && conda activate ascentopt
+# Tested 9 Nov 2026 on linux-aarch64 with: python 3.12, openmdao 3.41.0, dymos 1.16.0 (pip),
+# pyoptsparse 2.17.0, cyipopt 1.7.0 / Ipopt 3.14.20, jax 0.7.1.  Not yet run on macOS -- the
+# same packages exist on conda-forge for osx-arm64 and osx-64.
+# NOTE: pyoptsparse >= 2.17 reaches IPOPT through `cyipopt`; it is NOT pulled in automatically,
+# so it is listed explicitly.  Without it the IPOPT driver raises ModuleNotFoundError: cyipopt.
+name: ascentopt
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - openmdao>=3.41
+  - pyoptsparse>=2.17
+  - cyipopt>=1.7
+  - jax>=0.7
+  - numpy
+  - scipy
+  - matplotlib
+  - pyyaml
+  - jupyter
+  - pip
+  - pip:
+      - dymos==1.16.0
