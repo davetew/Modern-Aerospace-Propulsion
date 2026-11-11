@@ -51,18 +51,18 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Where We Were: Lecture 9, Slide 33}
-  \framesubtitle{A simulation flies a prescribed law; the project needs the law solved for}
+\begin{frame}{Why a Trajectory Optimizer}
+  \framesubtitle{A forward simulation flies a prescribed law; design needs the law solved for}
   \begin{columns}[T]
     \begin{column}{0.52\textwidth}
-      \textbf{Slide 33} was a 3-DOF forward simulation: vertical rise, then a gravity turn (thrust along velocity). One stage, prescribed steering, no constraints, no objective.
+      \textbf{The usual first look} at a launch is a 3-DOF forward simulation: vertical rise, then a gravity turn (thrust along velocity). One stage, prescribed steering, no constraints, no objective.
       \begin{itemize}
-        \item it arcs to $\approx\SI{250}{km}$ and falls back;
+        \item it answers ``where does this law go?'' -- not ``what is the most this vehicle can do?'';
         \item the loss rule of thumb, $\dv_{loss}\approx$ \SIrange{1.5}{2.0}{km/s}, is a band, not a number;
-        \item the project needs: payload for a \emph{given} vehicle, the staging point, the loss breakdown, and the propulsion requirements $T$, $\Isp$, $\mdot$, burn time for steps 5--8.
+        \item a design needs: payload for a \emph{given} vehicle, the staging point, the loss breakdown, and the propulsion requirements $T$, $\Isp$, $\mdot$, burn time for the thrust-chamber and cycle steps.
       \end{itemize}
       \vspace{3pt}
-      \textbf{The slide said:} ``Needs trajectory optimization \& multistage rocket model.''
+      \textbf{What is needed:} trajectory optimization with a multistage vehicle model -- that is \tool.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{block}{Hand method vs.\ the Starship Block 3 deck (dry 200/100 t)}
@@ -85,7 +85,7 @@
 % =====================================================================
 \section{Method}
 \begin{frame}{What \texttt{ascentopt} Is}
-  \framesubtitle{Same physics as slide 33 -- steering and throttle become unknowns, the orbit a constraint, payload the objective}
+  \framesubtitle{3-DOF ascent physics -- steering and throttle become unknowns, the orbit a constraint, payload the objective}
   \centering
   \resizebox{\textwidth}{!}{%
   \begin{tikzpicture}[node distance=4mm and 5mm, font=\small,
@@ -94,7 +94,7 @@
     arr/.style={-{Latex[length=2.5mm]}, thick, gray}]
     \node[box] (deck) {vehicle deck (YAML)\\stages, engines, reserves};
     \node[box, below=of deck] (mis) {mission\\orbit, site, $q_{max}$, $a_{max}$};
-    \node[blue, right=9mm of $(deck.east)!0.5!(mis.east)$] (guess) {gravity-turn\\initial guess\\(slide-33 law)};
+    \node[blue, right=9mm of $(deck.east)!0.5!(mis.east)$] (guess) {gravity-turn\\initial guess\\(prescribed law)};
     \node[red, right=of guess] (nlp) {Dymos trajectory\\phases, controls,\\linkages, constraints};
     \node[red, right=of nlp] (ipopt) {IPOPT\\(sparse NLP,\\coloured Jacobian)};
     \node[blue, right=of ipopt] (ver) {verification\\explicit re-integration\\loss identity, grid};
@@ -110,8 +110,8 @@
   \vspace{4pt}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \begin{block}{Kept from slide 33}
-        \footnotesize 3-DOF point mass, rotating Earth, atmosphere and drag, back-pressure thrust law; the notebook's guidance law is the initial guess and an independent check.
+      \begin{block}{Physics (as in a forward simulation)}
+        \footnotesize 3-DOF point mass, rotating Earth, atmosphere and drag, back-pressure thrust law; a prescribed gravity-turn law supplies the initial guess and an independent check.
       \end{block}
     \end{column}
     \begin{column}{0.48\textwidth}
@@ -149,8 +149,8 @@
       \end{align*}
       \begin{itemize}
         \item ECI Cartesian: no polar singularity, no trigonometry in the dynamics
-        \item $\bm v_0 = \bm\omega\times\bm r_0$: the \SI{418}{m/s} rotation credit falls out -- no sign to get wrong (cf.\ the slide-32 correction)
-        \item drag on the \emph{air-relative} velocity (the notebook used $\bm v$)
+        \item $\bm v_0 = \bm\omega\times\bm r_0$: the \SI{418}{m/s} rotation credit falls out -- no separately signed term to get wrong
+        \item drag on the \emph{air-relative} velocity, not the inertial velocity
         \item loss rates $g\sin\gamma$, $D/m$, $(T/m)(1-\cos\alpha_T)$, $\tau p_aA_e/m$ integrated as extra states
       \end{itemize}
     \end{column}
@@ -162,7 +162,7 @@
   \begin{columns}[T]
     \begin{column}{0.5\textwidth}
       \includegraphics[width=\textwidth]{fig_atmosphere}\\
-      {\footnotesize Analytic layers to \SI{86}{km}, tabulated above, log-interpolated $\Rightarrow$ differentiable to orbit. Matches the notebook's \texttt{ambiance} to $<0.1\,\%$ below \SI{81}{km}.}
+      {\footnotesize Analytic layers to \SI{86}{km}, tabulated above, log-interpolated $\Rightarrow$ differentiable to orbit. Matches the \texttt{ambiance} ISA package to $<0.1\,\%$ below \SI{81}{km}.}
     \end{column}
     \begin{column}{0.5\textwidth}
       \includegraphics[width=\textwidth]{fig_engine_model}\\
@@ -215,7 +215,7 @@
         \node[PMS7635C, align=left] at (5.0,3.1) {defects: $\dot{\bm x}_{poly}(t_k) - \bm f(\bm x_k,\bm u_k,t_k) = 0$};
         \draw[dashed, gray] (3.5,0) -- (3.5,1.5); \draw[dashed, gray] (7,0) -- (7,2.2);
       \end{tikzpicture}\\[2pt]
-      {\footnotesize Legendre--Gauss--Radau, order 3, 16 segments per phase. Two-stage case: 1,288 variables, 1,474 constraints, 1.1\,\% dense, 43 colours.\\[2pt] Initial guess = slide-33 gravity turn with a tuned pitch kick. Cold start $\approx$260 IPOPT iterations; warm-started sweep cases 20--50.}
+      {\footnotesize Legendre--Gauss--Radau, order 3, 16 segments per phase. Two-stage case: 1,288 variables, 1,474 constraints, 1.1\,\% dense, 43 colours.\\[2pt] Initial guess = prescribed gravity turn with a tuned pitch kick. Cold start $\approx$260 IPOPT iterations; warm-started sweep cases 20--50.}
     \end{column}
     \begin{column}{0.45\textwidth}
       \textbf{Why it converged -- three facts}
@@ -251,22 +251,22 @@
       \vspace{4pt}
 
       Raptor 3: \SI{250}{tf} SL / \SI{275}{tf} vac, $\Isp_{,vac}$ \SI{350}{s} $\Rightarrow$ $A_e$ \SI{2.42}{m^2}, $\Isp_{,SL}$ \SI{318}{s}.\;
-      RVac: \SI{258}{tf}, \SI{380}{s}, \SI{2.3}{m} exit (Lecture 9 slide 43).\; \SI{9}{m} diameter, $C_D$ 0.5.
+      RVac: \SI{258}{tf}, \SI{380}{s}, \SI{2.3}{m} exit.\; \SI{9}{m} diameter, $C_D$ 0.5.
     \end{column}
     \begin{column}{0.36\textwidth}
       \begin{block}{Mission}
         Starbase \ang{26.0}N $\to$ \SI{275}{km} circular (Flight 14's orbit), inclination free, $q\le\SI{35}{kPa}$, $T/m\le4\,\gz$, \SI{10}{s} vertical rise.
       \end{block}
       \begin{block}{Unknowns treated as inputs}
-        Dry masses: slide-42 ranges 160--200 t / 85--100 t. Return-propellant reserves are allowances, swept, not flown.
+        Dry masses are not published: estimate ranges 160--200 t / 85--100 t, mid-points as baseline. Return-propellant reserves are allowances, swept, not flown.
       \end{block}
     \end{column}
   \end{columns}
-  \src{SpaceX (Block 3 loads, Raptor 3 May 2026 / Aug 2024 figures, as compiled on Wikipedia); Lecture 9 slides 42--43}
+  \src{SpaceX figures as compiled on Wikipedia (Block 3 propellant loads; Raptor 3 May 2026 / Aug 2024; RVac 258 tf, 380 s). RVac exit diameter assumed; immaterial above staging altitude.}
 \end{frame}
 
-\begin{frame}{Baseline Solution -- the Slide-33 Picture, Optimized}
-  \framesubtitle{Red: optimized. Grey dashed: the slide-33 gravity-turn law applied to the same vehicle}
+\begin{frame}{Baseline Solution -- Trajectory}
+  \framesubtitle{Red: optimized. Grey dashed: a prescribed gravity-turn law applied to the same vehicle}
   \begin{columns}[T]
     \begin{column}{0.62\textwidth}
       \includegraphics[height=0.8\textheight]{fig_hist_left}
@@ -302,7 +302,7 @@
 \end{frame}
 
 \begin{frame}{Baseline Solution -- the Numbers}
-  \framesubtitle{Losses total \SI{1833}{m/s}: inside the 1.5--2.0 km/s band of slide 32, now decomposed}
+  \framesubtitle{Losses total \SI{1833}{m/s}: inside the textbook 1.5--2.0 km/s band, now decomposed}
   \begin{columns}[T]
     \begin{column}{0.3\textwidth}
       \stat{\SI{293.3}{\tonne}}{payload to \SI{275}{km} $\times$ \ang{26.0} (expendable trajectory, dry 200/100 t)}\\[8pt]
@@ -327,20 +327,20 @@
       \end{tabular}
       \vspace{6pt}
 
-      \stepbox{3}{the losses are now computed for this vehicle and this orbit rather than taken from a band; the identity $\dv_{ideal}=v_{orbit}+\sum\text{losses}-v_{rot}$ (Lecture 9 slide 28) closes to \SI{1}{mm/s}.}
+      \stepbox{3}{the losses are now computed for this vehicle and this orbit rather than taken from a band; the identity $\dv_{ideal}=v_{orbit}+\sum\text{losses}-v_{rot}$ closes to \SI{1}{mm/s}.}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Slide 33 Revisited: the Same Vehicle Under the Gravity-Turn Law}
-  \framesubtitle{Globe view and ascent profile}
+\begin{frame}{The Same Vehicle Under a Prescribed Gravity Turn}
+  \framesubtitle{Simulation vs.\ optimization: globe view and ascent profile}
   \centering
-  \includegraphics[width=0.9\textwidth]{fig_path3d}\\
-  {\footnotesize The notebook's law reaches $\gamma=0$ at \SI{218}{km} with \SI{10.1}{km/s}: an eccentric orbit with \SI{2.4}{km/s} to spare. The optimizer inserts into the \SI{275}{km} circle and carries the difference as \SI{293}{\tonne} of payload.}
+  \includegraphics[width=0.88\textwidth]{fig_path3d}\\
+  {\footnotesize The prescribed law reaches $\gamma=0$ at \SI{218}{km} with \SI{10.1}{km/s}: an eccentric orbit with \SI{2.4}{km/s} to spare. The optimizer inserts into the \SI{275}{km} circle and carries the difference as \SI{293}{\tonne} of payload.}
 \end{frame}
 
 \begin{frame}{The $\dv$ Budget, Closed Numerically}
-  \framesubtitle{Lecture 9 slide 28: $\dv_{ideal}=v_{orbit}+\sum\text{losses}-v_{rot}$ -- computed instead of assumed}
+  \framesubtitle{$\dv_{ideal}=v_{orbit}+\sum\text{losses}-v_{rot}$ -- computed instead of assumed}
   \centering
   \includegraphics[width=0.84\textwidth]{fig_losses}\\
   {\footnotesize $\dv_{vac} = (|\bm v_f|-|\bm v_0|) + L_g + L_s + L_{bp} + L_D$ holds to \SI{-0.001}{m/s} because the five terms are integrated as states alongside the dynamics.}
@@ -350,7 +350,7 @@
   \framesubtitle{Per stage: $T_{vac}$, throttle profile, $\Isp(h)$, $\mdot$, burn time, propellant}
   \centering
   \includegraphics[height=0.58\textheight]{fig_thrust_isp_mass}
-  \stepbox{5--8}{these are the inputs to thrust-chamber design (Lecture 11, HW~2) and to cycle / turbopump design (Lecture 12); the $\Isp$ rise in the first \SI{60}{s} is the back-pressure term, the step at \SI{145}{s} is staging onto the Raptor~3 / RVac set (thrust-weighted \SI{363.9}{s}).}
+  \stepbox{5--8}{these are the inputs to thrust-chamber design and to cycle / turbopump design; the $\Isp$ rise in the first \SI{60}{s} is the back-pressure term, the step at \SI{145}{s} is staging onto the Raptor~3 / RVac set (thrust-weighted \SI{363.9}{s}).}
 \end{frame}
 
 \begin{frame}{What the Optimizer Chose: Steering}
@@ -459,7 +459,7 @@
           \item constant $C_D$; no $J_2$, winds, 6-DOF
           \item reserves are inputs; the return flight is not simulated
           \item the ship's final 40\,\%-throttle arc should be re-checked with grid refinement and another initial guess
-          \item the notebook's ``Falcon-9-like'' single stage ($T/W$ 3.75, 95\,\% propellant fraction) does not converge as a max-payload problem -- $\approx\SI{0}{\tonne}$ at 79\,$\gz$; not a useful test case
+          \item a ``Falcon-9-like'' single-stage test vehicle ($T/W$ 3.75, 95\,\% propellant fraction) does not converge as a max-payload problem -- $\approx\SI{0}{\tonne}$ at 79\,$\gz$; not a useful test case
         \end{itemize}
       \end{block}
     \end{column}
@@ -494,17 +494,17 @@ bash reproduce_demo.sh           # baseline + six-case sweep + figures, 15-25 mi
     \end{column}
     \begin{column}{0.5\textwidth}
       \footnotesize
-      \textbf{Outputs:} \texttt{result.json} (payload, staging, losses, constraint activity, simulate check), Dymos record for warm starts and plots, slide-33-style figures.\\
-      \textbf{Course repo:} \texttt{Week 10 - Mission Analysis/ascentopt/} -- fixed-vehicle mode for your launch leg from 11/19.
+      \textbf{Outputs:} \texttt{result.json} (payload, staging, losses, constraint activity, simulate check), Dymos record for warm starts and plots, time-history / path / loss / steering figures.\\
+      \textbf{Repository:} \texttt{Modern-Aerospace-Propulsion/Week 10 - Mission Analysis/ascentopt/} -- fixed-vehicle mode now; co-design mode to follow.
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Summary}
-  \framesubtitle{From slide 33 to a design tool}
+  \framesubtitle{From a forward simulation to a design tool}
   \begin{itemize}\setlength{\itemsep}{5pt}
-    \item Slide 33's simulation became an optimizer: same physics, steering and throttle solved for, stages as linked phases, orbit as a constraint, payload as the objective.
-    \item Starship Block 3 to \SI{275}{km} $\times$ \ang{26}: \textbf{\SI{293}{\tonne}} on an expendable trajectory with slide-42 dry masses; losses \textbf{\SI{1833}{m/s}}, decomposed; max-$q$ and 4\,$\gz$ limits both active; staging at \SI{145}{s} / \SI{60}{km} / \SI{2.61}{km/s}.
+    \item \tool\ turns the ascent simulation into an optimizer: same physics, steering and throttle solved for, stages as linked phases, orbit as a constraint, payload as the objective.
+    \item Starship Block 3 to \SI{275}{km} $\times$ \ang{26}: \textbf{\SI{293}{\tonne}} on an expendable trajectory with 200/100 t dry masses; losses \textbf{\SI{1833}{m/s}}, decomposed; max-$q$ and 4\,$\gz$ limits both active; staging at \SI{145}{s} / \SI{60}{km} / \SI{2.61}{km/s}.
     \item Sensitivities from a seven-case sweep: ship dry mass \textbf{1:1}, booster dry mass 0.16:1, 8\,\% booster reserve $-\SI{89}{\tonne}$ with the staging point moving on its own.
     \item Verified: benchmark reproduced, explicit re-integration within \SI{211}{m} / \SI{4.5}{m/s}, grid-independent to 0.04\,\%, $\dv$ identity closed to \SI{1}{mm/s}.
     \item Next: $C_D(M)$ and the in-space module for the project missions; then propulsion co-design in the same NLP.

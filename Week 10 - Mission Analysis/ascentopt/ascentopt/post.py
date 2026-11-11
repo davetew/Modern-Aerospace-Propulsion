@@ -1,8 +1,8 @@
-"""Post-processing: slide-33-style time histories, 3-D path, loss breakdown, control profiles.
+"""Post-processing: time histories, 3-D path, loss breakdown, control profiles.
 
 Reads a Dymos solution record (dymos_solution.db) and, optionally, the gravity-turn guess
 saved by scripts/run_case.py (guess.npz) so the optimized trajectory can be drawn against the
-notebook's prescribed-steering law on the same axes.
+prescribed gravity-turn guidance law on the same axes.
 """
 import glob
 import os
@@ -83,12 +83,12 @@ def _site_frame(r0):
 
 
 def plot_histories(sol, pay, guess=None, title="", fname="histories.png", vehicle=None):
-    """Altitude / speed & components / propellant (slide-33 layout) + throttle, q, accel."""
+    """Altitude / speed & components / propellant + throttle, q, accel."""
     t, r = _concat(sol, "r"); _, v = _concat(sol, "v"); _, mp = _concat(sol, "m_prop")
     _, h = _concat(sol, "h"); _, tau = _concat(sol, "tau", fill=1.0)
     _, q = _concat(sol, "q"); _, acc = _concat(sol, "accel"); _, gam = _concat(sol, "gamma")
     v_site = v - np.cross([0, 0, OMEGA_E], r)  # Earth-relative velocity
-    # local (radial / east / north) components at each point, as in the slide-33 notebook
+    # local (radial / east / north) components at each point
     up = r / np.linalg.norm(r, axis=1)[:, None]
     east = np.cross(np.array([0.0, 0.0, 1.0])[None, :], up); east /= np.linalg.norm(east, axis=1)[:, None]
     north = np.cross(up, east)
@@ -98,7 +98,7 @@ def plot_histories(sol, pay, guess=None, title="", fname="histories.png", vehicl
     if guess is not None:
         gt, gr, gv, gmp, _ = _guess_series(guess)
         ax.plot(gt, (np.linalg.norm(gr, axis=1) - R_E) / 1e3, color=GUESS_C, ls="--", lw=1.5,
-                label=f"gravity turn (slide-33 law, kick {guess['kick_deg']:.1f}°)")
+                label=f"prescribed gravity turn (kick {guess['kick_deg']:.1f}°)")
     ax.set_ylabel("Altitude [km]"); ax.grid(alpha=.3); ax.legend(); ax.set_title("Altitude")
     ax = axs[1, 0]
     ax.plot(t, np.linalg.norm(v_site, axis=1) / 1e3, color=OPT_C, lw=2, label="Earth-relative speed")
@@ -130,7 +130,7 @@ def plot_histories(sol, pay, guess=None, title="", fname="histories.png", vehicl
 
 
 def plot_3d(sol, guess=None, fname="path3d.png", title="3-D trajectory (ECI)"):
-    """Left: whole-globe ECI view (slide-33 style). Right: downrange-altitude profile with staging."""
+    """Left: whole-globe ECI view. Right: downrange-altitude profile with staging."""
     from mpl_toolkits.mplot3d import Axes3D  # noqa
     t, r = _concat(sol, "r")
     fig = plt.figure(figsize=(14, 6.5))
@@ -145,7 +145,7 @@ def plot_3d(sol, guess=None, fname="path3d.png", title="3-D trajectory (ECI)"):
         ax.plot(R_E * np.cos(lat) * np.cos(th), R_E * np.cos(lat) * np.sin(th), R_E * np.sin(lat) * np.ones_like(th), "k:", lw=0.4, alpha=0.6)
     if guess is not None:
         gt, gr, gv, gmp, _ = _guess_series(guess)
-        ax.plot(gr[:, 0], gr[:, 1], gr[:, 2], color=GUESS_C, ls="--", lw=1.5, label="gravity turn (slide-33 law)")
+        ax.plot(gr[:, 0], gr[:, 1], gr[:, 2], color=GUESS_C, ls="--", lw=1.5, label="prescribed gravity turn")
     ax.plot(r[:, 0], r[:, 1], r[:, 2], color=OPT_C, lw=2.5, label="optimized")
     lim = 1.08 * R_E
     ax.set_xlim(-lim, lim); ax.set_ylim(-lim, lim); ax.set_zlim(-lim, lim)
@@ -162,7 +162,7 @@ def plot_3d(sol, guess=None, fname="path3d.png", title="3-D trajectory (ECI)"):
     _, h = _concat(sol, "h")
     ax2.plot(downrange(r), h[:, 0] / 1e3, color=OPT_C, lw=2.5, label="optimized")
     if guess is not None:
-        ax2.plot(downrange(gr), (np.linalg.norm(gr, axis=1) - R_E) / 1e3, color=GUESS_C, ls="--", lw=1.5, label="gravity turn (slide-33 law)")
+        ax2.plot(downrange(gr), (np.linalg.norm(gr, axis=1) - R_E) / 1e3, color=GUESS_C, ls="--", lw=1.5, label="prescribed gravity turn")
     for n in list(sol)[1:]:
         rs = sol[n]["r"][0]; hs = sol[n]["h"][0, 0]
         ax2.plot(downrange(rs[None, :]), hs / 1e3, "ko", ms=5)
@@ -174,7 +174,7 @@ def plot_3d(sol, guess=None, fname="path3d.png", title="3-D trajectory (ECI)"):
     return fname
 
 
-def plot_losses(sol, fname="losses.png", title="Δv budget closure (slide-28 identity)"):
+def plot_losses(sol, fname="losses.png", title="Δv budget closure"):
     last = sol[list(sol)[-1]]; first = sol[list(sol)[0]]
     L = {k: float(last[k][-1, 0]) for k in ("dv_vac", "L_grav", "L_drag", "L_steer", "L_bp")}
     v0 = float(first["vmag"][0, 0]); vf = float(last["vmag"][-1, 0])

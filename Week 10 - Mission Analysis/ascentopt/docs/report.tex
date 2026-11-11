@@ -45,33 +45,34 @@
 \maketitle
 
 \begin{abstract}
-\noindent\tool\ replaces the prescribed-steering forward simulation shown on Week~9 slide~33 with a
-multi-phase direct-collocation optimizer built on Dymos/OpenMDAO: the same 3-DOF point-mass physics, but
-thrust direction and throttle are solved for, staging is a phase linkage, orbit insertion is a constraint
-and payload is the objective. Vehicle parameters (stage propellant loads, dry masses, reserves, engines) are
+\noindent\tool\ is a multi-phase direct-collocation launch-trajectory optimizer built on Dymos/OpenMDAO. It
+carries the 3-DOF point-mass physics of a conventional ascent simulation, but thrust direction and throttle
+are solved for rather than prescribed, staging is a phase linkage, orbit insertion is a constraint and payload
+is the objective. Vehicle parameters (stage propellant loads, dry masses, reserves, engines) are
 an input deck that can be swept now and optimized in the same problem in the next milestone. This report
 documents the model, the numerical method, the verification performed, and a worked example: SpaceX
 Starship/Super~Heavy Block~3 to a $275\unit{km}\times26^\circ$ orbit from Starbase. With published propellant loads,
-Raptor~3 performance and the slide-42 mid-range dry masses (200/100~t), the optimizer places
+Raptor~3 performance and estimated dry masses of 200/100~t, the optimizer places
 \textbf{293.3~t} in orbit on an expendable trajectory with losses of 1.83~km/s; holding back 8\,\% of the
 booster propellant for boost-back and 30~t in the ship for landing reduces this to 204.5~t, and the ship's dry
 mass trades against payload exactly 1:1. The results are grid-independent to 0.04\,\%, re-integrate explicitly
-to within 211~m and 4.5~m/s, and close the slide-28 $\dv$ identity to 1~mm/s.
+to within 211~m and 4.5~m/s, and close the $\dv$-budget identity to 1~mm/s.
 \end{abstract}
 
 \section{Why a trajectory optimizer}
 \label{sec:why}
 
-The Week~9 lecture closed the mission-analysis block with a rule of thumb: $\dv_{\mathrm{LEO}} \approx v_{\mathrm{circ}}
-+ \dv_{\mathrm{loss}} - v_{\mathrm{rot}} \approx 9.3\unit{km/s}$ with $\dv_{\mathrm{loss}} = 1.5$--$2.0\unit{km/s}$ (slides 28 and 32),
-and with a forward simulation of a gravity turn (slide~33) that arcs to 250~km and falls back. Both are correct as
-far as they go, and neither can answer the questions the design project asks:
+The standard preliminary treatment of a launch has two parts: a rule of thumb, $\dv_{\mathrm{LEO}} \approx v_{\mathrm{circ}}
++ \dv_{\mathrm{loss}} - v_{\mathrm{rot}} \approx 9.3\unit{km/s}$ with $\dv_{\mathrm{loss}} = 1.5$--$2.0\unit{km/s}$,
+and a forward simulation of a gravity turn that flies a prescribed steering law (vertical rise, pitch kick, thrust
+along the velocity) and reports where the vehicle ends up. Both are correct as far as they go, and neither can answer
+the questions a vehicle or mission design asks:
 \begin{itemize}
   \item How much payload does a \emph{given} two-stage vehicle deliver to a \emph{given} orbit, and where should it stage?
   \item How large are the gravity, drag, steering and back-pressure losses \emph{for this vehicle}, rather than as a band?
   \item How much does each kilogram of booster dry mass, ship dry mass or return propellant cost in payload?
   \item What thrust, $I_{sp}$, chamber pressure and burn time must the propulsion system deliver --- the inputs to
-        thrust-chamber and cycle design (Week~12 design-procedure steps 6--9)?
+        thrust-chamber and cycle design?
 \end{itemize}
 Table~\ref{tab:tsiolkovsky} shows the size of the problem with the hand method. The rocket equation with the
 Starship deck of Section~\ref{sec:example} returns anywhere from 276 to 339~t of payload depending on where in the
@@ -101,11 +102,12 @@ Assumed $\dv_{\mathrm{req}}$ [m/s] & Loss assumption & Payload, no reserves [t] 
 \label{sec:what}
 
 Figure~\ref{fig:pipeline} shows the workflow. A YAML vehicle deck and a mission definition are turned into a
-Dymos \texttt{Trajectory} (one phase per burn, linked in time and state); the Week~9 notebook's own
-gravity-turn law provides the initial guess; IPOPT solves the resulting sparse nonlinear program; the
-optimized controls are re-integrated with an explicit integrator as a check; and the outputs are the time
-histories of slide~33 plus staging state, loss breakdown, and the propulsion requirements for the next design
-steps. Table~\ref{tab:compare} compares the capabilities with the notebook.
+Dymos \texttt{Trajectory} (one phase per burn, linked in time and state); a prescribed gravity-turn law
+provides the initial guess; IPOPT solves the resulting sparse nonlinear program; the optimized controls are
+re-integrated with an explicit integrator as a check; and the outputs are the trajectory time histories plus
+staging state, loss breakdown, and the propulsion requirements for the next design steps.
+Table~\ref{tab:compare} compares the capabilities with a prescribed-steering forward simulation --- the
+reference implementation (\texttt{LaunchTrajectoryAnalysis.ipynb}) from which the tool was developed.
 
 \begin{figure}[h]\centering
 \resizebox{\textwidth}{!}{%
@@ -115,7 +117,7 @@ steps. Table~\ref{tab:compare} compares the capabilities with the notebook.
   arr/.style={-{Latex[length=2.5mm]}, thick, sfgrey}]
   \node[box] (deck) {vehicle deck (YAML)\\stages, engines, reserves};
   \node[box, below=of deck] (mis) {mission\\orbit, site, $q_{\max}$, $a_{\max}$};
-  \node[blue, right=9mm of $(deck.east)!0.5!(mis.east)$] (guess) {gravity-turn\\initial guess\\(slide-33 law)};
+  \node[blue, right=9mm of $(deck.east)!0.5!(mis.east)$] (guess) {gravity-turn\\initial guess\\(prescribed law)};
   \node[red, right=of guess] (nlp) {Dymos trajectory\\phases, controls,\\linkages, constraints};
   \node[red, right=of nlp] (ipopt) {IPOPT\\(sparse NLP,\\colored Jacobian)};
   \node[blue, right=of ipopt] (ver) {verification\\explicit re-integration\\loss identity, grid};
@@ -128,16 +130,16 @@ steps. Table~\ref{tab:compare} compares the capabilities with the notebook.
     \node[draw=sfgrey, dashed, rounded corners, fit=(nlp)(ipopt), inner sep=5pt, label={[font=\footnotesize, sfgrey]above:OpenMDAO problem (jax ODE, automatic derivatives)}] {};
   \end{scope}
 \end{tikzpicture}}
-\caption{Workflow of \tool. The two existing pieces of the course --- the slide-33 integrator and the Week~12 design procedure --- bracket the optimizer: the former supplies the guess and an independent check, the latter consumes the outputs.}
+\caption{Workflow of \tool. A prescribed-law forward integrator and the downstream propulsion design steps bracket the optimizer: the former supplies the guess and an independent check, the latter consume the outputs.}
 \label{fig:pipeline}
 \end{figure}
 
 \begin{table}[h]\centering\small
-\caption{Capability comparison with the Week~9 slide-33 notebook (\texttt{LaunchTrajectoryAnalysis.ipynb}).}
+\caption{Capability comparison with a prescribed-steering forward simulation (the reference implementation, \texttt{LaunchTrajectoryAnalysis.ipynb}).}
 \label{tab:compare}
 \begin{tabular}{p{4.2cm}p{5.2cm}p{5.8cm}}
 \toprule
- & Slide-33 notebook & \tool\ v0.1 \\
+ & Forward simulation & \tool\ v0.1 \\
 \midrule
 Dynamics & 3-DOF point mass, spherical coordinates & 3-DOF point mass, ECI Cartesian (no polar singularity) \\
 Earth rotation & initial velocity $\omega R\cos\phi$ & $\bm v_0 = \bm\omega\times\bm r_0$; drag on air-relative velocity \\
@@ -147,7 +149,7 @@ Steering & prescribed gravity turn & solved for: unit vector $\bm u(t)$ and thro
 Stages & one & any number, phase per stage, propellant state per stage \\
 Constraints & none & $q\le q_{\max}$, $T/m\le a_{\max}$, $h\ge0$, throttle bounds, orbit insertion \\
 Objective & none (simulation) & max payload / min propellant / min time \\
-Loss budget & --- & five accumulator states; slide-28 identity closed numerically \\
+Loss budget & --- & five accumulator states; $\dv$-budget identity closed numerically \\
 Verification & --- & explicit re-integration, grid independence, benchmark (Longuski SSTO) \\
 Run time & seconds & 2--4~min per case (IPOPT, 16 Radau segments per phase, laptop-class CPU) \\
 \bottomrule
@@ -168,9 +170,9 @@ $m = m_p + m_{\mathrm{struct}} + m_{\mathrm{pay}}$ (structure of the active stag
 \dot m_p &= -\tau\,\dot m_{\max}, \qquad D = \tfrac12\rho(h)\,|\bm v_{\mathrm{rel}}|^2 C_D A_{\mathrm{ref}},
 \qquad T = \tau\left(T_{vac} - p_a(h)\,A_e\right).
 \end{align}
-The atmosphere co-rotates with the Earth, so drag acts on $\bm v_{\mathrm{rel}}$ (the notebook used $\bm v$); the
-rotation credit of 418~m/s at Starbase appears through $\bm v_0=\bm\omega\times\bm r_0$ rather than as a separately
-signed term. $C_D = 0.5$ and $A_{\mathrm{ref}} = \pi(4.5\unit{m})^2 = 63.6\unit{m^2}$ as in the notebook; a Mach-dependent
+The atmosphere co-rotates with the Earth, so drag acts on $\bm v_{\mathrm{rel}}$ rather than on the inertial velocity;
+the rotation credit of 418~m/s at Starbase appears through $\bm v_0=\bm\omega\times\bm r_0$ rather than as a separately
+signed term. $C_D = 0.5$ (constant) and $A_{\mathrm{ref}} = \pi(4.5\unit{m})^2 = 63.6\unit{m^2}$; a Mach-dependent
 $C_D$ table is a planned refinement.
 
 \begin{figure}[h]\centering
@@ -201,14 +203,14 @@ $C_D$ table is a planned refinement.
 \end{tikzpicture}
 \caption{Forces on the point mass and the quantities carried as states. The loss rates are the terms of
 $d|\bm v|/dt = (T/m)\cos\alpha_T - D/m - g\sin\gamma$, so that
-$\dv_{vac} = (|\bm v_f|-|\bm v_0|) + L_g + L_D + L_s + L_{bp}$ holds identically --- slide~28 closed numerically.}
+$\dv_{vac} = (|\bm v_f|-|\bm v_0|) + L_g + L_D + L_s + L_{bp}$ holds identically --- the $\dv$-budget identity closed numerically.}
 \label{fig:forces}
 \end{figure}
 
 \subsection{Environment and engine models}
 The US Standard Atmosphere 1976 is implemented as a table (analytic layers to 86~km, published values above) and
 evaluated as a log-linear interpolant, which keeps $\rho(h)$ and $p_a(h)$ smooth and differentiable to orbit
-(Figure~\ref{fig:atm}). It reproduces the notebook's \texttt{ambiance} values to within 0.1\,\% below 81~km.
+(Figure~\ref{fig:atm}). It reproduces the \texttt{ambiance} ISA package to within 0.1\,\% below 81~km.
 
 An engine is specified by one anchor pair ($T_{vac}$, $I_{sp,vac}$) and an exit area; mass flow follows from
 $\dot m_{\max} = T_{vac}/(I_{sp,vac}\,g_0)$ and the sea-level thrust and $I_{sp}$ from the back-pressure term
@@ -322,7 +324,7 @@ allowed, and the Jacobian is exact. Three implementation facts decided whether t
 \end{figure}
 
 \subsection{Initial guess}
-The slide-33 guidance law (vertical rise, pitch kick, thrust along the air-relative velocity) integrated with
+A prescribed gravity-turn guidance law (vertical rise, pitch kick, thrust along the air-relative velocity) integrated with
 \texttt{solve\_ivp} supplies the initial guess; the kick angle is tuned so that the flight-path angle is zero at
 burnout. For Starship this gives a trajectory that reaches $\gamma = 0$ at 218~km with 10.1~km/s --- an eccentric
 orbit with 2.4~km/s of excess speed --- which the optimizer converts into payload. Cases are warm-started from the
@@ -334,8 +336,8 @@ sweep case in 20--50.
 
 \subsection{Inputs}
 Table~\ref{tab:inputs} is the deck. Propellant loads and engine numbers are SpaceX's published Block~3 figures;
-the dry masses are \emph{not} published and the slide-42 ranges (160--200~t booster, 85--100~t ship) are used as a
-baseline and swept. The mission is the course's ``100~t to LEO'' project option from Starbase ($26.0^\circ$N),
+the dry masses are \emph{not} published; estimate ranges of 160--200~t (booster) and 85--100~t (ship) are used, their
+mid-points as the baseline, and swept. The mission is a ``100~t to LEO'' delivery from Starbase ($26.0^\circ$N),
 275~km circular (the altitude of Flight~14, the first orbital Starship flight, 28~Sep~2026), free inclination
 (eastward launch gives $i = 26.0^\circ$), with $q\le35\unit{kPa}$ and $T/m\le4\,g$.
 
@@ -347,18 +349,19 @@ baseline and swept. The mission is the course's ``100~t to LEO'' project option 
 Quantity & Super Heavy & Starship & Source / note \\
 \midrule
 Propellant load & 3,650 t & 1,600 t & SpaceX Block 3 \\
-Dry mass (baseline; swept) & 200 t & 100 t & slide 42 mid-range; not published \\
+Dry mass (baseline; swept) & 200 t & 100 t & not published; mid-points of 160--200 / 85--100 t estimates \\
 Engines & 33 $\times$ Raptor 3 & 3 Raptor 3 + 3 RVac & SpaceX \\
 Raptor 3 (SL nozzle) & \multicolumn{2}{p{7.4cm}}{250 tf SL / 275 tf vac, $I_{sp,vac}$ 350 s $\Rightarrow$ $A_e$ = 2.42 m$^2$, $I_{sp,SL}$ = 318 s} & SpaceX May 2026 / Aug 2024 \\
-Raptor Vacuum & \multicolumn{2}{p{7.4cm}}{258 tf, $I_{sp,vac}$ 380 s, 2.3 m exit diameter} & Week 9 slide 43 \\
+Raptor Vacuum & \multicolumn{2}{p{7.4cm}}{258 tf, $I_{sp,vac}$ 380 s, 2.3 m exit diameter} & SpaceX (thrust, $I_{sp}$); exit diameter assumed$^{\ddagger}$ \\
 Derived stage $T_{vac}$, $\dot m$ & 89.0 MN, 25,930 kg/s & 15.7 MN, 4,394 kg/s & engine model \\
 Liftoff $T/W$ (sea level) & 1.46 & 0.89 at ignition (vac) & engine model \\
 Throttle range & 0.40--1.00 & 0.40--1.00 & Raptor family \\
-Diameter, $C_D$ & \multicolumn{2}{l}{9 m, 0.5 (constant)} & notebook values \\
+Diameter, $C_D$ & \multicolumn{2}{l}{9 m, 0.5 (constant)} & SpaceX; $C_D$ assumed \\
 Reserves (baseline) & 0 & 0 & swept: 292 / 548 t booster, 30 t ship \\
 Mission & \multicolumn{3}{p{12cm}}{Starbase 25.997$^\circ$N, 275 km circular, inclination free, $q_{\max}$ = 35 kPa, $a_{\max}$ = 4 $g$, 10 s vertical rise} \\
 \bottomrule
-\end{tabular}
+\end{tabular}\\[2pt]
+{\footnotesize $^{\ddagger}$ a 2.4 m exit is also quoted for RVac; the RVac engines only burn above the 60 km staging altitude, where $p_a \le 22$~Pa and the thrust difference between the two exit areas is $\le 8$~N per engine (against 2.5~MN) --- it does not affect the results.}
 \end{table}
 
 \subsection{Baseline solution}
@@ -373,8 +376,8 @@ burn to their (zero) reserves. Table~\ref{tab:baseline} summarizes the numbers a
 
 \begin{figure}[p]\centering
 \includegraphics[width=\textwidth]{fig_histories}
-\caption{Baseline solution (red) against the slide-33 gravity-turn law applied to the same vehicle (grey dashed).
-Left column: the slide-33 layout --- altitude, Earth-relative velocity components, stage propellant. Right column:
+\caption{Baseline solution (red) against a prescribed gravity-turn law applied to the same vehicle (grey dashed).
+Left column: altitude, Earth-relative velocity components, stage propellant. Right column:
 throttle, the two active path constraints, flight-path angle and thrust--velocity angle. Vertical lines mark phase boundaries.}
 \label{fig:hist}
 \end{figure}
@@ -387,7 +390,7 @@ throttle, the two active path constraints, flight-path angle and thrust--velocit
 
 \begin{figure}[p]\centering
 \includegraphics[width=0.9\textwidth]{fig_losses}
-\caption{$\dv$ budget closure at the optimum. $\dv_{vac} = 9{,}155 = 7{,}322 + 1{,}049 + 690 + 76 + 18\unit{m/s}$; the residual of the identity is $-0.001\unit{m/s}$. Total losses 1,833~m/s, inside the 1.5--2.0~km/s band of slide~32.}
+\caption{$\dv$ budget closure at the optimum. $\dv_{vac} = 9{,}155 = 7{,}322 + 1{,}049 + 690 + 76 + 18\unit{m/s}$; the residual of the identity is $-0.001\unit{m/s}$. Total losses 1,833~m/s, inside the textbook 1.5--2.0~km/s band.}
 \label{fig:losses}
 \end{figure}
 
@@ -431,7 +434,7 @@ identity residual & $-0.001$ \\
 
 \subsection{What the payload depends on}
 Seven cases were run from the baseline by overriding deck values on the command line (Table~\ref{tab:sweep},
-Figure~\ref{fig:sweep}). Three results are worth stating in class:
+Figure~\ref{fig:sweep}). Three results stand out:
 \begin{enumerate}
   \item \textbf{Ship dry mass trades 1:1 with payload.} The four no-reserve cases are reproduced to 0.07~t by
         $m_{\mathrm{pay}} = 425.8 - 0.161\,m_{\mathrm{dry,booster}} - 1.001\,m_{\mathrm{dry,ship}}$ [t]
@@ -457,7 +460,7 @@ Figure~\ref{fig:sweep}). Three results are worth stating in class:
 \toprule
 Case & Payload [t] & Stage $t$ [s] & $h$ [km] & $v$ [km/s] & $L_g$ [m/s] & $L_s$ [m/s] \\
 \midrule
-dry 160/85 t (slide-42 low), no reserves & 314.9 & 144.6 & 61.1 & 2.65 & 1,045 & 680 \\
+dry 160/85 t (low estimate), no reserves & 314.9 & 144.6 & 61.1 & 2.65 & 1,045 & 680 \\
 \textbf{baseline: dry 200/100 t, no reserves} & \textbf{293.3} & 144.7 & 60.4 & 2.61 & 1,049 & 690 \\
 dry 250/120 t, no reserves & 265.3 & 144.4 & 59.8 & 2.57 & 1,056 & 702 \\
 ship dry 150 t (booster 200 t), no reserves & 243.3 & 144.7 & 60.4 & 2.61 & 1,049 & 690 \\
@@ -504,7 +507,7 @@ Explicit re-integration of optimized controls (\texttt{simulate}) & 16 segments:
 Grid independence & 293.20~t (12 segments) vs 293.31~t (16 segments) \\
 Loss identity $\dv_{vac} = \Delta|\bm v| + \sum L$ & residual $\le 0.004$~m/s in all seven cases \\
 ODE partials (jax) vs finite differences & agree to $\sim10^{-10}$ \\
-US76 table vs the notebook's \texttt{ambiance} & $<0.1\,\%$ in $\rho$, $p$ below 81~km \\
+US76 table vs the \texttt{ambiance} ISA package & $<0.1\,\%$ in $\rho$, $p$ below 81~km \\
 Rocket-equation consistency & with the optimizer's $\dv_{vac}$ the hand calculation returns the optimizer's payload (Table~\ref{tab:tsiolkovsky}) \\
 Flight data (IFT-3 public timeline: staging 72~km, T+170~s, return-to-site profile) & 53~km/133~s with 8\,\% reserve, 47~km/123~s with 15\,\% --- same regime; lower because reserves are allowances, not a flown return \\
 \bottomrule
@@ -525,7 +528,7 @@ Flight data (IFT-3 public timeline: staging 72~km, T+170~s, return-to-site profi
   \item \textbf{Gravity, winds.} Point-mass spherical Earth, no $J_2$, no winds, no 6-DOF.
   \item \textbf{Reusability.} Reserves are inputs; boost-back and landing are not simulated, so the reserve--staging-speed coupling that drives real return-to-site designs is not closed.
   \item \textbf{Solution structure.} The ship's final 40\,\%-throttle arc is what IPOPT returned on this grid; it should be re-checked with grid refinement and a different initial guess before drawing conclusions from it.
-  \item \textbf{Unphysical vehicles.} The notebook's own ``Falcon-9-like'' single stage ($T/W = 3.75$, 95\,\% propellant fraction) did not converge as a max-payload problem; a feasibility run reached 250~km with $\approx 0$ payload and 79~$g$ at burnout. It is not a useful test case.
+  \item \textbf{Unphysical vehicles.} A ``Falcon-9-like'' single-stage test vehicle ($T/W = 3.75$, 95\,\% propellant fraction) did not converge as a max-payload problem; a feasibility run reached 250~km with $\approx 0$ payload and 79~$g$ at burnout. It is not a useful test case.
   \item \textbf{Co-design (milestone 2--3).} Engine model from $(p_c, \varepsilon, O/F)$ via $c^*$ and $C_F$, stage mass model, and the FFSC-cycle/turbopump models as OpenMDAO components in the same problem --- the reason Dymos was chosen. In-space mission module (Hohmann/Lambert, $C_3$, aerocapture) for the Mars, Moon and Titan project missions.
 \end{itemize}
 
@@ -546,7 +549,7 @@ and \texttt{--warm-from} starts a new case from another case's record with the n
 
 \section*{Sources}
 \begin{itemize}\small
-  \item SpaceX Starship and Raptor data as compiled on Wikipedia (Block~2/3 propellant loads, engine counts, Raptor~3 250/275~tf and 350~s, Flight~14 orbit) and in the New Space Economy review of Starship V3 (April 2026); Week~9 slides 42--43 for the Raptor/RVac figures used there.
+  \item SpaceX Starship and Raptor data as compiled on Wikipedia (Block~2/3 propellant loads, engine counts, Raptor~3 250/275~tf and 350~s, RVac 258~tf and 380~s, Flight~14 orbit) and in the New Space Economy review of Starship V3 (April 2026). The RVac exit diameter (2.3~m) and the dry-mass ranges are assumptions, as marked in Table~\ref{tab:inputs}.
   \item Dymos documentation: SSTO Earth-launch example (Longuski Titan~II benchmark), Trajectory API; OpenMDAO \texttt{JaxExplicitComponent}.
   \item IFT-3 timeline (hot staging at T+2:50, 72~km): Cit\'e de l'espace step-by-step report.
 \end{itemize}

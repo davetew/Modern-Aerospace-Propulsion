@@ -11,7 +11,7 @@ $PY scripts/run_case.py $COMMON --out runs/starship --max-iter 400 --simulate --
 BASE=$(find runs/starship -path "*_out/dymos_solution.db" | head -1)
 
 # 2. sweep, warm-started from the baseline solution
-$PY scripts/run_case.py $COMMON --out runs/sw_light     --max-iter 200 --warm-from "$BASE" --tag "dry 160/85 t (slide-42 low), no reserves" --set stage0.dry_mass=160e3 --set stage1.dry_mass=85e3
+$PY scripts/run_case.py $COMMON --out runs/sw_light     --max-iter 200 --warm-from "$BASE" --tag "dry 160/85 t (low estimate), no reserves" --set stage0.dry_mass=160e3 --set stage1.dry_mass=85e3
 $PY scripts/run_case.py $COMMON --out runs/sw_heavy     --max-iter 200 --warm-from "$BASE" --tag "dry 250/120 t, no reserves" --set stage0.dry_mass=250e3 --set stage1.dry_mass=120e3
 $PY scripts/run_case.py $COMMON --out runs/sw_shipdry   --max-iter 200 --warm-from "$BASE" --tag "ship dry 150 t (booster 200 t), no reserves" --set stage1.dry_mass=150e3
 $PY scripts/run_case.py $COMMON --out runs/sw_reserves  --max-iter 200 --warm-from "$BASE" --tag "RTLS reserves: booster 292 t (8 %), ship 30 t" --set stage0.reserve=292e3 --set stage1.reserve=30e3
