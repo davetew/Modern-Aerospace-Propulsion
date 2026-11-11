@@ -23,7 +23,7 @@ worked examples in `examples/`, and their output figures in `figures/`.
 |---|---|
 | `docs/tutorial/orbital_mechanics_tutorial.pdf` | engineers new to astrodynamics: the physics behind every module, worked numbers, exercises (35 pp.) |
 | `docs/report/mission_analysis_report.pdf` | modeling approach, validation record, limitations (11 pp.) |
-| `docs/slides/mission_analysis_slides.pdf` | 16-slide summary of the above |
+| `docs/slides/mission_analysis_slides.pdf` | 17-slide summary of the above in the course lecture format (Beamer Madrid + Columbia colour theme, `beamercolorthemeColumbia.sty` alongside) |
 
 The tutorial's numbers and figures are regenerated with `calc/make_tutorial_numbers.py` and
 `calc/make_tutorial_figures.py` (run from the repository root with `PYTHONPATH=.`), so text and code cannot drift apart.

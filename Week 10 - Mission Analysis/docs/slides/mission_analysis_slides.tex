@@ -1,52 +1,89 @@
-\documentclass[10pt,aspectratio=169]{beamer}
-\usetheme[progressbar=frametitle,numbering=fraction,block=fill]{metropolis}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+% MECE 4305 -- Mission Analysis Tool: approach, validation, limitations (companion to Lecture 10)
+% Build: latexmk -pdf mission_analysis_slides.tex   (needs beamercolorthemeColumbia.sty, ../figures/*.png)
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{Columbia}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\setbeamerfont{caption}{size=\scriptsize}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamersize{text margin left=7mm,text margin right=7mm}
+
+\usepackage[T1]{fontenc}\usepackage{lmodern}
 \usepackage{amsmath,amssymb,bm}
 \usepackage{siunitx}
-\sisetup{per-mode=symbol}
 \usepackage{booktabs}
 \usepackage{graphicx}
+\usepackage[table]{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{positioning,arrows.meta}
-\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
 \usepackage{listings}
+
 \graphicspath{{../figures/}}
+\sisetup{per-mode=symbol,range-phrase=--,range-units=single}
+\DeclareSIUnit{\AU}{AU}\DeclareSIUnit{\tonne}{t}\DeclareSIUnit{\days}{days}\DeclareSIUnit{\year}{yr}
 
-\definecolor{sfblue}{HTML}{2A78D6}
-\definecolor{sforange}{HTML}{EB6834}
-\definecolor{sfgray}{HTML}{898781}
-\definecolor{sfink}{HTML}{23373B}
-\setbeamercolor{progress bar}{fg=sfblue}
-\setbeamercolor{title separator}{fg=sfblue}
-\setbeamercolor{alerted text}{fg=sforange}
-\setbeamercolor{frametitle}{bg=sfink}
-\lstset{basicstyle=\ttfamily\scriptsize,columns=fullflexible,keepspaces=true,breaklines=true}
-
-\newcommand{\dv}{\Delta v}
-\newcommand{\vinf}{v_\infty}
+\newcommand{\Isp}{{I_{sp}}}\newcommand{\dv}{\Delta v}\newcommand{\vinf}{v_\infty}\newcommand{\gz}{g_0}\newcommand{\dd}{\mathrm{d}}
 \newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\src}[1]{\vfill\hfill{\tiny\color{gray}#1}}
+\newcommand{\hl}[1]{\textcolor{PMS7635C}{#1}}
+\lstset{basicstyle=\ttfamily\scriptsize,columns=fullflexible,keepspaces=true,breaklines=true,
+  keywordstyle=\color{PMS280C},commentstyle=\color{gray},stringstyle=\color{PMS2461C},language=Python,showstringspaces=false}
 
-\title{A Patched-Conic Mission Analysis Tool}
-\subtitle{Lunar \& interplanetary design --- approach, validation, limitations}
-\author{MECE 4305 Mechanics \& Thermodynamics of Propulsion --- Week 10}
-\institute{Columbia University, Fall 2026 \quad\textbullet\quad \code{mission\_analysis} (\code{sfmission}) v0.1}
-\date{9 November 2026}
+\title[Mission Analysis Tool]{Mission Analysis Tool -- Approach, Validation \& Limitations}
+\subtitle{Mechanics \& Thermodynamics of Propulsion (MECE 4305) -- companion to Lecture 10}
+\author{David E. Tew, Ph.D.}
+\institute[Columbia]{Columbia University \quad\textbullet\quad david.tew@columbia.edu}
+\date{November 2026}
 
 \begin{document}
-\maketitle
+
+% =====================================================================
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \begin{enumerate}
+        \item Why: design-roadmap steps 1--4
+        \item What the tool computes; architecture
+        \item Modeling approach (six slides)
+        \item Validation against textbooks, an independent ephemeris and flown missions
+        \item Utility: numbers for Lecture 10 and the HW~1 chain
+        \item Limitations: physics and scope
+        \item Next steps and how to run it
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Companion documents}
+        Technical report (\code{docs/report/}) and the tutorial \emph{Orbital Mechanics for Propulsion Engineers} (\code{docs/tutorial/}), both in \code{Week 10 - Mission Analysis/} of the course repository.
+      \end{block}
+      \begin{block}{Code}
+        \code{modern\_aerospace\_propulsion.}\\\code{\quad mission\_analysis}\\ CLI \code{sfmission}, MCP server \code{sfmission-mcp}; 85 tests in \code{tests/mission\_analysis/}.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Why: the first four steps of the design roadmap}
+\section{Why}
+\begin{frame}{Why: the First Four Steps of the Design Roadmap}
+  \framesubtitle{Mission $\to$ required $\dv$ $\to$ propellant fraction and $\Isp$ $\to$ staging -- then the engine}
 \small
 \begin{columns}[T]
 \begin{column}{0.55\textwidth}
 \begin{enumerate}
-\item \textbf{Mission definition} --- target, dates, orbits
-\item \textbf{Required $\dv$} --- launch, injection, flybys, capture, landing
+\item \textbf{Mission definition} -- target, dates, orbits
+\item \textbf{Required $\dv$} -- launch, injection, flybys, capture, landing
 \item \textbf{Propellant mass fraction $\rightarrow$ required $I_{sp}$}
 \item \textbf{Staging / architecture}
-\item[5--10.] thrust, thrust chamber, $\dot m$, $V_e$, $p_c$, $M_e$, $A_e$, feed system, iterate \hfill \textcolor{sfgray}{(Weeks 11--12)}
+\item[5--10.] thrust, thrust chamber, $\dot m$, $V_e$, $p_c$, $M_e$, $A_e$, feed system, iterate \hfill \textcolor{gray}{(Lectures 11--12)}
 \end{enumerate}
 \medskip
 The tool computes steps 1--4 and hands a \code{DeltaVBudget} with propellant masses and required $I_{sp}$ to the engine-design steps.
@@ -54,7 +91,7 @@ The tool computes steps 1--4 and hands a \code{DeltaVBudget} with propellant mas
 \begin{column}{0.43\textwidth}
 \begin{block}{Three uses}
 \begin{itemize}
-\item Week-10 lecture instrument (live porkchop of the window opening \emph{this month})
+\item Lecture-10 instrument (live porkchop of the Earth--Mars window opening \emph{this month})
 \item HW~1 reference solution and the first module of each team's project model
 \item Preliminary design tool exposed to agents via MCP
 \end{itemize}
@@ -64,7 +101,9 @@ The tool computes steps 1--4 and hands a \code{DeltaVBudget} with propellant mas
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{What it computes}
+\section{Scope and architecture}
+\begin{frame}{What It Computes}
+  \framesubtitle{Patched conics, impulsive burns, analytic ephemerides: sizing accuracy, not navigation accuracy}
 \footnotesize
 \begin{tabular}{p{0.22\textwidth}p{0.72\textwidth}}\toprule
 Launch & $\dv$ to orbit: $|\bm v_{orbit}-\bm v_{site}|$ with azimuth for inclination, loss band \\
@@ -81,17 +120,18 @@ Front ends & Python API, CLI (\code{sfmission}), 23 MCP tools (\code{sfmission-m
 \end{tabular}
 \medskip
 
-\alert{Fidelity class:} patched conics, impulsive burns, analytic ephemerides --- sizing accuracy, not navigation accuracy.
+\hl{Fidelity class:} patched conics, impulsive burns, analytic ephemerides -- sizing accuracy, not navigation accuracy.
 \end{frame}
 
 %------------------------------------------------------------------
 \begin{frame}{Architecture}
+  \framesubtitle{Pure functions returning dataclasses; the three front ends only format}
 \centering
 \resizebox{0.95\textwidth}{!}{%
 \begin{tikzpicture}[
-  box/.style={draw=sfgray,rounded corners=2pt,fill=white,minimum height=7mm,minimum width=22mm,font=\small\ttfamily,inner sep=3pt},
-  lay/.style={font=\small\sffamily\color{sfgray},anchor=west},
-  arr/.style={-{Stealth[length=2mm]},draw=sfgray,thick},
+  box/.style={draw=PMS280C,rounded corners=2pt,fill=PMS284C!12,minimum height=7mm,minimum width=22mm,font=\small\ttfamily,inner sep=3pt},
+  lay/.style={font=\small\sffamily\color{gray},anchor=west},
+  arr/.style={-{Stealth[length=2mm]},draw=gray,thick},
   node distance=5mm and 7mm]
 \node[box] (bodies) {bodies};
 \node[box,right=of bodies] (kepler) {kepler};
@@ -119,17 +159,19 @@ Front ends & Python API, CLI (\code{sfmission}), 23 MCP tools (\code{sfmission-m
 \node[lay] at ([xshift=6mm]bud.east |- bud) {composition \& output};
 \end{tikzpicture}}
 
-\small Pure functions returning dataclasses; km, s, rad internally; degrees for \code{*\_deg} arguments; epochs as ISO strings or JD. 85 tests run in \SI{1}{s}.
+\small km, s, rad internally; degrees for \code{*\_deg} arguments; epochs as ISO strings or Julian Date. 85 tests run in \SI{1}{s}.
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Approach I --- reference data and their accuracy}
+\section{Modeling approach}
+\begin{frame}{Approach I: Reference Data and Their Accuracy}
+  \framesubtitle{JPL DE440 constants; JPL mean-element planets; truncated-Meeus Moon}
 \small
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{itemize}
 \item $GM$: JPL DE440 (planet-\emph{system} values for outer planets); IAU radii; Laplace SOI $a(m/M)^{2/5}$
-\item Planets: JPL \emph{Keplerian Elements for Approximate Positions} --- six elements + secular rates, J2000 ecliptic
+\item Planets: JPL \emph{Keplerian Elements for Approximate Positions} -- six elements + secular rates, J2000 ecliptic
 \item Moon: truncated Meeus Ch.~47 (32 lon/dist, 20 lat terms), precessed to J2000
 \item ``Earth'' = Earth--Moon barycenter unless corrected
 \end{itemize}
@@ -146,13 +188,15 @@ Moon & $<40$ & $<\SI{40}{km}$ & -- \\\bottomrule
 \end{tabular}
 \medskip
 
-Consequence for design: $\vinf$ errors $\sim\SI{1}{m/s}$ at Earth, $\sim\SI{10}{m/s}$ at Saturn --- far below budget margins.
+Consequence for design: $\vinf$ errors $\sim\SI{1}{m/s}$ at Earth, $\sim\SI{10}{m/s}$ at Saturn -- far below budget margins.
+\src{Refs: Standish, JPL approximate planetary elements; Park et al.\ 2021 (DE440); Meeus, Astronomical Algorithms Ch.~47}
 \end{column}
 \end{columns}
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Approach II --- Lambert arcs and porkchop maps}
+\begin{frame}{Approach II: Lambert Arcs and Porkchop Maps}
+  \framesubtitle{Dated transfers between ephemeris positions; the launch window as a map}
 \small
 \begin{columns}[T]
 \begin{column}{0.46\textwidth}
@@ -175,7 +219,8 @@ Earth$\to$Mars 2026/27 optimum: depart 2026-10-30, 311~d, $C_3=9.2$, $\dv=\SI{5.
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Approach III --- patched conics}
+\begin{frame}{Approach III: Patched Conics}
+  \framesubtitle{Departure and capture burns, unpowered and powered flybys}
 \small
 \begin{columns}[T]
 \begin{column}{0.54\textwidth}
@@ -200,7 +245,8 @@ speed mismatch burned at periapsis; infeasible if $r_p<r_{min}$.
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Approach IV --- Earth--Moon patched conic (Bate--Mueller--White \S7.4)}
+\begin{frame}{Approach IV: Earth--Moon Patched Conic}
+  \framesubtitle{Bate--Mueller--White \S7.4, implemented with vectors; SOI transit time included}
 \small
 \begin{columns}[T]
 \begin{column}{0.52\textwidth}
@@ -208,7 +254,7 @@ speed mismatch burned at periapsis; infeasible if $r_p<r_{min}$.
 \item Geocentric ellipse from $(r_0,v_0,\phi_0)$ to the SOI point set by $\lambda_1$
 \item $\bm v_2=\bm v_1-\bm v_{Moon}$ $\rightarrow$ selenocentric hyperbola $(e, r_p, v_p)$
 \item \textbf{Vector implementation}: sense of motion from $\mathrm{sign}(h_2)$, no trig sign ambiguities (scalar relations reproduced in tests)
-\item Adds the \textbf{SOI transit time} (14--18~h) --- essential to compare with flown data
+\item Adds the \textbf{SOI transit time} (14--18~h) -- essential to compare with flown data
 \item Design solver: $\lambda_1$ for given $v_0$ (or $v_0$ for $\lambda_1$) hitting a perilune altitude; prograde and retrograde roots
 \end{itemize}
 Hohmann estimate: TLI 3.135, LOI 0.82~km/s; 3-day transfer: TLI 3.157, LOI 0.889~km/s.
@@ -220,7 +266,8 @@ Hohmann estimate: TLI 3.135, LOI 0.82~km/s; 3-day transfer: TLI 3.157, LOI 0.889
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Approach V --- launch $\dv$ and the aero levers}
+\begin{frame}{Approach V: Launch $\dv$ and the Aero Levers}
+  \framesubtitle{Site-rotation credit and loss band; aerocapture credit; per-pass aerobraking $\dv$}
 \small
 \begin{columns}[T]
 \begin{column}{0.56\textwidth}
@@ -238,7 +285,7 @@ with $\bm v_{site}=\omega R\cos\varphi\,\hat{\bm e}_E$ and $\cos i=\cos\varphi\s
 \dv_{pass}=\frac{\rho_pV_p^2}{2\beta}\sqrt{\frac{2\pi H}{\ddot r_p}},\qquad
 \ddot r_p=\frac{V_p^2}{r_p}-\frac{\mu}{r_p^2}
 \]
-\alert{Dropping $\mu/r_p^2$ (straight-line fly-through) gives the Week-11 slide form, low by $\sqrt{V_p^2/(V_p^2-\mu/r_p)}\to\sqrt2$}; integration confirms the gravity-aware form to 0.2\%.
+\hl{Dropping $\mu/r_p^2$ (straight-line fly-through) gives the Lecture-11 slide form, low by $\sqrt{V_p^2/(V_p^2-\mu/r_p)}\to\sqrt2$}; integration confirms the gravity-aware form to 0.2\%.
 \end{column}
 \begin{column}{0.42\textwidth}
 \includegraphics[width=0.9\linewidth]{aerobraking_pass_comparison}
@@ -248,18 +295,19 @@ with $\bm v_{site}=\omega R\cos\varphi\,\hat{\bm e}_E$ and $\cos i=\cos\varphi\s
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Approach VI --- rocket equation, staging, budgets}
+\begin{frame}{Approach VI: Rocket Equation, Staging, Budgets}
+  \framesubtitle{The hand-off from mission analysis to engine design}
 \small
 \begin{columns}[T]
 \begin{column}{0.58\textwidth}
-Sutton nomenclature: $\zeta=m_p/m_0$, $MR=m_f/m_0$, $\sigma_k=m_{s,k}/(m_{s,k}+m_{p,k})$, $c_k=g_0I_{sp,k}$, $r_k=e^{\dv_k/c_k}$ \; ($\varepsilon$ reserved for area ratio)
+Notes nomenclature: $\zeta=m_p/m_0$, $\sigma_i=m_{s,i}/(m_{s,i}+m_{p,i})$, $\pi_i=m_{0,i+1}/m_{0,i}$, $c_i=\gz\Isp_{,i}$, $R_i=e^{\dv_i/c_i}$ \; ($\varepsilon$ reserved for area ratio)
 \[
-\frac{m_0}{m_L}=\prod_k\frac{r_k(1-\sigma_k)}{1-r_k\sigma_k},\qquad
-I_{sp}^{req}=\frac{\dv}{g_0\,\ln[1/(1-\zeta)]}
+\frac{m_0}{m_L}=\prod_i\frac{1}{\pi_i}=\prod_i\frac{R_i(1-\sigma_i)}{1-R_i\sigma_i},\qquad
+\Isp^{req}=\frac{\dv}{\gz\,\ln[1/(1-\zeta)]}
 \]
-Optimal split for fixed $\sum\dv_k$ (one scalar root in $\lambda$):
+Optimal split for fixed $\sum\dv_i$ (one scalar root in the multiplier $\lambda$):
 \[
-r_k=\frac{\lambda c_k-1}{\lambda c_k\sigma_k},\qquad \sum_k c_k\ln r_k=\dv_{tot}
+R_i=\frac{\lambda c_i-1}{\lambda c_i\sigma_i},\qquad \sum_i c_i\ln R_i=\dv_{tot}
 \]
 \end{column}
 \begin{column}{0.40\textwidth}
@@ -267,7 +315,7 @@ r_k=\frac{\lambda c_k-1}{\lambda c_k\sigma_k},\qquad \sum_k c_k\ln r_k=\dv_{tot}
 ordered legs with nominal/low/high, kind (propulsive / aero / margin), optional stage $I_{sp}$
 \begin{itemize}
 \item composers: dated interplanetary (launch, injection, flybys, capture or aerocapture, landing, margin); lunar (TLI, LOI, descent, ascent, TEI)
-\item backward propellant sizing; $\zeta$ and required $I_{sp}$ --- the hand-off to engine design
+\item backward propellant sizing; $\zeta$ and required $I_{sp}$ -- the hand-off to engine design
 \end{itemize}
 \end{block}
 \end{column}
@@ -275,7 +323,9 @@ ordered legs with nominal/low/high, kind (propulsive / aero / margin), optional 
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Validation --- textbook, independent models, flown missions}
+\section{Validation}
+\begin{frame}{Validation: Textbook Cases, an Independent Ephemeris, Flown Missions}
+  \framesubtitle{All in \code{tests/mission\_analysis/} (85 tests, $\sim$1~s)}
 \footnotesize
 \begin{tabular}{p{0.44\textwidth}p{0.52\textwidth}}\toprule
 Lambert, Curtis Ex.~5.2; 20 closure geometries & $\bm v_1,\bm v_2$ to \SI{1e-4}{km/s}; closes to \SI{1e-8}{km} \\
@@ -290,11 +340,14 @@ Staging identities, optimal split & exact \\\bottomrule
 \end{tabular}
 \medskip
 
-\small Lecture point from Apollo 11: the two published TLI rows differ by \SI{0.04}{km^2/s^2} in energy, and lunar TOF moves $\sim$\SI{5}{h} per \SI{0.1}{km^2/s^2} --- the result is as good as the altitude datum.
+\small Lecture point from Apollo 11: the two published TLI rows differ by \SI{0.04}{km^2/s^2} in energy, and lunar TOF moves $\sim$\SI{5}{h} per \SI{0.1}{km^2/s^2} -- the result is as good as the altitude datum.
+\src{Refs: Curtis, Orbital Mechanics for Engineering Students; NASA/JPL Mars 2020 press kit; Apollo 11 Mission Report trajectory tables}
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Utility --- numbers for Week 10}
+\section{Utility}
+\begin{frame}{Utility: Numbers for Lecture 10}
+  \framesubtitle{The $\dv$ levers, quantified for the Earth--Mars window opening now}
 \small
 \begin{columns}[T]
 \begin{column}{0.52\textwidth}
@@ -321,7 +374,8 @@ KSC credit, east vs.\ polar & 0.41~km/s & $-0.01$~km/s \\\bottomrule
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Utility --- HW 1 reference chain (steps 1--4 end to end)}
+\begin{frame}{Utility: the HW~1 Reference Chain}
+  \framesubtitle{Design-roadmap steps 1--4 end to end for a Mars orbiter in the 2026 window}
 \small
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -332,7 +386,7 @@ Mars orbiter, 2026 window, KSC:
 \item budgets: post-launch $\dv$ \textbf{6.39} (propulsive) vs.\ \textbf{4.31}~km/s (aerocapture)
 \item required $I_{sp}$ at $\zeta=0.7$: 541~s vs.\ 365~s
 \item 1000~kg final mass, 320-s engine $\rightarrow$ 7,653~kg injected
-\item two-stage launcher ($I_{sp}$ 300/450, $\sigma$ 0.07/0.10) for 12.5~km/s: gross 695~t, optimal split 4.8/7.7~km/s
+\item two-stage launcher ($\Isp$ 300/450~s, $\sigma$ 0.07/0.10) for 12.5~km/s: gross 695~t, optimal split 4.8/7.7~km/s
 \end{enumerate}
 \small Teams swap mission, dates and engines; the \code{DeltaVBudget} feeds the Week 11--12 thermochemistry and engine modules.
 \end{column}
@@ -343,10 +397,12 @@ Mars orbiter, 2026 window, KSC:
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Limitations I --- physics}
+\section{Limitations}
+\begin{frame}{Limitations I: Physics}
+  \framesubtitle{Deliberate modeling choices and what they cost}
 \begin{itemize}
 \item \textbf{Patched conics}: no third-body gravity on a conic, sharp SOI. Few-\% error in planetocentric burns for planetary missions; hours of TOF and tens of m/s of LOI for the Moon (Apollo 11: 0--7\%).
-\item \textbf{Impulsive burns}: finite-burn losses of low-$T/W$ stages not charged; launch losses are a user band, not a trajectory.
+\item \textbf{Impulsive burns}: finite-burn losses of low-$T/W$ stages not charged; launch losses are a user band, not a trajectory (the ascent tool computes them).
 \item \textbf{Ephemeris}: arcsec--arcmin mean elements; Earth = EM barycenter by default. Fine for $\dv$, not for targeting.
 \item \textbf{Circular assumptions}: Moon orbit circular at 384,400~km (perigee--apogee $\pm$21,000~km $\Rightarrow$ $\pm$10~m/s TLI, hours of TOF); quick estimates use circular coplanar planets.
 \item \textbf{Plane/DLA}: 3-D legs, but no plane-change penalty for high-DLA departures or parking-orbit incompatibility; DLA reported only.
@@ -356,7 +412,8 @@ Mars orbiter, 2026 window, KSC:
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}{Limitations II --- scope}
+\begin{frame}{Limitations II: Scope}
+  \framesubtitle{What is charged as a number only, and what is not modelled at all}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \textbf{Aero-assist}
@@ -385,7 +442,9 @@ Mars orbiter, 2026 window, KSC:
 \end{frame}
 
 %------------------------------------------------------------------
-\begin{frame}[fragile]{Next steps and how to run it}
+\section{Next steps}
+\begin{frame}[fragile]{Next Steps and How to Run It}
+  \framesubtitle{Planned extensions, in priority order for the course}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \textbf{Planned (priority order)}
@@ -413,7 +472,7 @@ sfmission lunar --tof 72 --plot lunar.png
 sfmission-mcp     # {"mcpServers":{"sfmission":
                   #   {"command":"sfmission-mcp"}}}
 \end{lstlisting}
-\small Code, tests, examples, figures, report and these slides: \code{Week 10 - Mission Analysis/} in the course repository.
+\small Code, tests, examples, figures, report, tutorial and these slides: \code{Week 10 - Mission Analysis/} in the course repository.
 \end{column}
 \end{columns}
 \end{frame}
