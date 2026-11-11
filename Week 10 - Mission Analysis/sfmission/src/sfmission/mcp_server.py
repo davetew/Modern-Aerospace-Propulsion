@@ -1,7 +1,7 @@
 """MCP server exposing the mission-analysis tools to agents.
 
 Run:  sfmission-mcp            (stdio transport, for Claude Desktop / Code, Antigravity, Codex)
-      python -m modern_aerospace_propulsion.mission_analysis.mcp_server --http 8765   (streamable HTTP on a port)
+      python -m sfmission.mcp_server --http 8765   (streamable HTTP on a port)
 
 Works with both the 1.x SDK (``mcp.server.fastmcp.FastMCP``) and the 2.x SDK
 (``mcp.server.mcpserver.MCPServer``).  All tools return JSON-serialisable

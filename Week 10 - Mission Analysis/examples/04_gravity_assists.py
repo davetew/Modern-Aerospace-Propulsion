@@ -3,8 +3,8 @@
 Run:  python examples/04_gravity_assists.py [outdir]
 """
 import sys, os, math
-from modern_aerospace_propulsion.mission_analysis import interplanetary_mission, hohmann_interplanetary, flyby_max_heliocentric_dv
-from modern_aerospace_propulsion.mission_analysis.plotting import plot_transfer
+from sfmission import interplanetary_mission, hohmann_interplanetary, flyby_max_heliocentric_dv
+from sfmission.plotting import plot_transfer
 
 out = sys.argv[1] if len(sys.argv) > 1 else "figures"
 os.makedirs(out, exist_ok=True)

@@ -33,7 +33,7 @@
 
 \title{\textbf{A Patched-Conic Mission Analysis Tool for Lunar and Interplanetary Design}\\[4pt]
 \large Modeling approach, validation, utility and limitations\\[2pt]
-\normalsize \code{modern\_aerospace\_propulsion.mission\_analysis} (\code{sfmission}) v0.1}
+\normalsize \code{sfmission} (\code{sfmission}) v0.1}
 \author{MECE 4305 Mechanics \& Thermodynamics of Propulsion --- Rocket Module, Week 10\\
 Columbia University, Fall 2026}
 \date{9 November 2026}
@@ -95,7 +95,7 @@ and does not target B-plane conditions. Section~\ref{sec:limits} makes these bou
 tools returning JSON, so that a design agent can request, e.g., a Mars-orbiter $\dv$ budget on
 specific dates and hand the injected mass to a staging or engine-sizing tool:
 \begin{lstlisting}
-from modern_aerospace_propulsion.mission_analysis import porkchop, interplanetary_budget
+from sfmission import porkchop, interplanetary_budget
 sfmission porkchop Earth Mars 2026-09-01 2027-02-15 --tof 120 450 --plot pork.png
 sfmission-mcp        # MCP server (stdio); tools listed in Appendix B
 \end{lstlisting}

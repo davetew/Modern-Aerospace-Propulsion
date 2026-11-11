@@ -1,10 +1,10 @@
-"""mission_analysis (sfmission) -- patched-conic mission analysis for lunar and interplanetary design.
+"""sfmission -- patched-conic mission analysis for lunar and interplanetary design.
 
-Part of the modern_aerospace_propulsion course package (Week 10, MECE 4305).
+MECE 4305 (Columbia), Rocket Module Week 10; lives in "Week 10 - Mission Analysis/sfmission/" of the course repository.
 
 Quick start
 -----------
->>> from modern_aerospace_propulsion.mission_analysis import hohmann_interplanetary, porkchop, interplanetary_mission
+>>> from sfmission import hohmann_interplanetary, porkchop, interplanetary_mission
 >>> print(hohmann_interplanetary("Earth", "Mars", park_alt=300, capture_peri_alt=300).summary())
 >>> pc = porkchop("Earth", "Mars", "2026-09-01", "2027-02-01", 120, 400)
 >>> print(pc.summary())

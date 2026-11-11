@@ -2,8 +2,8 @@ import math
 import numpy as np
 import pytest
 
-from modern_aerospace_propulsion.mission_analysis import ephemeris as eph
-from modern_aerospace_propulsion.mission_analysis.bodies import AU_KM
+from sfmission import ephemeris as eph
+from sfmission.bodies import AU_KM
 
 astropy = pytest.importorskip("astropy")
 from astropy.time import Time                                   # noqa: E402

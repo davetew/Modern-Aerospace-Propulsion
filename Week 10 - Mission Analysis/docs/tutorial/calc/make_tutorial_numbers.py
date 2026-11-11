@@ -1,8 +1,8 @@
 """Compute every number quoted in the orbital-mechanics tutorial with the
-mission_analysis package and write them as LaTeX macros (tutorial_numbers.tex).
+sfmission package and write them as LaTeX macros (tutorial_numbers.tex).
 
-Run from the repository root:
-    PYTHONPATH=. python "Week 10 - Mission Analysis/docs/tutorial/calc/make_tutorial_numbers.py"
+Run (with sfmission installed):
+    python "Week 10 - Mission Analysis/docs/tutorial/calc/make_tutorial_numbers.py"
 """
 from __future__ import annotations
 
@@ -12,16 +12,16 @@ import sys
 
 import numpy as np
 
-from modern_aerospace_propulsion.mission_analysis import *
-from modern_aerospace_propulsion.mission_analysis.kepler import (
+from sfmission import *
+from sfmission.kepler import (
     circular_velocity, escape_velocity, period, vis_viva, apsides_from_rp_ra, E_from_true_anomaly,
     time_since_periapsis, turn_angle, specific_energy, propagate)
-from modern_aerospace_propulsion.mission_analysis.ephemeris import (
+from sfmission.ephemeris import (
     heliocentric_longitude, planet_state, moon_state_geocentric, body_state)
-from modern_aerospace_propulsion.mission_analysis.lunar import D_MOON, R_SOI_MOON, V_MOON
-from modern_aerospace_propulsion.mission_analysis.transfers import hohmann_phase_angle, synodic_period
-from modern_aerospace_propulsion.mission_analysis.patched_conics import optimal_capture_periapsis
-from modern_aerospace_propulsion.mission_analysis.staging import exhaust_velocity
+from sfmission.lunar import D_MOON, R_SOI_MOON, V_MOON
+from sfmission.transfers import hohmann_phase_angle, synodic_period
+from sfmission.patched_conics import optimal_capture_periapsis
+from sfmission.staging import exhaust_velocity
 
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tutorial_numbers.tex")
 macros: dict[str, str] = {}
@@ -154,7 +154,7 @@ put("EphvEarth", np.linalg.norm(vE), "{:.3f}"); put("EphvMars", np.linalg.norm(v
 put("EphdistEM", np.linalg.norm(rM - rE) / AU_KM, "{:.3f}")
 rm, vm = moon_state_geocentric(d0)
 put("EphMoonDist", np.linalg.norm(rm), "{:.0f}"); put("EphMoonSpeed", np.linalg.norm(vm))
-from modern_aerospace_propulsion.mission_analysis.ephemeris import planet_elements, centuries_since_j2000
+from sfmission.ephemeris import planet_elements, centuries_since_j2000
 el = planet_elements("mars", d0)
 put("EphT", centuries_since_j2000(d0), "{:.6f}")
 put("EphMarsa", el["a"] / AU_KM, "{:.6f}"); put("EphMarse", el["e"], "{:.6f}"); put("EphMarsM", math.degrees(el["M"]), "{:.2f}")

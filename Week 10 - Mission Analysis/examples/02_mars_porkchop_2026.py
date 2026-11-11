@@ -3,8 +3,8 @@
 Run:  python examples/02_mars_porkchop_2026.py  [outdir]
 """
 import sys, os
-from modern_aerospace_propulsion.mission_analysis import porkchop, heliocentric_leg, next_launch_windows
-from modern_aerospace_propulsion.mission_analysis.plotting import plot_porkchop, plot_transfer
+from sfmission import porkchop, heliocentric_leg, next_launch_windows
+from sfmission.plotting import plot_porkchop, plot_transfer
 
 out = sys.argv[1] if len(sys.argv) > 1 else "figures"
 os.makedirs(out, exist_ok=True)

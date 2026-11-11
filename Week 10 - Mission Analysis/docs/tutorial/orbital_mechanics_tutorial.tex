@@ -1,4 +1,4 @@
-% Orbital Mechanics for Propulsion Engineers -- the astrodynamics behind mission_analysis
+% Orbital Mechanics for Propulsion Engineers -- the astrodynamics behind sfmission
 % Build (from this directory):  latexmk -pdf orbital_mechanics_tutorial.tex
 % Numbers: tutorial_numbers.tex (calc/make_tutorial_numbers.py); figures: figs/ (calc/make_tutorial_figures.py)
 \documentclass[11pt,letterpaper,oneside]{report}
@@ -1320,7 +1320,7 @@ The chain below is what HW~1 asks for and what the project model begins with; ea
 call into the package.
 
 \begin{lstlisting}
-from modern_aerospace_propulsion.mission_analysis import *
+from sfmission import *
 
 # 1. textbook orientation (Ch. 2-3): circular coplanar Hohmann
 print(hohmann_interplanetary("Earth", "Mars", park_alt=300, capture_peri_alt=400).summary())

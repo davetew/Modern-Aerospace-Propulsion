@@ -1,4 +1,4 @@
-# Week 10 — Mission Analysis: the `mission_analysis` (sfmission) tool
+# Week 10 — Mission Analysis: the `sfmission` tool
 
 A small, tested Python package (plus an MCP server and CLI) for preliminary
 mission design within the solar system: launch Δv, Hohmann and Lambert
@@ -15,7 +15,7 @@ the Moon from a truncated Meeus series. No perturbations, no n-body
 propagation, no low-thrust. Expect Δv estimates good to a few percent of flown
 missions (see *Validation*), not navigation-grade trajectories.
 
-The code lives in the course package as `modern_aerospace_propulsion.mission_analysis`;
+The code is the self-contained package in `sfmission/` (`src/sfmission/`, `tests/`, its own `pyproject.toml`);
 the technical report, the summary slides and the **orbital-mechanics tutorial** are in `docs/`,
 worked examples in `examples/`, and their output figures in `figures/`.
 
@@ -25,22 +25,23 @@ worked examples in `examples/`, and their output figures in `figures/`.
 | `docs/report/mission_analysis_report.pdf` | modeling approach, validation record, limitations (11 pp.) |
 | `docs/slides/mission_analysis_slides.pdf` | 17-slide summary of the above in the course lecture format (Beamer Madrid + Columbia colour theme, `beamercolorthemeColumbia.sty` alongside) |
 
-The tutorial's numbers and figures are regenerated with `calc/make_tutorial_numbers.py` and
-`calc/make_tutorial_figures.py` (run from the repository root with `PYTHONPATH=.`), so text and code cannot drift apart.
+The tutorial's numbers and figures are regenerated with `docs/tutorial/calc/make_tutorial_numbers.py` and
+`docs/tutorial/calc/make_tutorial_figures.py` (with the package installed), so text and code cannot drift apart.
 
 ## Install
 
 ```bash
-pip install -e .            # from the repository root (course package incl. mission_analysis + CLI)
-pip install -e ".[mcp]"     # + MCP server
-pip install -e ".[dev]"     # + pytest, astropy (independent ephemeris check)
-pytest tests/mission_analysis    # 85 tests, ~1 s
+cd "Week 10 - Mission Analysis/sfmission"
+pip install -e .            # package + CLI `sfmission` (numpy, scipy, matplotlib)
+pip install -e ".[mcp]"     # + MCP server `sfmission-mcp`
+pip install -e ".[test]"    # + pytest, astropy (independent ephemeris check)
+pytest                       # 85 tests, ~1 s
 ```
 
 ## Quick start (Python)
 
 ```python
-from modern_aerospace_propulsion.mission_analysis import *
+from sfmission import *
 
 # textbook estimate, circular coplanar planet orbits
 print(hohmann_interplanetary("Earth", "Mars", park_alt=300, capture_peri_alt=300).summary())
@@ -51,7 +52,7 @@ print(leg.summary(), departure_dv("Earth", leg.vinf_dep_mag, 300).summary(), sep
 
 # porkchop plot of the 2026/27 window
 pc = porkchop("Earth", "Mars", "2026-09-01", "2027-02-15", 120, 450, park_alt=300, capture_peri_alt=400)
-print(pc.summary());  from modern_aerospace_propulsion.mission_analysis.plotting import plot_porkchop;  plot_porkchop(pc).savefig("pork.png")
+print(pc.summary());  from sfmission.plotting import plot_porkchop;  plot_porkchop(pc).savefig("pork.png")
 
 # gravity-assist sequence (Europa Clipper dates)
 m = interplanetary_mission(["Earth","Mars","Earth","Jupiter"], ["2024-10-14","2025-03-01","2026-12-03","2030-04-11"],
@@ -86,7 +87,7 @@ sfmission mcp                      # MCP server on stdio
 
 ## MCP server
 
-`sfmission-mcp` (stdio) or `python -m modern_aerospace_propulsion.mission_analysis.mcp_server --http 8765`. Works
+`sfmission-mcp` (stdio) or `python -m sfmission.mcp_server --http 8765`. Works
 with the 1.x (`FastMCP`) and 2.x (`MCPServer`) Python SDKs. Figures are
 written to `$SFMISSION_FIG_DIR` (default `./sfmission_figures`) and their paths
 returned. Claude Desktop / Claude Code config:
@@ -173,7 +174,7 @@ gravity-aware form to 0.1 %.
 total Δv is r_k = (λc_k − 1)/(λc_kσ_k) with Σ c_k ln r_k = Δv (one scalar
 root for the multiplier λ).
 
-## Validation (all in `tests/mission_analysis/`)
+## Validation (all in `sfmission/tests/`)
 
 | check | result |
 |---|---|
@@ -192,7 +193,7 @@ root for the multiplier λ).
 | Aerobraking pass, analytic vs integrated | 1.952 vs 1.951 m/s |
 | Staging identities, optimal split, SSTO limit | exact |
 
-## Examples (`examples/`, run from the repository root)
+## Examples (`examples/`, run from this folder after installing the package)
 
 1. `01_basics_hohmann_launch.py` — Δv to LEO from several sites, Hohmann estimates to the planets, rocket equation & staging.
 2. `02_mars_porkchop_2026.py` — the Earth→Mars window opening Oct 2026: porkchop plots, optimum transfer geometry, upcoming opportunities to 2035.

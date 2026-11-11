@@ -3,7 +3,7 @@
 Run:  python examples/01_basics_hohmann_launch.py
 """
 import math
-from modern_aerospace_propulsion.mission_analysis import *
+from sfmission import *
 
 print("=== Delta-v to LEO (correcting Week-9 slide 32: dv = v_orb + losses - v_site) ===")
 for lat, inc, label in ((28.5, None, "KSC due east"), (28.5, 51.6, "KSC to ISS inclination"),

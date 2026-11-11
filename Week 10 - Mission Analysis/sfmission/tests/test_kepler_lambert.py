@@ -2,10 +2,10 @@ import math
 import numpy as np
 import pytest
 
-from modern_aerospace_propulsion.mission_analysis.kepler import (vis_viva, circular_velocity, period, coe_from_rv, rv_from_coe, ClassicalElements,
+from sfmission.kepler import (vis_viva, circular_velocity, period, coe_from_rv, rv_from_coe, ClassicalElements,
                               propagate, kepler_E, stumpff_C, stumpff_S, turn_angle, periapsis_for_turn_angle)
-from modern_aerospace_propulsion.mission_analysis.lambert import lambert, LambertError
-from modern_aerospace_propulsion.mission_analysis.bodies import EARTH, MU_SUN, AU_KM
+from sfmission.lambert import lambert, LambertError
+from sfmission.bodies import EARTH, MU_SUN, AU_KM
 
 MU = EARTH.mu
 

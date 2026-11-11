@@ -3,10 +3,10 @@ import math
 import numpy as np
 import pytest
 
-from modern_aerospace_propulsion.mission_analysis import *                                   # noqa: F401,F403
-from modern_aerospace_propulsion.mission_analysis.bodies import EARTH, MARS, MOON, MU_SUN
-from modern_aerospace_propulsion.mission_analysis.kepler import propagate
-from modern_aerospace_propulsion.mission_analysis.lunar import lunar_patched_conic, D_MOON, R_SOI_MOON, V_MOON
+from sfmission import *                                   # noqa: F401,F403
+from sfmission.bodies import EARTH, MARS, MOON, MU_SUN
+from sfmission.kepler import propagate
+from sfmission.lunar import lunar_patched_conic, D_MOON, R_SOI_MOON, V_MOON
 
 
 # ---------------------------------------------------------------------------

@@ -37,8 +37,8 @@ T_celsius = compressible_flow.K2C(300)  # Convert 300 K to Celsius
 # Use compressible flow relations
 theta = compressible_flow.θ(2.0)  # Temperature ratio at Mach 2.0
 
-# Mission analysis (Week 10): Earth -> Mars porkchop and a dated transfer
-from modern_aerospace_propulsion.mission_analysis import porkchop, heliocentric_leg
+# Mission analysis (Week 10; pip install -e "Week 10 - Mission Analysis/sfmission")
+from sfmission import porkchop, heliocentric_leg
 pc = porkchop("Earth", "Mars", "2026-09-01", "2027-02-15", 120, 450)
 print(pc.summary())
 ```
@@ -85,7 +85,8 @@ Rocket propulsion fundamentals and trajectory analysis.
 - **LaunchTrajectoryAnalysis.ipynb** - Launch trajectory simulation and optimization
 
 ### Week 10 - Mission Analysis
-Lunar and interplanetary mission design with the patched-conic `mission_analysis` tool (see the folder README and `docs/`).
+Lunar and interplanetary mission design with the patched-conic `sfmission` tool — a self-contained package in `sfmission/` (install with `pip install -e "Week 10 - Mission Analysis/sfmission"`; see the folder README and `docs/`).
+- **sfmission/** - The package: `src/sfmission/` (bodies, kepler, ephemeris, lambert, transfers, patched_conics, lunar, launch, aerobraking, staging, budget, porkchop, plotting, mcp_server, cli), `tests/` (85 tests), CLI `sfmission`, MCP server `sfmission-mcp`
 - **examples/01_basics_hohmann_launch.py** - Δv to LEO with launch-site credit and loss bands, Hohmann estimates, rocket equation and staging
 - **examples/02_mars_porkchop_2026.py** - Earth→Mars 2026/27 launch window: porkchop plots and transfer geometry
 - **examples/03_lunar_mission.py** - Earth–Moon Hohmann estimate vs patched conic, Apollo 11 check, landing/return budget
@@ -120,22 +121,6 @@ Reusable Python utilities for aerospace propulsion calculations.
 
 #### Core Modules
 - **compressible_flow.py** - Compressible flow relations and temperature conversions
-
-#### `mission_analysis` Sub-package (also exposed as the `sfmission` CLI and `sfmission-mcp` MCP server)
-Patched-conic mission analysis for lunar and interplanetary design:
-- **bodies.py** - DE440 gravitational parameters, radii, spheres of influence, exponential atmospheres
-- **kepler.py** - Two-body relations, elements ↔ state, universal-variable propagation
-- **ephemeris.py** - JPL mean-element planetary ephemeris (1800–2050 and 3000 BC–3000 AD), truncated-Meeus Moon
-- **lambert.py** - Universal-variable Lambert solver
-- **transfers.py** - Hohmann, bi-elliptic, plane changes, phasing
-- **patched_conics.py** - Departure/capture burns, gravity-assist flybys, multi-leg missions
-- **lunar.py** - Earth–Moon Hohmann estimate and Bate–Mueller–White patched conic
-- **launch.py** - Δv to orbit with launch-site rotation credit and loss bands
-- **aerobraking.py** - Aerocapture credit, per-pass aerobraking Δv, campaigns, numerical pass check
-- **staging.py** - Rocket equation, required Isp, optimal multistage sizing
-- **budget.py** - Δv budgets and propellant sizing; mission composers
-- **porkchop.py**, **plotting.py** - Launch-window maps and figures
-- **mcp_server.py**, **cli.py** - Agent (MCP) and command-line interfaces
 
 #### `ffsc_nozzle` Sub-package
 Full-flow staged combustion (FFSC) cycle and regenerative nozzle cooling analysis tools:

@@ -3,8 +3,8 @@
 Run:  python examples/03_lunar_mission.py [outdir]
 """
 import sys, os, math
-from modern_aerospace_propulsion.mission_analysis import lunar_hohmann_estimate, design_lunar_transfer, lunar_budget
-from modern_aerospace_propulsion.mission_analysis.plotting import plot_lunar_transfer, plot_budget
+from sfmission import lunar_hohmann_estimate, design_lunar_transfer, lunar_budget
+from sfmission.plotting import plot_lunar_transfer, plot_budget
 
 out = sys.argv[1] if len(sys.argv) > 1 else "figures"
 os.makedirs(out, exist_ok=True)

@@ -1,7 +1,7 @@
 """Quantitative figures for the orbital-mechanics tutorial (figs/*.png).
 
-Run from the repository root:
-    PYTHONPATH=. python "Week 10 - Mission Analysis/docs/tutorial/calc/make_tutorial_figures.py"
+Run (with sfmission installed):
+    python "Week 10 - Mission Analysis/docs/tutorial/calc/make_tutorial_figures.py"
 """
 from __future__ import annotations
 
@@ -13,11 +13,11 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 
-from modern_aerospace_propulsion.mission_analysis import *
-from modern_aerospace_propulsion.mission_analysis.kepler import (circular_velocity, escape_velocity, vis_viva,
+from sfmission import *
+from sfmission.kepler import (circular_velocity, escape_velocity, vis_viva,
                                                                    apsides_from_rp_ra, kepler_E, true_anomaly_from_E,
                                                                    stumpff_C, stumpff_S, turn_angle)
-from modern_aerospace_propulsion.mission_analysis.plotting import _mpl, SERIES, INK, INK2, MUTED, AXIS
+from sfmission.plotting import _mpl, SERIES, INK, INK2, MUTED, AXIS
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIGS = os.path.join(os.path.dirname(HERE), "figs")

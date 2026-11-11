@@ -65,7 +65,7 @@
         Technical report (\code{docs/report/}) and the tutorial \emph{Orbital Mechanics for Propulsion Engineers} (\code{docs/tutorial/}), both in \code{Week 10 - Mission Analysis/} of the course repository.
       \end{block}
       \begin{block}{Code}
-        \code{modern\_aerospace\_propulsion.}\\\code{\quad mission\_analysis}\\ CLI \code{sfmission}, MCP server \code{sfmission-mcp}; 85 tests in \code{tests/mission\_analysis/}.
+        \code{sfmission} (\code{Week 10 - Mission Analysis/sfmission/})\\ CLI \code{sfmission}, MCP server \code{sfmission-mcp}; 85 tests in \code{sfmission/tests/}.
       \end{block}
     \end{column}
   \end{columns}
@@ -325,7 +325,7 @@ ordered legs with nominal/low/high, kind (propulsive / aero / margin), optional 
 %------------------------------------------------------------------
 \section{Validation}
 \begin{frame}{Validation: Textbook Cases, an Independent Ephemeris, Flown Missions}
-  \framesubtitle{All in \code{tests/mission\_analysis/} (85 tests, $\sim$1~s)}
+  \framesubtitle{All in \code{sfmission/tests/} (85 tests, $\sim$1~s)}
 \footnotesize
 \begin{tabular}{p{0.44\textwidth}p{0.52\textwidth}}\toprule
 Lambert, Curtis Ex.~5.2; 20 closure geometries & $\bm v_1,\bm v_2$ to \SI{1e-4}{km/s}; closes to \SI{1e-8}{km} \\
@@ -459,9 +459,9 @@ Mars orbiter, 2026 window, KSC:
 \begin{column}{0.48\textwidth}
 \begin{lstlisting}
 pip install -e ".[dev,mcp]"      # repo root
-pytest tests/mission_analysis    # 85 tests
+pytest sfmission/tests    # 85 tests
 
-from modern_aerospace_propulsion.mission_analysis import *
+from sfmission import *
 pc = porkchop("Earth","Mars","2026-09-01","2027-02-15",120,450)
 print(pc.summary())
 b, m = interplanetary_budget("Earth","Mars",

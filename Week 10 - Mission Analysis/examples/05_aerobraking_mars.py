@@ -3,7 +3,7 @@
 Run:  python examples/05_aerobraking_mars.py
 """
 import math
-from modern_aerospace_propulsion.mission_analysis import *
+from sfmission import *
 
 vinf = 2.65   # km/s, typical Mars arrival
 print(capture_dv("Mars", vinf, 400).summary())

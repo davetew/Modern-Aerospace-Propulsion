@@ -12,8 +12,8 @@ Worked here for a Mars orbiter launched in the 2026/27 window from KSC.
 Run:  python examples/06_hw1_reference_solution.py [outdir]
 """
 import sys, os, math
-from modern_aerospace_propulsion.mission_analysis import *
-from modern_aerospace_propulsion.mission_analysis.plotting import plot_budget, plot_staging_tradeoff
+from sfmission import *
+from sfmission.plotting import plot_budget, plot_staging_tradeoff
 
 out = sys.argv[1] if len(sys.argv) > 1 else "figures"
 os.makedirs(out, exist_ok=True)
