@@ -1,0 +1,20 @@
+# The single-stage "Falcon-9-like" vehicle simulated in Week 9 slide 33
+# (LaunchTrajectoryAnalysis.ipynb, cell 8).  Thrust there was set as m0*9.8*3.75 with
+# Isp 280 s (SL) / 310 s (vac); the SL-vac split implies an exit area of 18.4 m^2.
+name: "Slide-33 single stage (Falcon-9-like)"
+diameter: 3.708          # m  -> A_ref = 10.8 m^2 as in the notebook
+cd: 0.5
+payload: 0.0             # kg (notebook had none; the optimizer will find the maximum)
+engines:
+  merlin_like:
+    T_vac: 19293750.0    # N  = (25000+500000)*9.8*3.75
+    Isp_vac: 310.0
+    T_sl: 17426097.0     # N  = T_vac*280/310  -> A_e = 18.43 m^2
+    throttle_min: 0.4
+stages:
+  - name: "Single stage"
+    dry_mass: 25000.0
+    propellant: 500000.0
+    reserve: 0.0
+    engines: {merlin_like: 1}
+notes: "Notebook case: 400 t * 1.25 propellant, launched from the equator with a pure gravity turn."

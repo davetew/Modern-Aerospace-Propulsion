@@ -1,0 +1,50 @@
+{
+ "tag": "dry 250/120 t + RTLS reserves 292/30 t",
+ "vehicle": "Starship Block 3 (baseline, expendable trajectory)",
+ "exit": "EXIT: Solved To Acceptable Level.",
+ "iterations": "30",
+ "wall_s": 44.9,
+ "overrides": [
+  "stage0.dry_mass=250e3",
+  "stage1.dry_mass=120e3",
+  "stage0.reserve=292e3",
+  "stage1.reserve=30e3"
+ ],
+ "dry_masses_t": [
+  250.0,
+  120.0
+ ],
+ "reserves_t": [
+  292.0,
+  30.0
+ ],
+ "payload_t": 178.4109435570756,
+ "t_final_s": 599.6317443348778,
+ "h_final_km": 275.00000022848974,
+ "v_final_ms": 7740.2618828716995,
+ "gamma_final_deg": 1.2157893081463825e-08,
+ "inc_final_deg": 25.9968214088325,
+ "q_max_kPa": 35.00000035328112,
+ "a_max_g": 3.7186717063331494,
+ "losses_ms": {
+  "dv_vac": 9231.608172297852,
+  "grav": 1089.8905681151034,
+  "drag": 16.783178022246812,
+  "steer": 727.2799419646497,
+  "bp": 75.43728286639448,
+  "v_gain": 7322.221070322424
+ },
+ "identity_residual_ms": -0.0038689929655930655,
+ "stage0_t_start_s": 9.99999999999999,
+ "stage0_t_end_s": 133.14387454720944,
+ "stage0_h_end_km": 52.400969853246586,
+ "stage0_v_end_ms": 2250.5190216955853,
+ "stage0_mprop_end_t": 291.99999708576024,
+ "stage0_tau_min": 0.7504799876374554,
+ "stage1_t_start_s": 133.1438745472094,
+ "stage1_t_end_s": 599.6317443348778,
+ "stage1_h_end_km": 275.00000022848974,
+ "stage1_v_end_ms": 7740.2618828716995,
+ "stage1_mprop_end_t": 29.999999000983173,
+ "stage1_tau_min": 0.3999999906330612
+}

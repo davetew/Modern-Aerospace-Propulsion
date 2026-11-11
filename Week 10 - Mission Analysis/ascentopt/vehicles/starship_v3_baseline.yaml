@@ -1,0 +1,33 @@
+# Starship / Super Heavy Block 3 -- baseline deck, Nov 2026.  Dry masses are NOT published;
+# the values below are the mid-points of the Week 9 slide-42 ranges and are meant to be swept.
+# Raptor 3 SL: SpaceX May-2026 pair 250 tf SL / 275 tf vac (Wikipedia, "SpaceX: Starship V3"),
+#   Isp_vac 350 s (SpaceX Aug-2024 post). The pair implies A_e = 2.42 m^2.  Alternative anchor
+#   (280 tf SL, 1.3 m exit) is in the plan doc; swap T_sl/T_vac to use it.
+# RVac: slide-43 value 568 klbf (258 tf) and 2.3 m exit diameter; Isp_vac 380 s.
+name: "Starship Block 3 (baseline, expendable trajectory)"
+diameter: 9.0
+cd: 0.5
+payload: 100000.0        # kg initial guess; optimizer maximizes it
+engines:
+  raptor3_sl:
+    T_vac: 2697000.0     # N (275 tf)
+    T_sl: 2452000.0      # N (250 tf)
+    Isp_vac: 350.0
+    throttle_min: 0.4
+  raptor_vac:
+    T_vac: 2530000.0     # N (258 tf, slide 43)
+    d_exit: 2.3          # m (slide 43)
+    Isp_vac: 380.0
+    throttle_min: 0.4
+stages:
+  - name: "Super Heavy"
+    dry_mass: 200000.0
+    propellant: 3650000.0
+    reserve: 0.0         # boostback + landing propellant; 0 = expendable trajectory. Sweep this.
+    engines: {raptor3_sl: 33}
+  - name: "Starship"
+    dry_mass: 100000.0
+    propellant: 1600000.0
+    reserve: 0.0         # landing (header-tank) propellant; sweep this.
+    engines: {raptor3_sl: 3, raptor_vac: 3}
+notes: "Starbase 26.0 N, 275 km circular, inclination free (eastward)."
