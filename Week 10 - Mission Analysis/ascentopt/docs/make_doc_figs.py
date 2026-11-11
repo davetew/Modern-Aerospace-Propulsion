@@ -33,8 +33,7 @@ def _prepare_data():
             if not os.path.exists(os.path.join(d, dst)):
                 shutil.copy(os.path.join(res, src), os.path.join(d, dst))
     for f in glob.glob(os.path.join(res, "result_*.json")):
-        if not os.path.exists(os.path.join(DATA, os.path.basename(f))):
-            shutil.copy(f, DATA)
+        shutil.copy(f, DATA)  # small; always refresh so edited tags/labels propagate
 
 
 _prepare_data()
@@ -227,9 +226,9 @@ def split_histories():
     v_site = v - np.cross([0, 0, OMEGA_E], r)
     up = r / np.linalg.norm(r, axis=1)[:, None]; east = np.cross(np.array([0.0, 0.0, 1.0])[None, :], up); east /= np.linalg.norm(east, axis=1)[:, None]; north = np.cross(up, east)
     gt, gr, gv, gmp, _ = _guess_series(guess); gvs = gv - np.cross([0, 0, OMEGA_E], gr)
-    # left: slide-33 layout
+    # left: altitude / velocity components / propellant
     fig, axs = plt.subplots(3, 1, figsize=(7.2, 7.6), sharex=True)
-    axs[0].plot(t, hh_[:, 0] / 1e3, color=OPT_C, lw=2, label="optimized"); axs[0].plot(gt, (np.linalg.norm(gr, axis=1) - R_E) / 1e3, color=GUESS_C, ls="--", lw=1.5, label=f"gravity turn (slide-33 law, kick {guess['kick_deg']:.1f}°)")
+    axs[0].plot(t, hh_[:, 0] / 1e3, color=OPT_C, lw=2, label="optimized"); axs[0].plot(gt, (np.linalg.norm(gr, axis=1) - R_E) / 1e3, color=GUESS_C, ls="--", lw=1.5, label=f"prescribed gravity turn (kick {guess['kick_deg']:.1f}°)")
     axs[0].set_ylabel("altitude [km]"); axs[0].legend(); axs[0].set_title("Altitude")
     axs[1].plot(t, np.linalg.norm(v_site, axis=1) / 1e3, color=OPT_C, lw=2, label="Earth-relative speed")
     axs[1].plot(t, np.sum(v_site * up, axis=1) / 1e3, color="green", ls="--", label="radial"); axs[1].plot(t, np.sum(v_site * east, axis=1) / 1e3, color="blue", ls="--", label="east"); axs[1].plot(t, np.sum(v_site * north, axis=1) / 1e3, color="cyan", ls="--", label="north")

@@ -23,7 +23,7 @@
  },
  "cases": {
   "sw_light": {
-   "tag": "dry 160/85 t (slide-42 low), no reserves",
+   "tag": "dry 160/85 t (low estimate), no reserves",
    "payload": 314.8910063990016,
    "t_stage": 144.63568553803154,
    "h_stage": 61.07339788593352,
